@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Blueprints.StateMachine.Core;
 using RequireInterface;
@@ -8,64 +10,74 @@ namespace Blueprints.StateMachine.Mono
 {
     public abstract class MonoState<TState> : State<TState> where TState : Enum 
     {
-        public event Action EnterState;
-        public event Action IdleState;
-        public event Action ExitState;
-
         [field: SerializeField] public TState State { get; private set; }
         
         [SerializeField, RequireInterface(typeof(IStateBehaviour))]
         private UnityEngine.Object behaviour;
+
+        public IStateBehaviour Behaviour
+        {
+            get
+            {
+                var _ = behaviour as IStateBehaviour;
+                if (_ == null)
+                {
+                    throw new ArgumentNullException($"{name} State does not have a valid state behaviour set");
+                }
+
+                return _;
+            }   
+        } 
         
-        public IStateBehaviour Behaviour => behaviour as IStateBehaviour; 
         public bool StateRunning { get; private set; }
 
-        protected void OnEnable()
+        protected virtual void OnEnable()
         {
             if (behaviour == null)
             {
                 throw new StateException($"State '{name}':  IState Behaviour unassigned");
             }
-
-            EnterState += Behaviour.Enter;
-            IdleState += Behaviour.Idle;
-            ExitState += Behaviour.Exit;
         }
 
-        protected void OnDisable()
+        protected virtual void OnDisable()
         {
             if (behaviour == null)
             {
                 throw new StateException($"State '{name}':  IState Behaviour unassigned");
             }
-            
-            EnterState -= Behaviour.Enter;
-            IdleState -= Behaviour.Idle;
-            ExitState -= Behaviour.Exit;
         }
 
         public override async Task Enter()
         {
             StateRunning = true;
-            await Execute(EnterState, Behaviour.EnterTime);
+            var tasks = PrepareTasks(StateTaskSwitch.Enter);
+            await Execute(tasks, OnEnterState);
         }
 
         public override async Task Idle()
         {
             StateRunning = true;
-            await Execute(IdleState, Behaviour.IdleTime);
+            var tasks = PrepareTasks(StateTaskSwitch.Idle);
+            await Execute(tasks, OnIdleState);
         }
 
         public override async Task Exit()
         {
-            await Execute(ExitState, Behaviour.ExitTime);
+            var tasks = PrepareTasks(StateTaskSwitch.Exit);
+            await Execute(tasks, OnExitState);
             StateRunning = false;
         }
 
-        private static async Task Execute(Action stateAction, float waitForSeconds)
+        private IEnumerable<Task> PrepareTasks(StateTaskSwitch taskSwitch)
         {
-            stateAction?.Invoke();
-            await Task.Delay((int)(waitForSeconds * 1000));
+            var task = SelectStateTask(Behaviour, taskSwitch);
+            var wait = SelectStateTime(Behaviour, taskSwitch);
+
+            return new List<Task>
+            {
+                task,
+                Task.Delay((int)wait * 1000)
+            };
         }
     }
 }

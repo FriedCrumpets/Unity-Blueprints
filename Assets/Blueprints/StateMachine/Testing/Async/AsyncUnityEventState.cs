@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace Blueprints.StateMachine.Async
 {
-    public class AsyncUnityEventState : MonoBehaviour, IStateBehaviourAsync
+    public class AsyncUnityEventState : MonoBehaviour, IStateBehaviour
     {
         [field: SerializeField] [field: Tooltip("The allocated time required for the state to complete Enter")]
         public float EnterTime { get; set; }

@@ -5,38 +5,49 @@ using System.Threading.Tasks;
 using Blueprints.StateMachine.Core;
 using RequireInterface;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Blueprints.StateMachine.Async
 {
-    internal enum StateTaskSwitch
-    {
-        None,
-        Enter,
-        Idle,
-        Exit,
-    }
-    
     public abstract class AsyncState<TState> : State<TState> where TState : Enum 
     {
-        public event Action EnterState;
-        public event Action IdleState;
-        public event Action ExitState;
-
-        private List<IStateBehaviourAsync> _behaviours;
+        private List<IStateBehaviour> _stateBehaviours;
 
         [field: SerializeField] public TState State { get; private set; }
-        
-        [field: SerializeField, RequireInterface(typeof(IStateBehaviourAsync))]
-        public List<UnityEngine.Object> behaviours { get; private set; }
-        
-        public List<IStateBehaviourAsync> Behaviours => 
-            _behaviours ??= behaviours.Select(item => item as IStateBehaviourAsync).ToList(); 
-        
+
+        [SerializeField, RequireInterface(typeof(IStateBehaviour))]
+        public List<UnityEngine.Object> stateBehaviours = new List<Object>();
+
+        public List<IStateBehaviour> StateStateBehaviours
+        {
+            get
+            {
+                if (_stateBehaviours.Any())
+                {
+                    return _stateBehaviours;
+                }
+                
+                _stateBehaviours.Clear();
+                
+                foreach (var behaviour in stateBehaviours.Select(stateBehaviour => stateBehaviour as IStateBehaviour))
+                {
+                    if (behaviour == null)
+                    {
+                        throw new ArgumentNullException($"{name} State does not have a valid state behaviour set");
+                    }
+                    
+                    _stateBehaviours.Add(behaviour);
+                }
+
+                return _stateBehaviours;
+            }
+        }
+
         public bool StateRunning { get; private set; }
 
         protected virtual void OnEnable()
         {
-            if (behaviours == null)
+            if (!stateBehaviours.Any())
             {
                 throw new StateException($"State '{name}':  IState Behaviour unassigned");
             }
@@ -44,7 +55,7 @@ namespace Blueprints.StateMachine.Async
 
         protected virtual void OnDisable()
         {
-            if (behaviours == null)
+            if (!stateBehaviours.Any())
             {
                 throw new StateException($"State '{name}':  IState Behaviour unassigned");
             }
@@ -53,28 +64,28 @@ namespace Blueprints.StateMachine.Async
         public override async Task Enter()
         {
             StateRunning = true;
-            var enterTasks = CreateTaskListing(Behaviours, StateTaskSwitch.Enter);
-            await Execute(EnterState, enterTasks);
+            var enterTasks = PrepareTasks(StateStateBehaviours, StateTaskSwitch.Enter);
+            await Execute(enterTasks, OnEnterState);
         }
 
         public override async Task Idle()
         {
             StateRunning = true;
-            var idleTasks = CreateTaskListing(Behaviours, StateTaskSwitch.Idle);
-            await Execute(IdleState, idleTasks);
+            var idleTasks = PrepareTasks(StateStateBehaviours, StateTaskSwitch.Idle);
+            await Execute(idleTasks, OnIdleState);
         }
 
         public override async Task Exit()
         {
-            var exitTasks = CreateTaskListing(Behaviours, StateTaskSwitch.Idle);
-            await Execute(ExitState, exitTasks);
+            var exitTasks = PrepareTasks(StateStateBehaviours, StateTaskSwitch.Idle);
+            await Execute(exitTasks, OnExitState);
             StateRunning = false;
         }
 
-        private static IEnumerable<Task> CreateTaskListing(List<IStateBehaviourAsync> states, StateTaskSwitch taskSwitch)
+        private static IEnumerable<Task> PrepareTasks(List<IStateBehaviour> states, StateTaskSwitch taskSwitch)
         {
             var taskList = new List<Task>();
-            float time = 0f;
+            var time = 0f;
             
             foreach (var state in states)
             {
@@ -89,32 +100,10 @@ namespace Blueprints.StateMachine.Async
 
             return taskList;
         }
-
-        private static Task SelectStateTask(IStateBehaviourAsync state, StateTaskSwitch taskSwitch)
+        
+        private static async Task Execute(IEnumerable<Task> tasks, Action action)
         {
-            return taskSwitch switch
-            {
-                StateTaskSwitch.Enter => state.Enter(),
-                StateTaskSwitch.Idle => state.Idle(),
-                StateTaskSwitch.Exit => state.Exit(),
-                _ => throw new ArgumentOutOfRangeException(nameof(taskSwitch), taskSwitch, null)
-            };
-        }
-
-        private static float SelectStateTime(IStateBehaviourAsync state, StateTaskSwitch taskSwitch)
-        {
-            return taskSwitch switch
-            {
-                StateTaskSwitch.Enter => state.EnterTime,
-                StateTaskSwitch.Idle => state.IdleTime,
-                StateTaskSwitch.Exit => state.ExitTime,
-                _ => throw new ArgumentOutOfRangeException(nameof(taskSwitch), taskSwitch, null)
-            };
-        }
-
-        private static async Task Execute(Action stateAction, IEnumerable<Task> tasks)
-        {
-            stateAction?.Invoke();
+            action?.Invoke();
 
             var enumerable = tasks as Task[] ?? tasks.ToArray();
             
