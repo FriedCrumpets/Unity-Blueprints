@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Patterns.StateMachine.Core
 {
-    public abstract class MonoState<TState> : MonoBehaviour where TState : Enum 
+    public abstract class MonoState<TState> : State<TState> where TState : Enum 
     {
         public event Action EnterState;
         public event Action IdleState;
@@ -43,19 +43,19 @@ namespace Patterns.StateMachine.Core
             ExitState -= Behaviour.Exit;
         }
 
-        public async Task Enter()
+        public override async Task Enter()
         {
             StateRunning = true;
             await Execute(EnterState, Behaviour.EnterTime);
         }
 
-        public async Task Idle()
+        public override async Task Idle()
         {
             StateRunning = true;
             await Execute(IdleState, Behaviour.IdleTime);
         }
 
-        public async Task Exit()
+        public override async Task Exit()
         {
             await Execute(ExitState, Behaviour.ExitTime);
             StateRunning = false;

@@ -15,7 +15,7 @@ namespace Patterns.StateMachine.Core
         Exit,
     }
     
-    public abstract class AsyncState<TState> : MonoBehaviour where TState : Enum 
+    public abstract class AsyncState<TState> : State<TState> where TState : Enum 
     {
         public event Action EnterState;
         public event Action IdleState;
@@ -49,21 +49,21 @@ namespace Patterns.StateMachine.Core
             }
         }
 
-        public async Task Enter()
+        public override async Task Enter()
         {
             StateRunning = true;
             var enterTasks = CreateTaskListing(Behaviours, StateTaskSwitch.Enter);
             await Execute(EnterState, enterTasks);
         }
 
-        public async Task Idle()
+        public override async Task Idle()
         {
             StateRunning = true;
             var idleTasks = CreateTaskListing(Behaviours, StateTaskSwitch.Idle);
             await Execute(IdleState, idleTasks);
         }
 
-        public async Task Exit()
+        public override async Task Exit()
         {
             var exitTasks = CreateTaskListing(Behaviours, StateTaskSwitch.Idle);
             await Execute(ExitState, exitTasks);
