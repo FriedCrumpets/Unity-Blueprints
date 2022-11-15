@@ -1,6 +1,6 @@
 namespace Patterns.StateMachine.Core
 {
-    public interface IState
+    public interface IStateBehaviour
     {
         /// <summary>
         /// The allocated time required for the state to complete Enter

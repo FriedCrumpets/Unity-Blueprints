@@ -1,6 +1,6 @@
 using System;
 
-namespace Patterns.StateMachine
+namespace Patterns.StateMachine.Core
 {
     [Serializable]
     public class StateException : Exception

@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace Patterns.StateMachine
 {
-    public class UnityEventStateController : MonoBehaviour, IState
+    public class UnityEventStateBehaviourController : MonoBehaviour, IStateBehaviour
     {
         [field: SerializeField] [field: Tooltip("The allocated time required for the state to complete Enter")]
         public float EnterTime { get; set; }

@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace Patterns.StateMachine.Core
 {
-    public abstract class StateController<TState> : MonoBehaviour where TState : Enum
+    public abstract class StateMachine<TState> : MonoBehaviour where TState : Enum
     {
         [field: SerializeField] 
-        public List<StateBehaviour<TState>> States { get; private set; }
+        public List<MonoState<TState>> States { get; private set; }
         
-        public StateBehaviour<TState> CurrentState { get; private set; }
+        public MonoState<TState> CurrentState { get; private set; }
         
         public virtual async void ChangeState(TState state)
         {
@@ -24,7 +24,7 @@ namespace Patterns.StateMachine.Core
             await CurrentState.Idle();
         }
 
-        private static StateBehaviour<TState> FindState(List<StateBehaviour<TState>> states, TState state)
+        private static MonoState<TState> FindState(List<MonoState<TState>> states, TState state)
         {
             var newState = states.First(item => item.State.Equals(state));
 

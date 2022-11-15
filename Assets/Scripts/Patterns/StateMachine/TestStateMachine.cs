@@ -8,7 +8,7 @@ namespace Patterns.StateMachine
         B
     }
     
-    public class TestStateMachine : StateController<Testing>
+    public class TestStateMachine : StateMachine<Testing>
     {
         
     }
