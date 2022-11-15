@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Blueprints.StateMachine.Core;
 
@@ -30,16 +31,10 @@ namespace Blueprints.StateMachine.Queue
         
         private static Dictionary<Task, float> PrepareTasks(List<IStateBehaviour> states, StateTaskSwitch taskSwitch)
         {
-            var taskDict = new Dictionary<Task, float>();
-
-            foreach (var state in states)
-            {
-                var task = SelectStateTask(state, taskSwitch);
-                var delay = SelectStateTime(state, taskSwitch);
-                taskDict.Add(task, delay);
-            }
-
-            return taskDict;
+            return states.ToDictionary(
+                state => SelectStateTask(state, taskSwitch), 
+                state => SelectStateTime(state, taskSwitch)
+            );
         }
 
         private new static async Task Execute(Dictionary<Task, float> tasks, Action action)
