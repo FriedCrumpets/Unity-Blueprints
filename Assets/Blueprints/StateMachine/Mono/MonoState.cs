@@ -42,7 +42,7 @@ namespace Blueprints.StateMachine.Mono
                 throw new StateException($"State '{name}':  IState Behaviour unassigned");
             }
         }
-
+        
         public override async Task Enter()
         {
             StateRunning = true;
