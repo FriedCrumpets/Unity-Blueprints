@@ -10,27 +10,27 @@ namespace Blueprints.StateMachine.Async
         public override async Task Enter()
         {
             StateRunning = true;
-            var enterTasks = PrepareTasks(StateBehaviours, StateTaskSwitch.Enter);
-            await Execute(enterTasks, OnEnterState);
+            var tasks = PrepareTasks(StateBehaviours, StateTaskSwitch.Enter);
+            await Execute(tasks, OnEnterState);
         }
 
         public override async Task Idle()
         {
             StateRunning = true;
-            var idleTasks = PrepareTasks(StateBehaviours, StateTaskSwitch.Idle);
-            await Execute(idleTasks, OnIdleState);
+            var tasks = PrepareTasks(StateBehaviours, StateTaskSwitch.Idle);
+            await Execute(tasks, OnIdleState);
         }
 
         public override async Task Exit()
         {
-            var exitTasks = PrepareTasks(StateBehaviours, StateTaskSwitch.Idle);
-            await Execute(exitTasks, OnExitState);
+            var tasks = PrepareTasks(StateBehaviours, StateTaskSwitch.Idle);
+            await Execute(tasks, OnExitState);
             StateRunning = false;
         }
 
         private static IEnumerable<Task> PrepareTasks(List<IStateBehaviour> states, StateTaskSwitch taskSwitch)
         {
-            var taskList = new List<Task>();
+            var tasks = new List<Task>();
             var time = 0f;
             
             foreach (var state in states)
@@ -39,12 +39,12 @@ namespace Blueprints.StateMachine.Async
                 var timeCheck = SelectStateTime(state, taskSwitch);
                 time = timeCheck > time ? timeCheck : time;
 
-                taskList.Add(task);
+                tasks.Add(task);
             }
             
-            taskList.Add(Task.Delay((int)time * 1000));
+            tasks.Add(Task.Delay((int)time * 1000));
 
-            return taskList;
+            return tasks;
         }
     }
 }
