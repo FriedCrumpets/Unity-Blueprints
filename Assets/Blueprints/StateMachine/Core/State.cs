@@ -14,6 +14,8 @@ namespace Blueprints.StateMachine.Core
         
         [field: SerializeField] public TState CommandingState { get; private set; }
         
+        public bool StateRunning { get; protected set; }
+        
         public abstract Task Enter();
         public abstract Task Idle();
         public abstract Task Exit();

@@ -13,8 +13,6 @@ namespace Blueprints.StateMachine.Async
     {
         private List<IStateBehaviour> _stateBehaviours;
 
-        [field: SerializeField] public TState State { get; private set; }
-
         [SerializeField, RequireInterface(typeof(IStateBehaviour))]
         public List<UnityEngine.Object> stateBehaviours = new List<Object>();
 
@@ -42,8 +40,6 @@ namespace Blueprints.StateMachine.Async
                 return _stateBehaviours;
             }
         }
-
-        public bool StateRunning { get; private set; }
 
         protected virtual void OnEnable()
         {
@@ -99,20 +95,6 @@ namespace Blueprints.StateMachine.Async
             taskList.Add(Task.Delay((int)time * 1000));
 
             return taskList;
-        }
-        
-        private static async Task Execute(IEnumerable<Task> tasks, Action action)
-        {
-            action?.Invoke();
-
-            var enumerable = tasks as Task[] ?? tasks.ToArray();
-            
-            foreach (var task in enumerable)
-            {
-                task.Start();
-            }
-            
-            await Task.WhenAll(enumerable);
         }
     }
 }

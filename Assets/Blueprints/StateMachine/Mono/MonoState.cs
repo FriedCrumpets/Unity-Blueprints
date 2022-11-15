@@ -10,8 +10,6 @@ namespace Blueprints.StateMachine.Mono
 {
     public abstract class MonoState<TState> : State<TState> where TState : Enum 
     {
-        [field: SerializeField] public TState State { get; private set; }
-        
         [SerializeField, RequireInterface(typeof(IStateBehaviour))]
         private UnityEngine.Object behaviour;
 
@@ -27,9 +25,7 @@ namespace Blueprints.StateMachine.Mono
 
                 return _;
             }   
-        } 
-        
-        public bool StateRunning { get; private set; }
+        }
 
         protected virtual void OnEnable()
         {
