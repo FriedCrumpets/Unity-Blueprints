@@ -1,6 +1,6 @@
-using Patterns.StateMachine.Core;
+using Blueprints.StateMachine.Core;
 
-namespace Patterns.StateMachine
+namespace Blueprints.StateMachine
 {
     public enum Testing
     {

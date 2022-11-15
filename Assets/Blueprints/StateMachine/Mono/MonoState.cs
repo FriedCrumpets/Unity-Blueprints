@@ -1,9 +1,10 @@
 using System;
 using System.Threading.Tasks;
+using Blueprints.StateMachine.Core;
 using RequireInterface;
 using UnityEngine;
 
-namespace Patterns.StateMachine.Core
+namespace Blueprints.StateMachine.Mono
 {
     public abstract class MonoState<TState> : State<TState> where TState : Enum 
     {

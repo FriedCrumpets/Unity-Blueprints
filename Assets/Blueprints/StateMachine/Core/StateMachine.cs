@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Patterns.StateMachine.Core
+namespace Blueprints.StateMachine.Core
 {
     public abstract class StateMachine<TState> : MonoBehaviour where TState : Enum
     {

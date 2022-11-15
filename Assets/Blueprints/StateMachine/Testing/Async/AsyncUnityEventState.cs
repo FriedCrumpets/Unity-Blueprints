@@ -1,10 +1,12 @@
-using Patterns.StateMachine.Core;
+using System;
+using System.Threading.Tasks;
+using Blueprints.StateMachine.Core;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Patterns.StateMachine
+namespace Blueprints.StateMachine.Async
 {
-    public class UnityEventStateBehaviourController : MonoBehaviour, IStateBehaviour
+    public class AsyncUnityEventState : MonoBehaviour, IStateBehaviourAsync
     {
         [field: SerializeField] [field: Tooltip("The allocated time required for the state to complete Enter")]
         public float EnterTime { get; set; }
@@ -19,19 +21,19 @@ namespace Patterns.StateMachine
         public UnityEvent OnIdle;
         public UnityEvent OnExit;
         
-        public void Enter()
+        public async Task Enter()
         {
-            OnEnter?.Invoke();
+            await Task.Run(OnEnter.Invoke);
         }
 
-        public void Idle()
+        public async Task Idle()
         {
-            OnIdle?.Invoke();
+            await Task.Run(OnIdle.Invoke);
         }
 
-        public void Exit()
+        public async Task Exit()
         {
-            OnExit?.Invoke();
+            await Task.Run(OnExit.Invoke);
         }
     }
 }

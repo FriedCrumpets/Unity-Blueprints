@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Patterns.StateMachine.Core
+namespace Blueprints.StateMachine.Core
 {
     public abstract class State<TState> : MonoBehaviour
     {
