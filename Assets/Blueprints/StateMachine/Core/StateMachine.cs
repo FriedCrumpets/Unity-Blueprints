@@ -43,7 +43,7 @@ namespace Blueprints.StateMachine.Core
             }
         }
 
-        private static State<TState> FindState(List<State<TState>> states, TState state)
+        private static State<TState> FindState(IEnumerable<State<TState>> states, TState state)
         {
             var newState = states.First(item => item.CommandingState.Equals(state));
 
