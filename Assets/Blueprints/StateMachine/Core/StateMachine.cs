@@ -7,6 +7,8 @@ namespace Blueprints.StateMachine.Core
 {
     public abstract class StateMachine<TState> : MonoBehaviour where TState : Enum
     {
+        protected bool StateChanging;
+        
         [field: SerializeField] 
         public List<State<TState>> States { get; private set; }
 
@@ -15,19 +17,23 @@ namespace Blueprints.StateMachine.Core
         public State<TState> CurrentState { get; private set; }
 
         protected virtual void Start() => RebuildDict();
-        
-        public virtual async void ChangeState(TState state)
-        {
-            await CurrentState.Exit();
 
-            if (!AvailableStates.TryGetValue(state, out var newState))
-            {
-                throw new StateException($"{state} has not been located within this StateMachine");
-            }
+        public virtual void ChangeState(TState state)
+        {
+            if (StateChanging) { return; }
             
+            var newState = GetNewState(AvailableStates, state);
+            ChangeStateAsync(newState);
+        }
+        
+        protected virtual async void ChangeStateAsync(State<TState> newState)
+        {
+            StateChanging = true;
+            await CurrentState.Exit();
             CurrentState = newState;
             await CurrentState.Enter();
             await CurrentState.Idle();
+            StateChanging = false;
         }
 
         protected void RebuildDict()
@@ -41,6 +47,16 @@ namespace Blueprints.StateMachine.Core
                 
                 AvailableStates.Add(state.CommandingState, state);
             }
+        }
+
+        private static State<TState> GetNewState(Dictionary<TState, State<TState>> states, TState state)
+        {
+            if (!states.TryGetValue(state, out var newState))
+            {
+                throw new StateException($"{state} has not been located within this StateMachine");
+            }
+
+            return newState;
         }
 
         private static State<TState> FindState(IEnumerable<State<TState>> states, TState state)
