@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Blueprints.StateMachine.Core;
+using Blueprints.AsyncStateController.Core;
 using RequireInterface;
 using UnityEngine;
 
-namespace Blueprints.StateMachine.Mono
+namespace Blueprints.AsyncStateController.Mono
 {
     public abstract class MonoState<TState> : State<TState> where TState : Enum 
     {

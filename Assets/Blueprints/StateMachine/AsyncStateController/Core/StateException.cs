@@ -1,6 +1,6 @@
 using System;
 
-namespace Blueprints.StateMachine.Core
+namespace Blueprints.AsyncStateController.Core
 {
     [Serializable]
     public class StateException : Exception

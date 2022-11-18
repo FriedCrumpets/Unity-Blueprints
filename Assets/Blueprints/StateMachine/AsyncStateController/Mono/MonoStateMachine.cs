@@ -1,7 +1,7 @@
 using System;
-using Blueprints.StateMachine.Core;
+using Blueprints.AsyncStateController.Core;
 
-namespace Blueprints.StateMachine.Mono
+namespace Blueprints.AsyncStateController.Mono
 {
     public abstract class MonoStateMachine<TState> : StateMachine<TState> where TState : Enum
     {

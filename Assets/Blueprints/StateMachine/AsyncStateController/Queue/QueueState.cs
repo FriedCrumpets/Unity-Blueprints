@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Blueprints.StateMachine.Core;
+using Blueprints.AsyncStateController.Core;
 
-namespace Blueprints.StateMachine.Queue
+namespace Blueprints.AsyncStateController.Queue
 {
     public abstract class QueueState<TState> : MultiState<TState> where TState : Enum
     {

@@ -4,16 +4,16 @@ using System.Linq;
 using RequireInterface;
 using UnityEngine;
 
-namespace Blueprints.StateMachine.Core
+namespace Blueprints.StateController.Core
 {
     public abstract class MultiState<TState> : State<TState> where TState : Enum
     {
-        private List<IStateBehaviour> _stateBehaviours;
+        private List<IState> _stateBehaviours;
 
-        [SerializeField, RequireInterface(typeof(IStateBehaviour))]
+        [SerializeField, RequireInterface(typeof(IState))]
         public List<UnityEngine.Object> stateBehaviours = new List<UnityEngine.Object>();
 
-        public List<IStateBehaviour> StateBehaviours
+        public List<IState> Behaviours
         {
             get
             {
@@ -24,7 +24,7 @@ namespace Blueprints.StateMachine.Core
                 
                 _stateBehaviours.Clear();
                 
-                foreach (var behaviour in stateBehaviours.Select(stateBehaviour => stateBehaviour as IStateBehaviour))
+                foreach (var behaviour in stateBehaviours.Select(stateBehaviour => stateBehaviour as IState))
                 {
                     if (behaviour == null)
                     {
@@ -42,7 +42,7 @@ namespace Blueprints.StateMachine.Core
         {
             if (!stateBehaviours.Any())
             {
-                throw new StateException($"State '{name}':  IState Behaviour unassigned");
+                throw new NullReferenceException($"State '{name}':  IState Behaviour unassigned");
             }
         }
 
@@ -50,7 +50,7 @@ namespace Blueprints.StateMachine.Core
         {
             if (!stateBehaviours.Any())
             {
-                throw new StateException($"State '{name}':  IState Behaviour unassigned");
+                throw new NullReferenceException($"State '{name}':  IState Behaviour unassigned");
             }
         }
     }

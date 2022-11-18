@@ -1,8 +1,8 @@
-using System.Threading.Tasks;
+using System.Collections;
 
-namespace Blueprints.StateMachine.Core
+namespace Blueprints.StateController.Core
 {
-    public interface IStateBehaviour
+    public interface IState
     {
         /// <summary>
         /// The allocated time required for the state to complete Enter
@@ -19,8 +19,8 @@ namespace Blueprints.StateMachine.Core
         /// </summary>
         float ExitTime { get; set; }
 
-        Task Enter();
-        Task Idle();
-        Task Exit();
+        IEnumerator Enter();
+        IEnumerator Idle();
+        IEnumerator Exit();
     }
 }

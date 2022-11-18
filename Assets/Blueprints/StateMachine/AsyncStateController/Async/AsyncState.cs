@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Blueprints.StateMachine.Core;
+using Blueprints.AsyncStateController.Core;
 
-namespace Blueprints.StateMachine.Async
+namespace Blueprints.AsyncStateController.Async
 {
     public abstract class AsyncState<TState> : MultiState<TState> where TState : Enum 
     {

@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Blueprints.StateMachine.Core;
-using Blueprints.StateMachine.Queue;
+using Blueprints.AsyncStateController.Core;
+using Blueprints.AsyncStateController.Queue;
 using UnityEngine;
 
-namespace Blueprints.StateMachine.Async
+namespace Blueprints.AsyncStateController.Async
 {
     public abstract class AsyncStateMachine<TState> : QueueStateMachine<TState> where TState : Enum
     {
@@ -53,6 +53,21 @@ namespace Blueprints.StateMachine.Async
             await state.Exit();
             StateFinished?.Invoke(state);
         }
+        
+        private void QueueState(TState state)
+        {
+            if (CanAddToQueue())
+            {
+                AddToQueue(state);
+            }
+        }
+
+        private void ExecuteState(TState state)
+        {
+            var newState = GetNewState(AvailableStates, state);
+            CurrentAsyncStates.Add(newState);
+            ChangeStateAsync(newState);
+        }
 
         private void OnStateFinished(State<TState> state)
         {
@@ -75,21 +90,6 @@ namespace Blueprints.StateMachine.Async
                 return;
             }
                 
-            CurrentAsyncStates.Add(newState);
-            ChangeStateAsync(newState);
-        }
-
-        private void QueueState(TState state)
-        {
-            if (CanAddToQueue())
-            {
-                AddToQueue(state);
-            }
-        }
-
-        private void ExecuteState(TState state)
-        {
-            var newState = GetNewState(AvailableStates, state);
             CurrentAsyncStates.Add(newState);
             ChangeStateAsync(newState);
         }

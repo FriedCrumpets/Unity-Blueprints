@@ -1,10 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Blueprints.StateMachine.Core
+namespace Blueprints.StateController.Core
 {
     public abstract class State<TState> : MonoBehaviour
     {
@@ -16,9 +16,9 @@ namespace Blueprints.StateMachine.Core
         
         public bool StateRunning { get; protected set; }
         
-        public abstract Task Enter();
-        public abstract Task Idle();
-        public abstract Task Exit();
+        public abstract IEnumerator Enter();
+        public abstract IEnumerator Idle();
+        public abstract IEnumerator Exit();
 
         protected void OnEnterState()
         {
@@ -46,7 +46,7 @@ namespace Blueprints.StateMachine.Core
             };
         }
 
-        protected static Task SelectStateTask(IStateBehaviour state, StateTaskSwitch taskSwitch)
+        protected static IEnumerator SelectStateTask(IState state, StateTaskSwitch taskSwitch)
         {
             return taskSwitch switch
             {
@@ -57,7 +57,7 @@ namespace Blueprints.StateMachine.Core
             };
         }
 
-        protected static float SelectStateTime(IStateBehaviour state, StateTaskSwitch taskSwitch)
+        protected static float SelectStateTime(IState state, StateTaskSwitch taskSwitch)
         {
             return taskSwitch switch
             {
@@ -68,18 +68,23 @@ namespace Blueprints.StateMachine.Core
             };
         }
         
-        protected static async Task Execute(IEnumerable<Task> tasks, Action action)
+        protected IEnumerator Execute(IEnumerable<IEnumerator> tasks, Action onStart = null, Action onComplete = null)
         {
-            action?.Invoke();
+            onStart?.Invoke();
             
-            var enumerable = tasks as Task[] ?? tasks.ToArray();
+            var enumerable = tasks as IEnumerator[] ?? tasks.ToArray();
             
             foreach (var task in enumerable)
             {
-                task.Start();
+                yield return StartCoroutine(task);
             }
             
-            await Task.WhenAll(enumerable);
+            onComplete?.Invoke();
+        }
+
+        protected IEnumerator WaitForSeconds(float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
         }
     }
 }

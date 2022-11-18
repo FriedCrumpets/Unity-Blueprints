@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Blueprints.StateMachine.Core
+namespace Blueprints.AsyncStateController.Core
 {
     public abstract class StateMachine<TState> : MonoBehaviour where TState : Enum
     {

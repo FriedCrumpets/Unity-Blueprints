@@ -1,12 +1,13 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Blueprints.StateMachine.Core;
+using Blueprints.StateController.Core;
 using UnityEngine;
 
-namespace Blueprints.StateMachine.Queue
+namespace Blueprints.StateController.Queue
 {
-    public abstract class QueueStateMachine<TState> : StateMachine<TState> where TState : Enum
+    public abstract class StateController<TState> : StateMachine<TState> where TState : Enum
     {
         public Queue<State<TState>> Queue { get; } = new Queue<State<TState>>();
         
@@ -27,20 +28,20 @@ namespace Blueprints.StateMachine.Queue
             }
 
             AddToQueue(state);
-            ChangeStateAsync(Queue.Dequeue());
+            StartCoroutine(ChangeStateEnum(Queue.Dequeue()));
         }
 
-        protected override async void ChangeStateAsync(State<TState> newState)
+        protected override IEnumerator ChangeStateEnum(State<TState> newState)
         {
             StateChanging = true;
-            await CurrentState.Exit();
+            yield return CurrentState.Exit();
             CurrentState = newState;
-            await CurrentState.Enter();
-            await CurrentState.Idle();
+            yield return CurrentState.Enter();
+            yield return CurrentState.Idle();
 
             if (Queue.Any())
             {
-                ChangeStateAsync(Queue.Dequeue());
+                yield return ChangeStateEnum(Queue.Dequeue());
             }
             
             StateChanging = false;
