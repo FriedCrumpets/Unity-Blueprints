@@ -37,7 +37,7 @@ namespace Blueprints.AsyncStateController.Queue
             );
         }
 
-        private new static async Task Execute(Dictionary<Task, float> tasks, Action action)
+        private static async Task Execute(Dictionary<Task, float> tasks, Action action)
         {
             action?.Invoke();
 

@@ -38,7 +38,7 @@ namespace Blueprints.StateController.Queue
             );
         }
 
-        protected new IEnumerator Execute(Dictionary<IEnumerator, float> tasks, Action onStarted = null,
+        protected IEnumerator Execute(Dictionary<IEnumerator, float> tasks, Action onStarted = null,
             Action onCompleted = null)
         {
             onStarted?.Invoke();

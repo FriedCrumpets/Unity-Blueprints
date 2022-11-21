@@ -5,7 +5,7 @@ using System.Linq;
 using Blueprints.StateController.Core;
 using UnityEngine;
 
-namespace Blueprints.StateController.Queue
+namespace Blueprints.StateMachine.StateController
 {
     public abstract class StateController<TState> : StateMachine<TState> where TState : Enum
     {
