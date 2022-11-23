@@ -1,3 +1,4 @@
+using System.Linq;
 using Collections;
 
 namespace Blueprints.Command
@@ -23,11 +24,33 @@ namespace Blueprints.Command
             
             Cursor.Add(command);
         }
+        
+        public static void ExecuteExisting(ICommand command)
+        {
+            if (!ExistsInStream(command))
+            {
+                throw new CommandNotFound();
+            }
+            
+            CurrentCommand.Execute();
+        }
+
+        public static bool ExistsInStream(ICommand command) => Cursor.IndexOf(command) != -1;
 
         public static void Undo()
         {
             CurrentCommand.Undo();
             Cursor.RemoveAt((int)Cursor.Location);
+        }
+
+        public static void UndoExisting(ICommand command)
+        {
+            if (!ExistsInStream(command))
+            {
+                throw new CommandNotFound();
+            }
+
+            Undo();
         }
     }
 }

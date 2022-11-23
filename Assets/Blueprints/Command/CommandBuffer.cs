@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -5,6 +6,11 @@ namespace Blueprints.Command
 {
     /// <summary>
     /// Buffers the commands in a queue ready to be executed prior to adding them to the CommandStream
+    /// Commands used in this buffer are to be tied quite heavily to GameObjects,
+    /// with this in mind this Buffer might require to be of a Singleton pattern to set the clarity.
+    ///
+    /// To Clarify, ICommands do not need to be tied to GameObjects and if they are related to data could be used
+    /// asynchronously... if that doesn't cause issues. Again I'm not sure yet. 
     /// </summary>
     public static class CommandBuffer
     {

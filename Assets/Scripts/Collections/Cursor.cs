@@ -11,10 +11,25 @@ namespace Collections
 
         public Cursor(IList<T> list) { Items = list; }
         
+        public Cursor(int capacity) { Items = new List<T>(capacity); }
+
         private uint _location = uint.MinValue;
 
-        public IList<T> Items { get; private set; }
+        public int Count => Items.Count;
+        
+        public T CurrentItem
+        {
+            get
+            {
+                if (!Items.Any())
+                {
+                    throw new NullReferenceException($"There are no Items on this Cursor to retrieve");
+                }
 
+                return Items.ElementAt((int)Location - 1);
+            }
+        }
+        
         public uint Location
         {
             get => _location;
@@ -22,16 +37,17 @@ namespace Collections
             {
                 if (value > Count)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(value),$"Attempting to set location above the Item count");
+                    throw new ArgumentOutOfRangeException(nameof(value),
+                        $"Attempting to set location above the Item count");
                 }
 
                 _location = value;
             }
         }
         
-        public int Count => Items.Count;
-
         public bool IsReadOnly => Items.IsReadOnly;
+        
+        private IList<T> Items { get; set; }
 
         public T this[int index]
         {
@@ -46,19 +62,6 @@ namespace Collections
                 return Items.ElementAt(index);
             }
             set => throw new NotImplementedException();
-        }
-        
-        public T CurrentItem
-        {
-            get
-            {
-                if (!Items.Any())
-                {
-                    throw new NullReferenceException($"There are no Items on this Cursor to retrieve");
-                }
-
-                return Items.ElementAt((int)Location - 1);
-            }
         }
 
         public void Add(T item)
@@ -82,13 +85,11 @@ namespace Collections
             return Items.Remove(item);
         }
 
-        public IList<T> Slice(int from, int to) => Items.ToArray()[from..^to];
-
         public void Clear() { Items.Clear(); }
 
         public void ClearFromLocation() => Items = Slice((int)Location, Count);
 
-        public void ClearToLocation() => Items = Slice(0, (int)Location);
+        public void ClearToLocation() => Items = Slice(0, (int)Location-1);
 
         public bool Contains(T item) => Items.Contains(item);
 
@@ -103,12 +104,28 @@ namespace Collections
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public int IndexOf(T item) => Items.IndexOf(item);
+        public int IndexOf(T item)
+        {
+            var index = Items.IndexOf(item);
+            Location = Location != index ? (uint)index : Location;
+            return index;
+        }
 
         public void Insert(int index, T item)
         {
             Location++;
+            Location = (uint)index;
             Items.Insert(index, item);
+        }
+
+        public void MoveCursor(uint location)
+        {
+            if (location > Count)
+            {
+                throw new IndexOutOfRangeException();
+            }
+
+            Location = location;
         }
 
         public void RemoveAt(int index)
@@ -120,5 +137,7 @@ namespace Collections
             
             Items.RemoveAt(index);
         }
+        
+        public IList<T> Slice(int from, int to) => Items.ToArray()[from..^to];
     }
 }
