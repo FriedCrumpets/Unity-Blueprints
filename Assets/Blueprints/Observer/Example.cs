@@ -1,25 +1,20 @@
-    using System;
-    using System.Collections.Generic;
-/// <summary>
-/// Modified example from official C# docs on IObservable<T> and IObserver<T> 
-/// </summary>
+using System;
+using System.Collections.Generic;
 
-public struct Message
+namespace Blueprints.Observer
+{
+    /// <summary>
+    /// Modified example from official C# docs on IObservable<T> and IObserver<T> 
+    /// </summary>
+
+    public struct Message
     {
-        string text;
-
         public Message(string newText)
         {
-            this.text = newText;
+            Text = newText;
         }
 
-        public string Text
-        {
-            get
-            {
-                return this.text;
-            }
-        }
+        public string Text { get; }
     }
 
     public class Headquarters : IObservable<Message>
@@ -148,3 +143,4 @@ public struct Message
             Console.ReadKey();
         }
     }
+}
