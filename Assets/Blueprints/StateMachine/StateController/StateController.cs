@@ -49,7 +49,7 @@ namespace Blueprints.StateMachine.StateController
 
         protected void AddToQueue(TState state)
         {
-            var newState = GetNewState(AvailableStates, state);
+            var newState = FindState(AvailableStates, state);
             Queue.Enqueue(newState);
         }
 

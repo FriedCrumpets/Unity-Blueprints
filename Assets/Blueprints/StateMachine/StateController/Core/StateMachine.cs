@@ -49,7 +49,7 @@ namespace Blueprints.StateController.Core
             return newState;
         }
 
-        protected static State<TState> GetNewState(Dictionary<TState, State<TState>> states, TState state)
+        protected static State<TState> FindState(Dictionary<TState, State<TState>> states, TState state)
         {
             if (!states.TryGetValue(state, out var newState))
             {
