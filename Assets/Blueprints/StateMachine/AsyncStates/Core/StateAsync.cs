@@ -65,15 +65,19 @@ namespace Blueprints.StateMachine.AsyncStates.Core
 
         public virtual Task Idle(Action action = null)
         {
-            var repeats = 0;
-            
-            do
+
+            if (IdleAction != null)
             {
-                action?.Invoke();
-                Task.Delay((int)IdleTime);
-                repeats++;
-            } while (_idle || repeats > MaximumIdleRepeats);
-            
+                var repeats = 0;
+                
+                do
+                {
+                    action?.Invoke();
+                    Task.Delay((int)IdleTime);
+                    repeats++;
+                } while (_idle || repeats > MaximumIdleRepeats);   
+            }
+
             return Task.CompletedTask;
         }
 
