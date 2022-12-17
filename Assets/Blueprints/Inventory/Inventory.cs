@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Blueprints.Items;
 using UnityEngine;
 
@@ -46,12 +47,6 @@ namespace Blueprints.Inventory
         [field: SerializeField] public uint Capacity { get; private set; } = 28;
         [field: SerializeField] public List<T> Items { get; set; }
         
-        // If inventory is full but item is stackable?!
-        /*
-         * Order of execution
-         * if(item is stackable) { StackHasCapacity { add to stack } else { try add to inventory } }
-         * { invoke inventory full } else { add to inventory } } }
-         */
         public bool TryCollectItem(ICollectable<T> collectable)
         {
             return collectable is IStackable<T> ? 
@@ -62,7 +57,7 @@ namespace Blueprints.Inventory
 
         private bool TryStackItem(IStackable<T> stackable)
         {
-            var item = Items.Find(item => item.GetType() == stackable.GetType()) as IStackable<T>;
+            var item = Items.FirstOrDefault(item => item.GetType() == stackable.GetType()) as IStackable<T>;
 
             if (CanStackItem(item) == false || item == null)
             {
