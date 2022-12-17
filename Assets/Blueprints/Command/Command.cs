@@ -1,9 +1,10 @@
 #nullable enable
 using System;
+using UnityEngine;
 
 namespace Blueprints.Command
 {
-    public class Command<T> : ICommand, IBufferrable
+    public class Command<T> : ICommand
     {
         public Command(T receiver, Action<T> execute, Action<T>? undo = null)
         {
@@ -27,5 +28,22 @@ namespace Blueprints.Command
         public void Undo() => _undo?.Invoke(_receiver);
 
         public void Buffer() => CommandBuffer.Buffer(this);
+    }
+    
+    [Serializable]
+    public class Option<T> : Command<T>
+    {
+        public Option(T receiver, Action<T> execute, Action<T>? undo = null) : base(receiver, execute, undo)
+        {
+            DisplayName = execute.Method.Name;
+        }
+
+        public bool Enabled { get; private set; } = true;
+
+        [field: SerializeField] public string DisplayName { get; private set; }
+
+        public void Enable() => Enabled = true;
+
+        public void Disable() => Enabled = false;
     }
 }
