@@ -54,20 +54,17 @@ namespace Blueprints.Inventory
          */
         public bool TryCollectItem(ICollectable<T> collectable)
         {
-            Func<ICollectable<T>, bool> action = collectable.IsStackable switch
-            {
-                true => TryStackItem,
-                false => TryAddToInventory
-            };
-
-            return action.Invoke(collectable);
+            return collectable is IStackable<T> ? 
+                    TryStackItem(collectable as IStackable<T>) : 
+                    TryAddToInventory(collectable); 
         }
-        
+
+
         private bool TryStackItem(IStackable<T> stackable)
         {
-            var item = Items.Find(item => item.GetType() == stackable.GetType());
+            var item = Items.Find(item => item.GetType() == stackable.GetType()) as IStackable<T>;
 
-            if (CanStackItem(item) == false)
+            if (CanStackItem(item) == false || item == null)
             {
                 return TryAddToInventory(stackable.Item);
             }
@@ -93,10 +90,11 @@ namespace Blueprints.Inventory
 
         public bool IsInventoryFull() => Items.Count < Capacity;
 
-        public bool CanStackItem(IStackable<T> stackable) => stackable.Items.Count < stackable.Capacity;
+        public bool CanStackItem(IStackable<T> stackable) => 
+            stackable.Items.Count < stackable.Capacity && stackable.IsStackable;
     }
     
-    public interface ICollectable<T> : IStackable<T> where T : Item
+    public interface ICollectable<out T> where T : Item
     {
         T Collect();
         T Discard();
