@@ -22,7 +22,10 @@ namespace Blueprints.Inventory
         {
             foreach (var item in items)
             {
-                CollectItem(item);
+                if (TryCollectItem(item) == false)
+                {
+                    item.Discard();
+                }
             }
         }
 
@@ -30,7 +33,10 @@ namespace Blueprints.Inventory
         {
             foreach (var item in items)
             {
-                CollectItem(item);
+                if (TryCollectItem(item) == false)
+                {
+                    item.Discard();
+                };
             }
         }
 
@@ -46,52 +52,54 @@ namespace Blueprints.Inventory
          * if(item is stackable) { StackHasCapacity { add to stack } else { try add to inventory } }
          * { invoke inventory full } else { add to inventory } } }
          */
-        public void CollectItem(ICollectable<T> collectable)
+        public bool TryCollectItem(ICollectable<T> collectable)
         {
-            Action<ICollectable<T>> action = collectable.IsStackable switch
+            Func<ICollectable<T>, bool> action = collectable.IsStackable switch
             {
                 true => TryStackItem,
                 false => TryAddToInventory
             };
 
-            action.Invoke(collectable);
+            return action.Invoke(collectable);
         }
         
-        private void TryStackItem(IStackable<T> stackable)
+        private bool TryStackItem(IStackable<T> stackable)
         {
             var item = Items.Find(item => item.GetType() == stackable.GetType());
+
+            if (CanStackItem(item) == false)
+            {
+                return TryAddToInventory(stackable.Item);
+            }
             
-            if (item.Items.Count < item.Capacity)
-            {
-                item.Items.Add(stackable.Item);
-                OnItemCollected?.Invoke(stackable.Item);
-            }
-            else
-            {
-                TryAddToInventory(stackable.Item);
-            }
+            item.Items.Add(stackable.Item);
+            OnItemCollected?.Invoke(stackable.Item);
+            return true;
         }
 
-        private void TryAddToInventory(ICollectable<T> collectable)
+        private bool TryAddToInventory(ICollectable<T> collectable)
         {
             if (IsInventoryFull())
             {
                 OnInventoryFull?.Invoke();
+                return false;
             }
-            else
-            {
-                var item = collectable.Collect();
-                Items.Add(item);
-                OnItemCollected?.Invoke(item);
-            }
+            
+            var item = collectable.Collect();
+            Items.Add(item);
+            OnItemCollected?.Invoke(item);
+            return true;
         }
 
         public bool IsInventoryFull() => Items.Count < Capacity;
+
+        public bool CanStackItem(IStackable<T> stackable) => stackable.Items.Count < stackable.Capacity;
     }
     
     public interface ICollectable<T> : IStackable<T> where T : Item
     {
         T Collect();
+        T Discard();
         
         void Collect(Item item);
         void Discard(Item item);
@@ -112,9 +120,6 @@ namespace Blueprints.Inventory
     
     /*
      * Basic Implementation would be
-     *
-     * public Inventory = new Inventory<Item>();
-     *
-     * todo: Stack similar items (think napkins)
+     *      public Inventory = new Inventory<Item>();
      */
 }
