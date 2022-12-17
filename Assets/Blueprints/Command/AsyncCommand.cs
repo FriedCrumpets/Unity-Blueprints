@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Blueprints.Command
 {
-    public class AsyncCommand<T> : ICommand, IBufferrable
+    public class AsyncCommand<T> : ICommand
     {
         public AsyncCommand(T receiver, Action<T> execute, Action<T>? undo = null)
         {
