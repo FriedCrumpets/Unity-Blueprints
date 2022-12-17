@@ -2,13 +2,13 @@ using UnityEngine;
 
 namespace Blueprints.Singleton
 {
-    public abstract class MonoSingleton<T> : MonoBehaviour where T : Component
+    public abstract class Singleton<T> : MonoBehaviour where T : Component
     {
-        private static MonoSingleton<T> _instance;
+        private static Singleton<T> _instance;
 
-        [field: SerializeField] public bool DontDestroyOnLoad { get; set; }
+        [field: SerializeField] public bool PersistBetweenScenes { get; set; }
         
-        public static MonoSingleton<T> Instance
+        public static Singleton<T> Instance
         {
             get => _instance;
             private set
@@ -26,9 +26,11 @@ namespace Blueprints.Singleton
             {
                 Destroy(this);
                 return;
-            }   
+            }
             
             Instance = this;
+            
+            if(PersistBetweenScenes) { DontDestroyOnLoad(this); }
         }
     }
 }
