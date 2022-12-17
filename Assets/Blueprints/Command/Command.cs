@@ -56,8 +56,8 @@ namespace Blueprints.Command
         }
 
         [field: SerializeField] public string DisplayName { get; private set; }
-        public string PrimaryName { get; private set; } = string.Empty;
-        public string SecondaryName { get; private set; } = string.Empty;
+        public string PrimaryName { get; } = string.Empty;
+        public string SecondaryName { get; } = string.Empty;
         
         public bool Enabled { get; private set; } = true;
 
