@@ -3,28 +3,28 @@ namespace Blueprints.Settings
     [System.Serializable]
     public class Concept
     {
-        public Concept_SO localStorage;
+        public Concept_SO cachedStorage;
 
         public float Setting1
         {
-            get => localStorage.Setting1;
+            get => cachedStorage.Setting1;
             set
             {
                 // do things
-                localStorage.Setting1 = value;
+                cachedStorage.Setting1 = value;
             }
         }
 
         public string Setting2
         {
-            get => localStorage.Setting2;
-            set => localStorage.Setting2 = value;
+            get => cachedStorage.Setting2;
+            set => cachedStorage.Setting2 = value;
         }
 
         public bool Setting3
         {
-            get => localStorage.Setting3;
-            set => localStorage.Setting3 = value;
+            get => cachedStorage.Setting3;
+            set => cachedStorage.Setting3 = value;
         }
     }
 }
