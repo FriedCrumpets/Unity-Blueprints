@@ -12,7 +12,13 @@ namespace Blueprints.Items
         public List<Option<Item>> Options { get; set; }
 
         public string Name { get; set; }
-        public int Weight { get; set; }
+        
+        /* TODO:
+            Require moving to some kind of Properties container
+            this way Items can morph into Skills and other stats with options
+         
+            public int Weight { get; set; }
+        */
 
         public void AddOption(Option<Item> option) => Options.Add(option);
         public bool RemoveOption(Option<Item> option) => Options.Remove(option);
