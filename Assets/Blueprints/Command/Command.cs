@@ -35,15 +35,39 @@ namespace Blueprints.Command
     {
         public Option(T receiver, Action<T> execute, Action<T>? undo = null) : base(receiver, execute, undo)
         {
-            DisplayName = execute.Method.Name;
+            DisplayName = PrimaryName = execute.Method.Name;
+
+            if (undo != null)
+            {
+                SecondaryName = undo.Method.Name;
+            }
+        }
+        
+        public Option(T receiver, Action<T> execute, string displayName, Action<T>? undo = null) 
+            : base(receiver, execute, undo)
+        {
+            DisplayName = displayName;
+            PrimaryName = execute.Method.Name;
+
+            if (undo != null)
+            {
+                SecondaryName = undo.Method.Name;
+            }
         }
 
-        public bool Enabled { get; private set; } = true;
-
         [field: SerializeField] public string DisplayName { get; private set; }
+        public string PrimaryName { get; private set; } = string.Empty;
+        public string SecondaryName { get; private set; } = string.Empty;
+        
+        public bool Enabled { get; private set; } = true;
 
         public void Enable() => Enabled = true;
 
         public void Disable() => Enabled = false;
+        
+        public void ChangeDisplayName(string newName)
+        {
+            DisplayName = newName;
+        }
     }
 }
