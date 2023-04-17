@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +10,7 @@ namespace Blueprints.StateMachine.Finite.Core
 
         public virtual void HandleInput(InputAction.CallbackContext context)
         {
-            var newState = CurrentState.InputHandler(Component);
+            var newState = CurrentState.InputHandler(context);
 
             if (newState == null)
             {

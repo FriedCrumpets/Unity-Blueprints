@@ -1,4 +1,4 @@
-namespace Blueprints.StateController.Core
+namespace Blueprints.StateController
 {
     public enum StateTaskSwitch
     {

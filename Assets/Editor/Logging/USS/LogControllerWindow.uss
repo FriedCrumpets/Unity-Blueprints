@@ -1,0 +1,104 @@
+{
+    --background-color-light : #585858;
+
+    --debug-mode-background-active: #264b13;
+    --debug-mode-background-inactive: #461010;
+}
+
+#ConsoleHeader {
+    align-items: stretch;
+    justify-content: space-around;
+
+    width: 100%;
+    Height: 30px;
+
+    background-color: var(--background-color-light);
+}
+
+#DebugMode {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+    width: 100%;
+}
+
+#DebugMode > #CustomToggle > #ToggleName {
+    -unity-text-align: middle-center;
+}
+
+#DebugMode > #CustomToggle > #ToggleButton {
+    display: none;
+}
+
+#DebugMode > .debug-active{
+    background-color: var(--debug-mode-background-active);
+}
+
+#DebugMode > .debug-inactive {
+    background-color: var(--debug-mode-background-inactive);
+}
+
+#LoggerSearch {
+    width: 100%;
+    height: 25px;
+    
+    margin-top: 10px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+.console-button {
+    width: 100px;
+    height: 20px;
+}
+
+.console-button__toggle {
+    width: 100px;
+    height: 20px;
+    
+    flex-direction: row;
+    flex-wrap: nowrap;
+    
+    align-items: center;
+    justify-content: center;
+    
+    -unity-text-align: middle-center;
+}
+
+.console-button__toggle > .unity-toggle__input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    width: 100%;
+    height: 100%;
+}
+
+.console-button__toggle:hover{
+    border-color: white;
+}
+
+.console-search {
+    width: 60%;
+    height: auto;
+}
+
+.console-button__toggle > .unity-toggle__label {
+    width: 100%;
+    height: auto;
+    
+    color: white;
+}
+
+.unity-toggle__input{
+    
+}
+
+.console-button__toggle > .unity-toggle__input > .unity-toggle__checkmark {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    
+    background-color: rgba(0,0,0,.2)
+}

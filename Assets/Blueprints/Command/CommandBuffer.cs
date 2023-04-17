@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Blueprints.Command
+namespace Blueprints
 {
     /// <summary>
     /// Buffers the commands in a queue ready to be executed prior to adding them to the CommandStream

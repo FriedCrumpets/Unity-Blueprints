@@ -1,9 +1,30 @@
 #nullable enable
 using System;
-using UnityEngine;
 
-namespace Blueprints.Command
+namespace Blueprints
 {
+    public class Command : ICommand
+    {
+        public Command(Action execute, Action? undo = null)
+        {
+            _execute = execute;
+            _undo = undo;
+        }
+        
+        private readonly Action _execute;
+        private readonly Action? _undo;
+
+        /// <summary>
+        /// Immediately Execute the command into the Command Stream
+        /// </summary>
+        public void Execute() => _execute.Invoke();
+
+        /// <summary>
+        /// Immediately undo the command and set its state into the command stream
+        /// </summary>
+        public void Undo() => _undo?.Invoke();
+    }
+    
     public class Command<T> : ICommand
     {
         public Command(T receiver, Action<T> execute, Action<T>? undo = null)
@@ -29,45 +50,26 @@ namespace Blueprints.Command
 
         public void Buffer() => CommandBuffer.Buffer(this);
     }
-    
-    [Serializable]
-    public class Option<T> : Command<T>
+
+    public class Modifier<T>
     {
-        public Option(T receiver, Action<T> execute, Action<T>? undo = null) : base(receiver, execute, undo)
+        public Modifier(Func<T> execute, Func<T>? undo = null)
         {
-            DisplayName = PrimaryName = execute.Method.Name;
-
-            if (undo != null)
-            {
-                SecondaryName = undo.Method.Name;
-            }
+            _execute = execute;
+            _undo = undo;
         }
         
-        public Option(T receiver, Action<T> execute, string displayName, Action<T>? undo = null) 
-            : base(receiver, execute, undo)
-        {
-            DisplayName = displayName;
-            PrimaryName = execute.Method.Name;
+        private readonly Func<T> _execute;
+        private readonly Func<T>? _undo;
 
-            if (undo != null)
-            {
-                SecondaryName = undo.Method.Name;
-            }
-        }
+        /// <summary>
+        /// Immediately Execute the command into the Command Stream
+        /// </summary>
+        public T Execute() => _execute.Invoke();
 
-        [field: SerializeField] public string DisplayName { get; private set; }
-        public string PrimaryName { get; } = string.Empty;
-        public string SecondaryName { get; } = string.Empty;
-        
-        public bool Enabled { get; private set; } = true;
-
-        public void Enable() => Enabled = true;
-
-        public void Disable() => Enabled = false;
-        
-        public void ChangeDisplayName(string newName)
-        {
-            DisplayName = newName;
-        }
+        /// <summary>
+        /// Immediately undo the command and set its state into the command stream
+        /// </summary>
+        public T? Undo() => _undo != null ? _undo.Invoke() : default;
     }
 }

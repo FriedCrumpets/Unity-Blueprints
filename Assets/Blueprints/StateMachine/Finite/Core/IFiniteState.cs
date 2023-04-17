@@ -1,8 +1,10 @@
+using UnityEngine.InputSystem;
+
 namespace Blueprints.StateMachine.Finite.Core
 {
-    public interface IFiniteState<T>
+    public interface IFiniteState<in T>
     {
-        public IFiniteState<T> InputHandler(T component);
+        public IFiniteState<T> InputHandler(InputAction.CallbackContext context);
 
         public void Enter(T component);
 

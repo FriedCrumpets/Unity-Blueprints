@@ -1,0 +1,84 @@
+Inventory holds Items; List<IItem>
+Items are arbitrary? they depend on the game context.
+ 
+                         IItem (Interface)
+            Weapon :     IItem
+            Armour :     IItem
+            Consumable : IItem
+
+            name : NAme
+
+            Potion : Consumable
+            HealthPotion : Potion
+
+            IModdable
+            
+            IDismantlable (Crafting)
+            IAssembleable (Crafting)
+            ICraftable (Crafting) : IDismantleable, IAssembleable
+             => Factory method for creating crafted objects? 
+
+Inventory == List<IItems>
+
+ammunition (List of Bullets) 
+guns 
+health kits 
+food 
+grenades 
+throwables 
+armour 
+
+potions
+spells 
+one-handed
+two-handed 
+wands
+Bow
+Knife
+staffs 
+shields
+book
+Cleaning
+Health Kits 
+Armour
+Mace
+Crossbow
+
+value
+DoSomething (Execute == consume, equip)
+
+stash in inventory
+destroy/discard
+use 
+
+
+attempt two
+
+
+Items are a serializable data container for item things;
+     - ID ;
+     - Name;
+     - Options (List<Option<this>>); // the default option is the first option here
+     - Sprite (?)
+     - GameObject (?)
+
+inventory = Inventory<Item> ? will the items options persist or will their commands be inaccessible here???
+equipment = Inventory<IEquippable> ? 
+
+Items extend into
+- IConsumable
+- ICollectable
+- IEquippable
+- IUseable
+- IModify
+- IModifiable
+- IExamineable
+- ITradeable
+- ICraftable 
+
+now is it worth doing it this way?? or is there a better way?? the idea of using commands as options and adding to them 
+using interfaces is intriguing... if we were to use monobehaviours in it's place there would need to be a reference to 
+the addressable asset in it's place to load... but I'm doing that either way by storing the gameobject reference in the item...
+
+so is it better to use monobehaviours instead?? no because once stored into the inventory it would lose all of the references 
+to the monobehaviours... I believe... ? 

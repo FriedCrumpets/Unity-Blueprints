@@ -1,0 +1,109 @@
+* {
+    --background-color-light1: rgb(53, 53, 53);
+    --background-color-light2: rgb(70, 70, 70);
+    --background-color-light3: rgb(88, 88, 88);
+    --background-color-dark1: rgb(46, 46, 46);
+    --background-color-dark2: rgb(41, 41, 41);
+    --text-color-light1: rgb(210, 210, 210);
+    --text-color-light2: rgb(227, 227, 227);
+    --border-color-hover: rgb(98, 98, 98);
+    --border-color-light: rgb(48, 48, 48);
+    --border-color-dark: rgb(36, 36, 36);
+    --font-light: resource('Quicksand-Light.ttf');
+    --font-medium: resource('Quicksand-Medium.ttf');
+    --font-regular: resource('Quicksand-Regular.ttf');
+    --font-bold: resource('Quicksand-Bold.ttf');
+    --cancel-image: resource('d_icon');
+}
+
+#unity-text-input {
+    background-color: var(--background-color-dark3);
+}
+
+#unity-search {
+    color: var(--background-color-dark3);
+    -unity-background-image-tint-color: white;
+}
+
+.background-dark1 {
+    background-color: var(--background-color-dark1);
+}
+
+.background-dark2 {
+    background-color: var(--background-color-dark2);
+}
+
+.unity-button {
+    margin: 1px 3px 1px 3px;
+    padding: 1px 6px 1px 6px;
+    height: 20px;
+    color: var(--text-color-light1);
+    background-color: var(--background-color-light3);
+    border-color: var(--border-color-light);
+    border-bottom-color: var(--border-color-dark);
+}
+
+.unity-button:hover {
+    color: var(--text-color-light2);
+    background-color: var(--background-color-light2);
+    border-color: var(--border-color-hover);
+}
+
+.unity-label {
+    color: var(--text-color-light1);
+}
+
+.unity-toggle__checkmark {
+    background-color: var(--background-color-dark2);
+    background-image: none;
+    border-color: var(--border-color-light);
+    border-bottom-color: var(--border-color-dark);
+}
+
+.unity-search-field-base {
+    align-items: center;
+    justify-content: flex-start;
+    align-content: center;
+    background-color: var(--background-color-dark2);
+    border-color: var(--border-color-light);
+    border-bottom-color: var(--border-color-dark);
+}
+
+.unity-search-field-base__search-button {
+    margin: 0 0 0 4px;
+    padding: 0;
+    height: 8px;
+    width: 8px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.unity-search-field-base__text-field {
+    background-color: var(--background-color-dark3);
+}
+
+.unity-search-field-base__cancel-button {
+    margin: 1;
+    padding: 0;
+    width: 12px;
+    height: 12px;
+    align-self: center;
+    justify-content: center;
+    color: var(--text-color-light1);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.dark-border {
+    border-color: var(--border-color-light);
+    border-bottom-color: var(--border-color-dark);
+}
+
+.view-link-button__disabled {
+    background-color: var(--background-color-dark2);
+}
+
+.view-link-button__disabled:hover {
+    color: var(--text-color-light1);
+    background-color: var(--background-color-dark2);
+    border-color: var(--background-color-dark2);
+} 
+

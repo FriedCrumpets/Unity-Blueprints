@@ -1,0 +1,121 @@
+{
+    --texture-pen: url("../GameLoggerIcon.png");
+}
+
+#Main {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    
+    width: 100%;
+    min-width: 920px;
+    
+    height: 100%;
+    min-height: 550px;
+}
+
+#ToolBar {
+    width: 100%;
+    height: 100%;
+    
+    flex-shrink: 1;
+    flex-grow: 0;
+    
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+#Logo {
+    width: 128;
+    height: 128;
+
+    align-self: center;
+    justify-content: center;
+
+    margin: 1px 6px 1px 6px;
+    padding: 1px 3px 1px 3px;
+
+    background-image: var(--texture-pen);
+}
+
+#Header {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+#Title {
+    align-items: flex-end;
+    justify-content: space-around;
+
+    width: 670px;
+    height: auto;
+    
+    margin: 10 10 0 10;
+}
+
+#MainTitle {
+    align-self: center;
+    
+    width: 128px;
+    height: auto;
+    
+    font-size: 18px;
+}
+
+#View {
+    width: 95%;
+    height: 100%;
+}
+
+.view-body {
+    width: auto;
+    height: 100%;
+    
+    display: none;
+    
+    position: absolute;
+    top: 10;
+    right: 10;
+    bottom: 10;
+    left: 10;
+}
+
+.toolbar-column {
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.toolbar-row {
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.toolbar-row__left {
+    width :50%;
+    height: auto;
+
+    -unity-text-align: middle-left;
+}
+
+.toolbar-row__right {
+    width: 50%;
+    height: auto;
+
+    -unity-text-align: middle-right;
+}
+
+.ten-margin {
+    margin: 10px;
+}
+
+.five-margin {
+    margin: 5px;
+}
+
+.ten-padding {
+    padding: 10px;
+}
+
+.five-padding {
+    padding: 5px;
+}

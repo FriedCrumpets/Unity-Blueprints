@@ -1,4 +1,4 @@
-namespace Blueprints.Command
+namespace Blueprints
 {
     public interface ICommand
     {

@@ -2,10 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Blueprints.AsyncStateController.Core;
 using UnityEngine;
 
-namespace Blueprints.StateController.Core
+namespace Blueprints.StateController
 {
     public abstract class StateMachine<TState> : MonoBehaviour where TState : Enum
     {
@@ -14,7 +13,7 @@ namespace Blueprints.StateController.Core
         [field: SerializeField] 
         public List<State<TState>> States { get; private set; }
 
-        public Dictionary<TState, State<TState>> AvailableStates { get; protected set; } = new Dictionary<TState, State<TState>>();
+        public Dictionary<TState, State<TState>> AvailableStates { get; } = new();
 
         public State<TState> CurrentState { get; protected set; }
 

@@ -2,21 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Blueprints.StateController.Core;
 using UnityEngine;
 
-namespace Blueprints.StateMachine.StateController
+namespace Blueprints.StateController
 {
     public abstract class StateController<TState> : StateMachine<TState> where TState : Enum
     {
-        public Queue<State<TState>> Queue { get; } = new Queue<State<TState>>();
-        
+        public Queue<State<TState>> Queue { get; } = new();
+
         [field: SerializeField] public int MaxQueueSize { get; private set; }
 
-        private void OnDisable()
-        {
-            Queue.Clear();
-        }
+        private void OnDisable() => Queue.Clear();
 
         public void ClearQueue() => Queue.Clear();
 
@@ -31,6 +27,26 @@ namespace Blueprints.StateMachine.StateController
             StartCoroutine(ChangeStateEnum(Queue.Dequeue()));
         }
 
+        public void Next()
+        {
+            var currentIndex = States.FindIndex(state => state == CurrentState);
+
+            if (currentIndex + 1 < States.Count)
+            {
+                ChangeState(States[currentIndex+1].CommandingState);
+            }
+        }
+
+        public void Previous()
+        {
+            var currentIndex = States.FindIndex(state => state == CurrentState);
+
+            if (currentIndex - 1 > -1)
+            {
+                ChangeState(States[currentIndex-1].CommandingState);
+            }
+        }
+
         protected override IEnumerator ChangeStateEnum(State<TState> newState)
         {
             StateChanging = true;
@@ -43,7 +59,7 @@ namespace Blueprints.StateMachine.StateController
             {
                 yield return ChangeStateEnum(Queue.Dequeue());
             }
-            
+
             StateChanging = false;
         }
 
@@ -53,9 +69,6 @@ namespace Blueprints.StateMachine.StateController
             Queue.Enqueue(newState);
         }
 
-        protected bool CanAddToQueue()
-        {
-            return Queue.Count < MaxQueueSize;
-        }
+        protected bool CanAddToQueue() => Queue.Count < MaxQueueSize;
     }
 }

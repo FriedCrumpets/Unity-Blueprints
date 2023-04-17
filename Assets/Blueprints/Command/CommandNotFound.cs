@@ -1,6 +1,6 @@
 using System;
 
-namespace Blueprints.Command
+namespace Blueprints
 {
     public class CommandNotFound : Exception
     {

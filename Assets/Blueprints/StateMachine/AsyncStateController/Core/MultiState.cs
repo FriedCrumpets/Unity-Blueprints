@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using RequireInterface;
+using Blueprints.Attributes;
 using UnityEngine;
 
 namespace Blueprints.AsyncStateController.Core

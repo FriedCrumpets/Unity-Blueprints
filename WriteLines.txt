@@ -1,0 +1,110 @@
+TokenType :: StartObject
+ValueType :: 
+Path :: 
+Value :: 
+
+TokenType :: PropertyName
+ValueType :: System.String
+Path :: exampleSetting1
+Value :: exampleSetting1
+
+TokenType :: StartObject
+ValueType :: 
+Path :: exampleSetting1
+Value :: 
+
+TokenType :: PropertyName
+ValueType :: System.String
+Path :: exampleSetting1.Value
+Value :: Value
+
+TokenType :: Float
+ValueType :: System.Double
+Path :: exampleSetting1.Value
+Value :: 1
+
+TokenType :: EndObject
+ValueType :: 
+Path :: exampleSetting1
+Value :: 
+
+TokenType :: PropertyName
+ValueType :: System.String
+Path :: exampleSetting2
+Value :: exampleSetting2
+
+TokenType :: StartObject
+ValueType :: 
+Path :: exampleSetting2
+Value :: 
+
+TokenType :: PropertyName
+ValueType :: System.String
+Path :: exampleSetting2.Value
+Value :: Value
+
+TokenType :: Float
+ValueType :: System.Double
+Path :: exampleSetting2.Value
+Value :: 2
+
+TokenType :: EndObject
+ValueType :: 
+Path :: exampleSetting2
+Value :: 
+
+TokenType :: PropertyName
+ValueType :: System.String
+Path :: pooString
+Value :: pooString
+
+TokenType :: String
+ValueType :: System.String
+Path :: pooString
+Value :: fdsfd
+
+TokenType :: PropertyName
+ValueType :: System.String
+Path :: poofloat
+Value :: poofloat
+
+TokenType :: Float
+ValueType :: System.Double
+Path :: poofloat
+Value :: 23
+
+TokenType :: PropertyName
+ValueType :: System.String
+Path :: dumv
+Value :: dumv
+
+TokenType :: Boolean
+ValueType :: System.Boolean
+Path :: dumv
+Value :: True
+
+TokenType :: PropertyName
+ValueType :: System.String
+Path :: name
+Value :: name
+
+TokenType :: String
+ValueType :: System.String
+Path :: name
+Value :: ExampleSettingsAsset
+
+TokenType :: PropertyName
+ValueType :: System.String
+Path :: hideFlags
+Value :: hideFlags
+
+TokenType :: Integer
+ValueType :: System.Int64
+Path :: hideFlags
+Value :: 0
+
+TokenType :: EndObject
+ValueType :: 
+Path :: 
+Value :: 
+

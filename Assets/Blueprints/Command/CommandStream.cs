@@ -1,7 +1,7 @@
 using System.Linq;
 using Collections;
 
-namespace Blueprints.Command
+namespace Blueprints
 {
     /// <summary>
     /// A Cursor controlling the overall commands in the stream, commands can be freely moved forward and back

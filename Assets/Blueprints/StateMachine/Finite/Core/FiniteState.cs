@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.InputSystem;
 
 namespace Blueprints.StateMachine.Finite.Core
 {
@@ -9,19 +10,19 @@ namespace Blueprints.StateMachine.Finite.Core
             State = state;
         }
 
-        public FiniteState(TState state, Func<T, IFiniteState<T>> handleInput, Action<T> handleUpdate)
+        public FiniteState(TState state, Func<InputAction.CallbackContext, IFiniteState<T>> handleInput, Action<T> handleUpdate)
         {
             State = state;
             HandleInput = handleInput;
             HandleUpdate = handleUpdate;
         }
 
-        public Func<T, IFiniteState<T>> HandleInput { get; }
+        public Func<InputAction.CallbackContext, IFiniteState<T>> HandleInput { get; }
         public Action<T> HandleUpdate { get; }
 
         public TState State { get; }
         
-        public virtual IFiniteState<T> InputHandler(T component) { return HandleInput?.Invoke(component); }
+        public IFiniteState<T> InputHandler(InputAction.CallbackContext context) => HandleInput?.Invoke(context);
         
         public virtual void Enter(T component) { }
 

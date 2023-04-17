@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace Blueprints.StateController.Core
+namespace Blueprints.StateController
 {
     public interface IState
     {

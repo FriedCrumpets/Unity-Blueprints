@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="GameLoggerV3" src="project://database/Assets/UIToolkit/Windows/GameLoggerV3.uxml?fileID=9197481963319205126&amp;guid=1c1efb54105b60340b8e4e40f08ecada&amp;type=3#GameLoggerV3" />
+    <ui:Template name="CustomToggle" src="project://database/Assets/UIToolkit/Templates/CustomToggle.uxml?fileID=9197481963319205126&amp;guid=7d68b117360301144b20e6f429ba4abd&amp;type=3#CustomToggle" />
+    <Style src="project://database/Assets/Editor/USS/Themes/ForeverDark/ForeverDark.uss?fileID=7433441132597879392&amp;guid=73f9c9ddbd3ac3a4bb8c966bbd9e125a&amp;type=3#ForeverDark" />
+    <ui:VisualElement style="flex-direction: row;">
+        <ui:VisualElement name="LoggerToggles" style="width: 350px;">
+            <ui:Instance template="GameLoggerV3" name="GameLoggerV3" />
+        </ui:VisualElement>
+        <ui:VisualElement name="LoggerConsoles" style="width: 100%;">
+            <ui:VisualElement style="height: 39px; flex-direction: row;">
+                <ui:Instance template="CustomToggle" name="CustomToggle" />
+                <ui:Instance template="CustomToggle" name="CustomToggle" />
+                <ui:Instance template="CustomToggle" name="CustomToggle" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

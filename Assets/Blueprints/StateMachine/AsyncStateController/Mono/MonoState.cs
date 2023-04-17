@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Blueprints.AsyncStateController.Core;
-using RequireInterface;
+using Blueprints.Attributes;
 using UnityEngine;
 
 namespace Blueprints.AsyncStateController.Mono

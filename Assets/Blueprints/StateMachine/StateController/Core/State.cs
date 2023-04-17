@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Blueprints.StateController.Core
+namespace Blueprints.StateController
 {
     public abstract class State<TState> : MonoBehaviour
     {
@@ -15,25 +15,16 @@ namespace Blueprints.StateController.Core
         [field: SerializeField] public TState CommandingState { get; private set; }
         
         public bool StateRunning { get; protected set; }
-        
+
         public abstract IEnumerator Enter();
         public abstract IEnumerator Idle();
         public abstract IEnumerator Exit();
 
-        protected void OnEnterState()
-        {
-            EnterState?.Invoke();
-        }
+        protected void OnEnterState() => EnterState?.Invoke();
 
-        protected void OnIdleState()
-        {
-            IdleState?.Invoke();
-        }
+        protected void OnIdleState() => IdleState?.Invoke();
 
-        protected void OnExitState()
-        {
-            ExitState?.Invoke();
-        }
+        protected void OnExitState() => ExitState?.Invoke();
         
         protected Action SelectStateAction(StateTaskSwitch taskSwitch)
         {

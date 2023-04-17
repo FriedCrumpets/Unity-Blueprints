@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Blueprints.Command
+namespace Blueprints
 {
     public class AsyncCommand<T> : ICommand
     {

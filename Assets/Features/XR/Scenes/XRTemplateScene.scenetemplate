@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 13966, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: XRTemplateScene
+  m_EditorClassIdentifier: 
+  templateScene: {fileID: 102900000, guid: 74be8406857a3c04ebc0b94192ba72c1, type: 3}
+  templateName: XR Setup
+  description: Provides direct setup of an XR Scene
+  preview: {fileID: 0}
+  dependencies:
+  - dependency: {fileID: 5506311941736115014, guid: b66bd629e019e5d44a174754127d97d9, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 3297844331446291711, guid: ffd6a7aefc5698a4a937b4b268c5f49e, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 8313850653556885147, guid: 0a2d6b47b5c0f4440b77176b432dfd4d, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 11400000, guid: 0d5eeb2ee09092346b180216131e62e8, type: 2}
+    instantiationMode: 1
+  - dependency: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    instantiationMode: 1
+  - dependency: {fileID: 601160692501869241, guid: 008687e78fec8e343b77c2fc7494083d, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 2800000, guid: 7b8bfaee8f8631c4789ac62373cbc2d4, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 1965530216938892544, guid: dcc7739eead0439438c1b719b07befdc, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 2800000, guid: 40265a896a0f341bb956e90c59025a29, type: 3}
+    instantiationMode: 0
+  templatePipeline: {fileID: 0}
+  badge: {fileID: 0}
+  addToDefaults: 0

@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5141e3ee-d01b-48c6-9f1a-001b62695851" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Command/AsyncCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Command/AsyncCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Command/Command.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Command/Command.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Command/Interfaces/IBufferrable.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Command/Interfaces/IBufferrable.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Inventory.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Inventory.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Inventory/Concept.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Inventory/Concept.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Inventory/Concept.txt.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Inventory/Concept.txt.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Inventory/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Inventory/Inventory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Inventory/Inventory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Inventory/Inventory.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Items/ICraftable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Items/ICraftable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Items/IModdable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Items/IModdable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Items/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Items/Item.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Items/TestItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Items/TestItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Items/TestItem.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Items/TestItem.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Settings/Concept.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Settings/Concept.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Settings/Concept_SO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Settings/Concept_SO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Settings/Implementer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Settings/Implementer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Singleton/Example.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Singleton/Example.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Singleton/Example.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Singleton/Example.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Blueprints/Singleton/Singleton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blueprints/Singleton/Singleton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Collections/Dict.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Collections/Dict.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Collections/Dict.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Collections/Dict.cs.meta" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="friedcrumpets &lt;jamie@jamiemullis.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/31/4e131e2b/020009B4pdb49.il" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/07b4fb2b5af74e479c2c24afaabbcaa416d400/0d/68d26843/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/07b4fb2b5af74e479c2c24afaabbcaa416d400/2a/b6b18eda/WaitForSeconds.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/07b4fb2b5af74e479c2c24afaabbcaa416d400/d4/32524a39/YieldInstruction.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3aea42cf33aa409d8f4f70e486b4d9c023000/a8/4d2df8d5/KeyValueCollectionPropertyBag`3.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/43/431a295e/IList`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/5c/4c31a275/ICollection`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/9e/4a954c5e/IDisposable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/bf/73be35a5/IObservable`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/c2/8eda7dfd/IObserver`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7d303c2bf72cd4cec95665b89c457d265d2b8ef3ed6da17cd4f85587c2f9de7/System.Linq.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9384495d2a482ac7341d67ca84e16d267d16c62458a9d67a92b119199a9/System.Threading.Tasks.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d44b17e136d09081da1e8fd0e8c83fde60e11818b9f2442d7ed8cb733fae895e/System.Collections.Generic.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jamie/Development/UnityDesignPatterns/Assets/Blueprints/Command/Command.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jamie/Development/UnityDesignPatterns/Assets/Blueprints/Inventory/Inventory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jamie/Development/UnityDesignPatterns/Assets/Blueprints/Inventory/Inventory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Blueprints/Items/Item.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jamie/Development/UnityDesignPatterns/Assets/Blueprints/Items/Item.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jamie/Development/UnityDesignPatterns/Assets/Blueprints/Settings/Concept.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Blueprints/Settings/Concept_SO.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Blueprints/Settings/Implementer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jamie/Development/UnityDesignPatterns/Assets/Blueprints/Singleton/Example.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jamie/Development/UnityDesignPatterns/Assets/Scripts/Collections/Dict.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Utilities/Observables/Observable.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2HaQg5FLYOjln8BArWFsmFx3Hms" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="2" id="Remove" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;,
+      &quot;repository&quot;
+    ]
+  }
+}</component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.2.0b15\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\jamie\Development\UnityDesignPatterns -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\jamie\Development\UnityDesignPatterns" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5141e3ee-d01b-48c6-9f1a-001b62695851" name="Changes" comment="" />
+      <created>1668520824979</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1668520824979</updated>
+      <workItem from="1668520827237" duration="568000" />
+      <workItem from="1668524178390" duration="467000" />
+      <workItem from="1668524668559" duration="17235000" />
+      <workItem from="1668603923111" duration="729000" />
+      <workItem from="1668642893312" duration="6698000" />
+      <workItem from="1668739815893" duration="4124000" />
+      <workItem from="1668799984516" duration="24221000" />
+      <workItem from="1668975944033" duration="19646000" />
+      <workItem from="1669026906416" duration="12014000" />
+      <workItem from="1669077078554" duration="2774000" />
+      <workItem from="1669125874758" duration="4973000" />
+      <workItem from="1669147702228" duration="3284000" />
+      <workItem from="1669153572075" duration="8269000" />
+      <workItem from="1669477524836" duration="2101000" />
+      <workItem from="1669561049570" duration="76000" />
+      <workItem from="1669562570324" duration="3247000" />
+      <workItem from="1669579459441" duration="1169000" />
+      <workItem from="1670684021250" duration="7449000" />
+      <workItem from="1671043812697" duration="28516000" />
+      <workItem from="1671188880334" duration="7266000" />
+      <workItem from="1671207603090" duration="7707000" />
+      <workItem from="1671232690939" duration="1558000" />
+      <workItem from="1671261253218" duration="5900000" />
+      <workItem from="1671286341898" duration="10186000" />
+    </task>
+    <task id="LOCAL-00001" summary="chore(Renaming): Naming conventions reconsidered">
+      <created>1668538196657</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1668538196657</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat(AsyncState): Asynchronous state created to handle multiple behaviours simultaneously&#10;- IStateBehaviourAsync.cs is used to create an asynchronous state behaviour&#10;- AsyncState can couple and run multiple inheritors of IStateBehaviourAsync at once">
+      <created>1668541724142</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1668541724142</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat(State&lt;TState&gt;): State child class created for a line of inheritance&#10;- State&lt;TState&gt; provides a blueprint for the StateMachine.cs (or any deritive of) to follow, allowing a mixture of MonoState.cs, AsyncState.cs and QueueState.cs, to be used in a single StateMachine&#10;- QueueState.cs doesn't exist yet, just a concept">
+      <created>1668544513338</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1668544513338</updated>
+    </task>
+    <task id="LOCAL-00004" summary="chore(Restructure): Folder restructure to provide further clarity">
+      <created>1668544586708</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668544586708</updated>
+    </task>
+    <task id="LOCAL-00005" summary="chore(Restructure): renamed main namespace from Patterns to Blueprints to provide clarity on project intent">
+      <created>1668545020751</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1668545020751</updated>
+    </task>
+    <task id="LOCAL-00006" summary="refactor(State): Base class fully refactored for extendability&#10;- State and its inheritance line now further in keeping with DRY &#10;- IStateBehaviourAsync.cs made obsolete; IStateBehaviour now uses tasks as default">
+      <created>1668551140558</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1668551140558</updated>
+    </task>
+    <task id="LOCAL-00007" summary="chore(Refactor): I missed a few bits in the refactor... woops">
+      <created>1668551473771</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1668551473771</updated>
+    </task>
+    <task id="LOCAL-00008" summary="chore(Removed): removed the testing namespace for the moment">
+      <created>1668551721095</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1668551721095</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat(QueueState): QueueState.cs created to execute StateBehaviours in a Queued order">
+      <created>1668554469943</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1668554469943</updated>
+    </task>
+    <task id="LOCAL-00010" summary="refactor(QueueState): Refactored PrepareTasks in QueueState to use linq">
+      <created>1668554691668</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1668554691668</updated>
+    </task>
+    <task id="LOCAL-00011" summary="chore(AsyncState): cleaning up variable naming">
+      <created>1668554991930</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1668554991930</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat(StateMachine): base abstract StateMachine.cs completed for extension">
+      <created>1668556381748</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1668556381748</updated>
+    </task>
+    <task id="LOCAL-00013" summary="chore(Refactor): small change to StateMachine for efficiency">
+      <created>1668557052614</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1668557052614</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat(StateMachine): completed the base class for a state machine&#10;- Allows for only a single State to be changed at a time. &#10;- provides a concise way to build an inheritance line">
+      <created>1668644691742</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1668644691742</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feat(StateMachine): Refactored for better form of inheritance&#10;feat(MonoStateMachine): can only allow a single state to be changed at a time&#10;feat(QueueStateMachine): States are added to a Queue and executed from the queue">
+      <created>1668649607513</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1668649607513</updated>
+    </task>
+    <task id="LOCAL-00016" summary="feat(AsyncStateMachine): allows for states to be spun up asynchronously&#10;- can limit the number of states running at once&#10;- all states after reaching the limit will be added a queue&#10;- queue will be dequeued and executed when possible">
+      <created>1668743830929</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1668743830929</updated>
+    </task>
+    <task id="LOCAL-00017" summary="chore(ProjectUpdate): Updated to Unity 2022b.2.015b to download ECS">
+      <created>1668743894541</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1668743894541</updated>
+    </task>
+    <task id="LOCAL-00018" summary="feat(StateController): IEnumerator variant of the StateMachine created&#10;- async await state machine moved to its own namespace &#10;- IEnumerator variant created in StateController namespace&#10;- IEnumerator variant StateController is the recommended use case&#10;- Both require in depth testing before use">
+      <created>1668803909129</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1668803909129</updated>
+    </task>
+    <task id="LOCAL-00019" summary="feat(AsyncState): simple singular async state for dynamically creating a controller for external to unity tasks; run and forget about style tasks.">
+      <created>1668949075314</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1668949075314</updated>
+    </task>
+    <task id="LOCAL-00020" summary="feat(Cursor): New form of IList that has a cursor/location moving up and down as items are added or removed.">
+      <created>1668996211142</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1668996211142</updated>
+    </task>
+    <task id="LOCAL-00021" summary="feat(Command): Command pattern started.&#10;- Commands can be created dynamically or inherited through the ICommand interface&#10;- Commands can be added to a buffer to be executed later or Executed into the CommandStream.cs&#10;- CommandStream controls the flow of command execution and enables for commands to be undone in the order of execution&#10;Notes: States to be added to commands? The command buffer could become a monobehaviour singleton. I'm not sure or sold on certainty without further testing">
+      <created>1668996386682</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1668996386682</updated>
+    </task>
+    <task id="LOCAL-00022" summary="chore(States): Some small modifications to QueueState.cs to reduce warnings in the code &#10;chore(ECS): Removed ECS from project. Monobehaviours are to be prioritised here over ECS and DOTS">
+      <created>1668996567709</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1668996567709</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Chore(Attributes): Moved RequireInterface attribute to Attributes namespace">
+      <created>1668996678168</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1668996678168</updated>
+    </task>
+    <task id="LOCAL-00024" summary="feat(Command): Command pattern finished to a degree but has yet to be tested&#10;- requires full testing implementation">
+      <created>1669163851831</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1669163851831</updated>
+    </task>
+    <task id="LOCAL-00025" summary="feat(Observer): 2 Variations of an observer pattern added&#10;-  could be improved through manual creation of a linkedlist instead of a hard List">
+      <created>1669164042932</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1669164042932</updated>
+    </task>
+    <task id="LOCAL-00026" summary="feat(FSM): Finite state machine completed to a blueprint level">
+      <created>1670694105338</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1670694105338</updated>
+    </task>
+    <task id="LOCAL-00027" summary="feat(AsyncStateIdle): Modified Idle to skip if not set">
+      <created>1670694155387</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1670694155387</updated>
+    </task>
+    <task id="LOCAL-00028" summary="feat(FindState): FindState overloaded for better naming conventions">
+      <created>1670694186795</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1670694186795</updated>
+    </task>
+    <task id="LOCAL-00029" summary="fix(Namespace): Corrected the namespace for Example.cs">
+      <created>1670694450992</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1670694450992</updated>
+    </task>
+    <task id="LOCAL-00030" summary="chore(Namespaces): Created new directories for FiniteStateMachine">
+      <created>1670694484820</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1670694484820</updated>
+    </task>
+    <task id="LOCAL-00031" summary="feat(SettingsConcept): Created concept blueprint for storing game settings in code using scriptable objects">
+      <created>1671047273933</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1671047273933</updated>
+    </task>
+    <task id="LOCAL-00032" summary="feat(ExampleSO): Settings Namespace holds example settings pattern">
+      <created>1671047389285</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1671047389286</updated>
+    </task>
+    <task id="LOCAL-00033" summary="chore(MetaFiles): These poor guys got left out">
+      <created>1671047590704</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1671047590706</updated>
+    </task>
+    <task id="LOCAL-00034" summary="feat(Dict): Unity Serializable List/Dictionary Created for dictionary serialization in the Editor&#10;- Requires a Property Drawer">
+      <created>1671217271843</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1671217271843</updated>
+    </task>
+    <task id="LOCAL-00035" summary="fix(IBufferable): IBufferable removed from Command.cs&#10;feat(Option): Created an Option extension for command &#10;- should this be inheritance or does an option hold a command?">
+      <created>1671294976325</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1671294976325</updated>
+    </task>
+    <task id="LOCAL-00036" summary="fix(IBufferable): Removed IBufferable from AsyncCommand">
+      <created>1671295003088</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1671295003088</updated>
+    </task>
+    <task id="LOCAL-00037" summary="chore(Naming): Renamed 'Storage' to 'cachedStorage' for clarity">
+      <created>1671295136509</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1671295136509</updated>
+    </task>
+    <task id="LOCAL-00038" summary="feat(Settings): Created a concept examples for simple settings control">
+      <created>1671295245774</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1671295245774</updated>
+    </task>
+    <task id="LOCAL-00039" summary="feat(Items): Monobehaviours that contain a list of Options that can infinitely extend an items ability to do a task&#10;- Are Interfaces and Inheritance the correct way to do this or are they limiting??">
+      <created>1671295897656</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1671295897656</updated>
+    </task>
+    <task id="LOCAL-00040" summary="feat(Singleton): Basic singleton pattern created. Some further thought could extend its ability">
+      <created>1671295981608</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1671295981608</updated>
+    </task>
+    <task id="LOCAL-00041" summary="feat(Inventory): Inventory created with a number of interfaces to control flow&#10;- not a monobehaviour&#10;- Requires type to inherit from Item and implement ICollectable&lt;T&gt;&#10;- Items that implement ICollectable also implement IStackable&lt;T&gt; which allows items to stack within an inventory">
+      <created>1671296911517</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1671296911517</updated>
+    </task>
+    <task id="LOCAL-00042" summary="feat(Inventory): Modified to discard items automatically if inventory is full.">
+      <created>1671296947048</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1671296947048</updated>
+    </task>
+    <task id="LOCAL-00043" summary="chore(ItemConcept): Original concept for inventory and items">
+      <created>1671296971981</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1671296971981</updated>
+    </task>
+    <task id="LOCAL-00044" summary="feat(Dict): Serializable dictionary created for display in Editor">
+      <created>1671297000927</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1671297000927</updated>
+    </task>
+    <task id="LOCAL-00045" summary="chore(MetaFile): Inventory meta file">
+      <created>1671297021825</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1671297021825</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="feat(Command): Command pattern started.&#10;- Commands can be created dynamically or inherited through the ICommand interface&#10;- Commands can be added to a buffer to be executed later or Executed into the CommandStream.cs&#10;- CommandStream controls the flow of command execution and enables for commands to be undone in the order of execution&#10;Notes: States to be added to commands? The command buffer could become a monobehaviour singleton. I'm not sure or sold on certainty without further testing" />
+    <MESSAGE value="chore(States): Some small modifications to QueueState.cs to reduce warnings in the code &#10;chore(ECS): Removed ECS from project. Monobehaviours are to be prioritised here over ECS and DOTS" />
+    <MESSAGE value="Chore(Attributes): Moved RequireInterface attribute to Attributes namespace" />
+    <MESSAGE value="feat(Command): Command pattern finished to a degree but has yet to be tested&#10;- requires full testing implementation" />
+    <MESSAGE value="feat(Observer): 2 Variations of an observer pattern added&#10;-  could be improved through manual creation of a linkedlist instead of a hard List" />
+    <MESSAGE value="feat(FSM): Finite state machine completed to a blueprint level" />
+    <MESSAGE value="feat(AsyncStateIdle): Modified Idle to skip if not set" />
+    <MESSAGE value="feat(FindState): FindState overloaded for better naming conventions" />
+    <MESSAGE value="fix(Namespace): Corrected the namespace for Example.cs" />
+    <MESSAGE value="chore(Namespaces): Created new directories for FiniteStateMachine" />
+    <MESSAGE value="feat(SettingsConcept): Created concept blueprint for storing game settings in code using scriptable objects" />
+    <MESSAGE value="feat(ExampleSO): Settings Namespace holds example settings pattern" />
+    <MESSAGE value="chore(MetaFiles): These poor guys got left out" />
+    <MESSAGE value="feat(Dict): Unity Serializable List/Dictionary Created for dictionary serialization in the Editor&#10;- Requires a Property Drawer" />
+    <MESSAGE value="fix(IBufferable): IBufferable removed from Command.cs&#10;feat(Option): Created an Option extension for command &#10;- should this be inheritance or does an option hold a command?" />
+    <MESSAGE value="fix(IBufferable): Removed IBufferable from AsyncCommand" />
+    <MESSAGE value="chore(Naming): Renamed 'Storage' to 'cachedStorage' for clarity" />
+    <MESSAGE value="feat(Settings): Created a concept examples for simple settings control" />
+    <MESSAGE value="feat(Items): Monobehaviours that contain a list of Options that can infinitely extend an items ability to do a task&#10;- Are Interfaces and Inheritance the correct way to do this or are they limiting??" />
+    <MESSAGE value="feat(Singleton): Basic singleton pattern created. Some further thought could extend its ability" />
+    <MESSAGE value="feat(Inventory): Inventory created with a number of interfaces to control flow&#10;- not a monobehaviour&#10;- Requires type to inherit from Item and implement ICollectable&lt;T&gt;&#10;- Items that implement ICollectable also implement IStackable&lt;T&gt; which allows items to stack within an inventory" />
+    <MESSAGE value="feat(Inventory): Modified to discard items automatically if inventory is full." />
+    <MESSAGE value="chore(ItemConcept): Original concept for inventory and items" />
+    <MESSAGE value="feat(Dict): Serializable dictionary created for display in Editor" />
+    <MESSAGE value="chore(MetaFile): Inventory meta file" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore(MetaFile): Inventory meta file" />
+  </component>
+</project>
