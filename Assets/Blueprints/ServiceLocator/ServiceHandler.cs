@@ -4,9 +4,9 @@ namespace Blueprints.ServiceLocator
 {
     public class ServiceHandler : MonoBehaviour
     {
-        private static ServiceLocator _locator;
+        private static Locator _locator;
         
-        protected static ServiceLocator Locator 
+        protected static Locator Locator 
             => _locator ??= new();
 
         public static void Get<T>() where T : IService

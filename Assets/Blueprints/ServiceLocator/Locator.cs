@@ -12,16 +12,15 @@ namespace Blueprints.ServiceLocator
         void Load();
     }
     
-    public sealed class ServiceLocator : IDisposable
+    public sealed class Locator : IDisposable
     {
-        private Dictionary<Type, IService> Services { get; set; } = new();
+        private Dictionary<Type, IService> _services;
+        private Dictionary<Type, IService> Services => _services ??= new();
 
         public event Action<IService> OnServiceProvided;
 
         public T Get<T>() where T : IService
         {
-            Services ??= new();
-            
             if (Services.ContainsKey(typeof(T)))
             {
                 return (T)Services[typeof(T)];
@@ -59,24 +58,25 @@ namespace Blueprints.ServiceLocator
             }
 
             Debug.LogWarning(Services.Remove(typeof(T)) 
-                ? $"Service {typeof(T)} removed from {nameof(ServiceLocator)}"
-                : $"Attempting to remove a Service: {typeof(T)} that does not exist in {nameof(ServiceLocator)}");
+                ? $"Service {typeof(T)} removed from {nameof(Locator)}"
+                : $"Attempting to remove a Service: {typeof(T)} that does not exist in {nameof(Locator)}");
         }
+
+        public void Provide<T>(T service) where T : IService
+            => Provide<T, T>(service);
         
-        public void Provide<TInterface, TInstance>(TInstance service)
-            where TInterface : IService
-            where TInstance : TInterface
+        public void Provide<T1, T2>(T2 service)
+            where T1 : IService
+            where T2 : T1
         {
-            Services ??= new();
-            
-            if (Services.ContainsKey(typeof(TInterface)))
+            if (Services.ContainsKey(typeof(T1)))
             {
-                Debug.Log($"{nameof(ServiceLocator)} already contains a service for {typeof(TInterface)}" +
+                Debug.Log($"{nameof(Locator)} already contains a service for {typeof(T1)}" +
                           $"\r\nCannot Overwrite Existing Services");
                 return;
             }
             
-            Services.Add(typeof(TInterface), service);
+            Services.Add(typeof(T1), service);
             OnServiceProvided?.Invoke(service);
 
             if (service is ILoadable loadable)
@@ -85,7 +85,7 @@ namespace Blueprints.ServiceLocator
                 Debug.Log($"{service} Loaded");
             }
             
-            Debug.Log($"Service {typeof(TInterface)} : {service} added to Services");
+            Debug.Log($"Service {typeof(T1)} : {service} added to Services");
         }
         
         public void Dispose()

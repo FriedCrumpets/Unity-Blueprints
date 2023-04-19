@@ -24,7 +24,7 @@ namespace Blueprints.Singleton
         }
     }
     
-    public abstract class Singleton<T> : MonoBehaviour where T : Component
+    public abstract class Singleton<T> : MonoBehaviour where T : UnityEngine.Component
     {
         private static T _instance;
 
