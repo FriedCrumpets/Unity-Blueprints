@@ -17,12 +17,17 @@ namespace Blueprints
         /// <summary>
         /// Immediately Execute the command into the Command Stream
         /// </summary>
-        public void Execute() => _execute.Invoke();
+        public void Execute()
+            => _execute.Invoke();
 
         /// <summary>
         /// Immediately undo the command and set its state into the command stream
         /// </summary>
-        public void Undo() => _undo?.Invoke();
+        public void Undo() 
+            => _undo?.Invoke();
+        
+        public void Buffer() 
+            => CommandBuffer.Buffer(this);
     }
     
     public class Command<T> : ICommand
@@ -41,14 +46,17 @@ namespace Blueprints
         /// <summary>
         /// Immediately Execute the command into the Command Stream
         /// </summary>
-        public void Execute() => _execute.Invoke(_receiver);
+        public void Execute() => 
+            _execute.Invoke(_receiver);
 
         /// <summary>
         /// Immediately undo the command and set its state into the command stream
         /// </summary>
-        public void Undo() => _undo?.Invoke(_receiver);
+        public void Undo() => 
+            _undo?.Invoke(_receiver);
 
-        public void Buffer() => CommandBuffer.Buffer(this);
+        public void Buffer() 
+            => CommandBuffer.Buffer(this);
     }
 
     public class Modifier<T>
