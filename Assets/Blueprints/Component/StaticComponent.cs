@@ -8,9 +8,9 @@ namespace Blueprints.Components
 {
     public abstract class StaticComponent<TComponent> : MonoBehaviour, IService where TComponent : UnityEngine.Component
     {
-        public static event Action<Type> OnMonoComponentCreated;
+        public static event Action<Type> OnComponentCreated;
 
-        public event Action<TComponent> OnInitialised;
+        public static event Action<TComponent> OnInitialised;
         
         protected static TComponent Component { get; private set; }
         
@@ -20,7 +20,7 @@ namespace Blueprints.Components
         protected virtual void Awake()
         {
             Locator.Provide(this);    
-            OnMonoComponentCreated?.Invoke(GetType());
+            OnComponentCreated?.Invoke(GetType());
             
             foreach (var pair in StoredCommands.Where(pair => pair.Key == GetType()))
             {
@@ -28,6 +28,12 @@ namespace Blueprints.Components
                 StoredCommands.Remove(pair);
             }
         }
+        
+        private static Locator Locator 
+            => _locator ??= new();
+        
+        private static List<KeyValuePair<Type, Action<StaticComponent<TComponent>>>> StoredCommands 
+            => _storedCommands ??= new();
 
         public virtual void Initialise(TComponent component)
         {
@@ -35,15 +41,12 @@ namespace Blueprints.Components
             OnInitialised?.Invoke(component);
         }
 
-        private static Locator Locator 
-            => _locator ??= new();
-        
-        private static List<KeyValuePair<Type, Action<StaticComponent<TComponent>>>> StoredCommands 
-            => _storedCommands ??= new();
-
         protected static T Get<T>() where T : StaticComponent<TComponent>
             => Locator.Get<T>();
-
+        
+        private static void Provide<T>(T component) where T : StaticComponent<TComponent>
+            => Locator.Provide(component);
+        
         protected static bool Send<T>(Action<T> action) where T : StaticComponent<TComponent>
         {
             var component = Get<T>();
@@ -59,9 +62,6 @@ namespace Blueprints.Components
             return component != null;
         }
 
-        private static void Provide<T>(T component) where T : StaticComponent<TComponent>
-            => Locator.Provide(component);
-        
         private static void Receive<T>(T component, Action<T> action)
             => action?.Invoke(component);
     }

@@ -4,4 +4,9 @@ namespace Blueprints.Visitor
     {
         void Visit(IVisitable<T> visitable);
     }
+    
+    public interface IVisit
+    {
+        void Visit<T>(IVisitable<T> visitable);
+    }
 }

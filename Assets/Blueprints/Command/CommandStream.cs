@@ -11,7 +11,8 @@ namespace Blueprints
     {
         public static Cursor<ICommand> Cursor { get; } = new Cursor<ICommand>();
 
-        public static ICommand CurrentCommand => Cursor.CurrentItem;
+        public static ICommand CurrentCommand 
+            => Cursor.CurrentItem;
         
         public static void Execute(ICommand command)
         {

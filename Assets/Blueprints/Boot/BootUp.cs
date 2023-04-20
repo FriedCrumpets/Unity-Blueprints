@@ -6,5 +6,9 @@ namespace Blueprints.Boot
     public class BootUp : TBoot
     {
         private void Awake() => Boot();
+        
+        protected override void CreateSingletons() { }
+
+        protected override void ProvideServices() { }
     }
 }

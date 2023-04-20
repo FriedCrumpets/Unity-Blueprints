@@ -1,18 +1,25 @@
 #nullable enable
 using System;
+using System.Threading.Tasks;
 
 namespace Blueprints
 {
+    public interface ICommand
+    {
+        public void Execute();
+        public void Undo();
+    }
+
     public class Command : ICommand
     {
+        private readonly Action _execute;
+        private readonly Action? _undo;
+        
         public Command(Action execute, Action? undo = null)
         {
             _execute = execute;
             _undo = undo;
         }
-        
-        private readonly Action _execute;
-        private readonly Action? _undo;
 
         /// <summary>
         /// Immediately Execute the command into the Command Stream
@@ -32,16 +39,16 @@ namespace Blueprints
     
     public class Command<T> : ICommand
     {
+        private readonly T _receiver;
+        private readonly Action<T> _execute;
+        private readonly Action<T>? _undo;
+        
         public Command(T receiver, Action<T> execute, Action<T>? undo = null)
         {
             _receiver = receiver;
             _execute = execute;
             _undo = undo;
         }
-
-        private readonly T _receiver;
-        private readonly Action<T> _execute;
-        private readonly Action<T>? _undo;
 
         /// <summary>
         /// Immediately Execute the command into the Command Stream
@@ -58,26 +65,27 @@ namespace Blueprints
         public void Buffer() 
             => CommandBuffer.Buffer(this);
     }
-
-    public class Modifier<T>
+    
+    public class AsyncCommand<T> : ICommand
     {
-        public Modifier(Func<T> execute, Func<T>? undo = null)
+        private readonly T _receiver;
+        private readonly Action<T> _execute;
+        private readonly Action<T>? _undo;
+        
+        public AsyncCommand(T receiver, Action<T> execute, Action<T>? undo = null)
         {
+            _receiver = receiver;
             _execute = execute;
             _undo = undo;
         }
         
-        private readonly Func<T> _execute;
-        private readonly Func<T>? _undo;
+        public async void Execute() 
+            => await Task.Run(() => _execute?.Invoke(_receiver));
 
-        /// <summary>
-        /// Immediately Execute the command into the Command Stream
-        /// </summary>
-        public T Execute() => _execute.Invoke();
+        public async void Undo() 
+            => await Task.Run(() => _undo?.Invoke(_receiver));
 
-        /// <summary>
-        /// Immediately undo the command and set its state into the command stream
-        /// </summary>
-        public T? Undo() => _undo != null ? _undo.Invoke() : default;
+        public void Buffer() 
+            => CommandBuffer.Buffer(this);
     }
 }

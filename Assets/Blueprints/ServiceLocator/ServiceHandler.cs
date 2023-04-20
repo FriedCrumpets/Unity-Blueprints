@@ -2,14 +2,17 @@ using UnityEngine;
 
 namespace Blueprints.ServiceLocator
 {
-    public class ServiceHandler : MonoBehaviour
+    public class ServiceHandler
     {
         private static Locator _locator;
         
         protected static Locator Locator 
             => _locator ??= new();
 
-        public static void Get<T>() where T : IService
+        public static T Get<T>() where T : IService
             => _locator.Get<T>();
+
+        public void Provide<T>(T service) where T : IService
+            => _locator.Provide(service);
     }
 }

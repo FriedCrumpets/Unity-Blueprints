@@ -26,6 +26,7 @@ namespace Blueprints.Boot
         protected void Boot()
         {
             CreateSingletons();
+            ProvideServices();
 
             InstantiateLoaders(Loaders, () =>
             {
@@ -33,7 +34,8 @@ namespace Blueprints.Boot
             });
         }
 
-        protected virtual void CreateSingletons() { }
+        protected abstract void CreateSingletons();
+        protected abstract void ProvideServices();
 
         protected void InstantiateLoaders(IEnumerable<GameObject> loaders, Action onComplete = null)
         {

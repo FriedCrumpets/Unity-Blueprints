@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,21 +15,16 @@ namespace Blueprints
     {
         private static Queue<ICommand> Queue { get; set; } = new Queue<ICommand>();
 
-        public static void Clear() => Queue.Clear();
+        public static void Clear() 
+            => Queue.Clear();
         
         public static void Buffer(ICommand command)
-        {
-            Queue.Enqueue(command);
-        }
-
-        public static void Cancel(ICommand command)
-        {
-            Queue = new Queue<ICommand>(Queue.Where(x => x != command));
-        }
+            => Queue.Enqueue(command);
         
+        public static void Cancel(ICommand command)
+            => Queue = new Queue<ICommand>(Queue.Where(x => x != command));
+
         public static void Execute()
-        {
-            CommandStream.Execute(Queue.Dequeue());
-        }
+            => CommandStream.Execute(Queue.Dequeue());
     }
 }
