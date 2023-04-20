@@ -1,5 +1,6 @@
 ﻿using System;
 using Blueprints.Facade;
+using Core.Utils;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -9,7 +10,7 @@ namespace Features.XR
     public class VignetteSettings_SO : ScriptableObject
     {
         [field: SerializeField] public Setting<bool> VignetteActive { get; private set; }
-            = new(true, true);
+            = new(true);
         
         [field: SerializeField] public ClampedSetting VignetteIntensity { get; private set; }
             = new(.5f, 0, 1);

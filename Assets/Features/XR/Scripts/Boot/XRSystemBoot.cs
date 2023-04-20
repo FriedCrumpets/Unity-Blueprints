@@ -12,6 +12,11 @@ namespace Features.XR
             
         }
 
+        protected override void ProvideServices()
+        {
+            
+        }
+
         private void OnDestroy()
         {
             foreach (var loader in Loaded)

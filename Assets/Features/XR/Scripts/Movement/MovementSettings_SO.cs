@@ -1,5 +1,6 @@
 ﻿using System;
 using Blueprints.Facade;
+using Core.Utils;
 using UnityEngine;
 
 namespace Features.XR
@@ -7,17 +8,17 @@ namespace Features.XR
     [CreateAssetMenu(fileName = "MovementSettings", menuName = "ScriptableObjects/XR/MovementSettings")]
     public class MovementSettings_SO : ScriptableObject
     {
-        [field: SerializeField] public Setting<bool> TurnProvider { get; private set; } = new(false, true);
+        [field: SerializeField] public Setting<bool> TurnProvider { get; private set; } = new(false);
         [field: SerializeField] public ClampedSetting ContinuousTurnSpeed { get; private set; } = new(30, 30, 70);
         [field: SerializeField] public ClampedSetting SnapTurnDegrees { get; private set; } = new(30, 30, 60);
         [field: SerializeField] public ClampedSetting MovementSpeed { get; private set; } = new(2.5f, 2.5f, 3.5f);
 
         private void OnDestroy()
         {
-            TurnProvider.Destroy();
-            ContinuousTurnSpeed.Destroy();
-            SnapTurnDegrees.Destroy();
-            MovementSpeed.Destroy();
+            TurnProvider.Dispose();
+            ContinuousTurnSpeed.Dispose();
+            SnapTurnDegrees.Dispose();
+            MovementSpeed.Dispose();
         }
     }
 
