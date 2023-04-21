@@ -6,21 +6,25 @@ using UnityEngine;
 
 namespace Blueprints.Components
 {
-    public abstract class StaticComponent<TComponent> : MonoBehaviour, IService where TComponent : UnityEngine.Component
+    public abstract class StaticComponent<TMonolith> : MonoBehaviour, IService 
+        where TMonolith : UnityEngine.Component
     {
-        public static event Action<Type> OnComponentCreated;
-
-        public static event Action<TComponent> OnInitialised;
-        
-        protected static TComponent Component { get; private set; }
+        protected static event Action<StaticComponent<TMonolith>> OnComponentCreated;
+        protected static event Action<TMonolith> OnInitialised;
         
         private static Locator _locator;
-        private static  List<KeyValuePair<Type, Action<StaticComponent<TComponent>>>> _storedCommands;
+        private static  List<KeyValuePair<Type, Action<StaticComponent<TMonolith>>>> _storedCommands;
 
         protected virtual void Awake()
         {
+            var component = GetComponent<TMonolith>();
+            if (component != null)
+            {
+                Initialise(component);
+            }
+            
             Locator.Provide(this);    
-            OnComponentCreated?.Invoke(GetType());
+            OnComponentCreated?.Invoke(this);
             
             foreach (var pair in StoredCommands.Where(pair => pair.Key == GetType()))
             {
@@ -32,22 +36,29 @@ namespace Blueprints.Components
         private static Locator Locator 
             => _locator ??= new();
         
-        private static List<KeyValuePair<Type, Action<StaticComponent<TComponent>>>> StoredCommands 
+        private static List<KeyValuePair<Type, Action<StaticComponent<TMonolith>>>> StoredCommands 
             => _storedCommands ??= new();
+        
+        protected static TMonolith Monolith { get; private set; }
 
-        public virtual void Initialise(TComponent component)
+        protected void Initialise(TMonolith component)
         {
-            Component = component;
+            Monolith = component;
             OnInitialised?.Invoke(component);
         }
 
-        protected static T Get<T>() where T : StaticComponent<TComponent>
+        protected static T Get<T>() where T : IService
             => Locator.Get<T>();
         
-        private static void Provide<T>(T component) where T : StaticComponent<TComponent>
+        protected static void Provide<T>(T component) where T : StaticComponent<TMonolith>
             => Locator.Provide(component);
         
-        protected static bool Send<T>(Action<T> action) where T : StaticComponent<TComponent>
+        protected static void Provide<T, TT>(TT service)
+            where T : IService
+            where TT : StaticComponent<TMonolith>, T
+            => Locator.Provide<T, TT>(service);
+        
+        protected static bool Send<T>(Action<T> action) where T : StaticComponent<TMonolith>
         {
             var component = Get<T>();
             
@@ -55,7 +66,7 @@ namespace Blueprints.Components
                 Receive(component, action);
             else
                 StoredCommands.Add(
-                    new KeyValuePair<Type, Action<StaticComponent<TComponent>>>(
+                    new KeyValuePair<Type, Action<StaticComponent<TMonolith>>>(
                         typeof(T), component => action?.Invoke((T)component))
                 );
             

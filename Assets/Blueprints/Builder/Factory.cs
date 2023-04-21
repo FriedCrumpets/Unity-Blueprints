@@ -3,16 +3,16 @@ using System.Linq;
 
 namespace Blueprints
 {
-    public class Chief<T>
+    public class Factory<T>
     {
         private Queue<IBuild<T>> Builders { get; }
 
-        public Chief()
+        public Factory()
         {
             Builders = new();
         }
 
-        public Chief(IEnumerable<IBuild<T>> builders)
+        public Factory(IEnumerable<IBuild<T>> builders)
         {
             Builders = new Queue<IBuild<T>>();
             
