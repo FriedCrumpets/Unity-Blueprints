@@ -1,17 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Blueprints.Utility;
 using UnityEngine;
 
 namespace Blueprints.ServiceLocator
 {
-    public interface IService { }
-    
-    public interface ILoadable : IService
-    {
-        void Save();
-        void Load();
-    }
-    
     public sealed class Locator : IDisposable
     {
         private Dictionary<Type, IService> _services;

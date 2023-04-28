@@ -1,45 +1,52 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Blueprints.ServiceLocator;
+using Blueprints.Utility;
 using UnityEngine;
 
 namespace Blueprints.Components
 {
-    public abstract class MonoComponent : MonoBehaviour, IService, IDisposable
+    public class MonoComponent : MonoBehaviour, IComponent
     {
-        public Action<Type> OnComponentCreated;
-        
-        private Locator _locator;
+        private IComponent _master;
 
-        public List<KeyValuePair<Type, Action<Component>>> StoredCommands { get; private set; }
-        
+        public IComponent Master
+        {
+            get => _master;
+            set
+            {
+                _master?.Remove(this);
+                value.Add(this);
+                value.OnComponentCreated?.Invoke(this);
+                
+                foreach (var pair in value.StoredCommands.Where(pair => pair.Key == GetType()))
+                {
+                    IComponent.Receive(value, pair.Value);
+                    value.StoredCommands.Remove(pair);
+                }
+                
+                _master = value;
+            }
+        }
+        public Action<IComponent> OnComponentCreated { get; }
+        public Locator Locator { get; private set; }
+        public List<KeyValuePair<Type, Action<IComponent>>> StoredCommands { get; private set; }
+
         private void Awake()
         {
-            _locator = new();
+            Master = this;
+            Locator = new();
             StoredCommands = new();
-            ConstructComponents();
-            Init();
         }
-
-        protected abstract void Init();
         
-        public T GetService<T>() where T : IService
-            => _locator.Get<T>();
-                
-        public T AddService<T>(T component) where T : IService
-            => _locator.Provide(component);
-        
-        public bool RemoveService<T>(T component) where T : IService
-            => _locator.Remove<T>();
+        public T Get<T>() where T : IService
+            => Locator.Get<T>();
 
-        protected abstract void ConstructComponents();
+        public T Add<T>(T service) where T : IService
+            => Locator.Provide(service);
 
-        private void OnDestroy()
-        {
-            _locator.Dispose();
-            Dispose();
-        }
-
-        public abstract void Dispose();
+        public bool Remove<T>(T service) where T : IService
+            => Locator.Remove<T>();
     }
 }

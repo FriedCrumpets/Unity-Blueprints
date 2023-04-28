@@ -21,23 +21,15 @@ namespace Blueprints.Facade
         {
             get => value;
             set
-            { 
+            {
                 if (value.Equals(this.value))
                 {
-                    return;    
+                    return;
                 }
                 
                 var val = Mathf.Clamp(value, min, max);
                 this.value = value;
                 OnValueChanged?.Invoke(value);
-            }
-        }
-
-        public new void Dispose()
-        {
-            foreach (var action in OnValueChanged?.GetInvocationList()!)
-            {
-                OnValueChanged -= (Action<float>)action;
             }
         }
     }

@@ -2,44 +2,50 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Blueprints.ServiceLocator;
+using Blueprints.Utility;
 
 namespace Blueprints.Components
 {
-    public abstract class Component : IService, IDisposable
+    public class Component : IComponent
     {
-        private MonoComponent Master { get; }
-        
-        public Component(MonoComponent master)
-        {
-            master.AddService(this);    
-            master.OnComponentCreated?.Invoke(GetType());
+        private IComponent _master;
 
-            foreach (var pair in master.StoredCommands.Where(pair => pair.Key == GetType()))
+        public IComponent Master
+        {
+            get => _master;
+            set
             {
-                Receive(this, pair.Value);
-                master.StoredCommands.Remove(pair);
+                _master?.Remove(this);
+                value.Add(this);
+                value.OnComponentCreated?.Invoke(this);
+                
+                foreach (var pair in value.StoredCommands.Where(pair => pair.Key == GetType()))
+                {
+                    IComponent.Receive(value, pair.Value);
+                    value.StoredCommands.Remove(pair);
+                }
+                
+                _master = value;
             }
-
-            Master = master;
         }
+        public Action<IComponent> OnComponentCreated { get; }
+        public Locator Locator { get; }
+        public List<KeyValuePair<Type, Action<IComponent>>> StoredCommands { get; }
 
-        protected static bool SendMessage<T>(MonoComponent master, Action<T> action) where T : Component
+        public Component(IComponent master = null)
         {
-            var component = master.GetService<T>();
-            
-            if (component != null)
-                Receive(component, action);
-            else
-                master.StoredCommands.Add(
-                    new KeyValuePair<Type, Action<Component>>(typeof(T), component => action?.Invoke((T)component)));
-            
-            return component != null;
+            Master = master ?? this;
+            Locator = new();
+            StoredCommands = new();
         }
+        
+        public T Get<T>() where T : IService
+            => Locator.Get<T>();
 
-        private static void Receive<T>(T component, Action<T> action)
-            => action?.Invoke(component);
+        public T Add<T>(T service) where T : IService
+            => Locator.Provide(service);
 
-        public void Dispose()
-            => Master.RemoveService(this);
+        public bool Remove<T>(T service) where T : IService
+            => Locator.Remove<T>();
     }
 }

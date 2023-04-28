@@ -4,41 +4,52 @@ using UnityEngine;
 namespace Blueprints.Facade
 {
     [Serializable]
-    public class Setting<T>
+    public class Setting<T> : IDisposable
     {
-        public Setting(T value, bool overrideValueCheck = false)
-        {
-            this.value = value;
-            this.overrideCheck = overrideValueCheck;
-        }
-
         public event Action<T> OnValueChanged;
         
         [SerializeField] protected T value;
-
-        private bool overrideCheck;
         
-        public T Value
+        public Setting()
+        {
+            value = default;
+        }
+
+        public Setting(T value)
+        {
+            this.value = value;
+        }
+        
+        public virtual T Value
         {
             get => value;
             set
             {
-                if (!overrideCheck && value.Equals(this.value))
+                if (!this.value.Equals(value))
                 {
-                    return;
+                    OnValueChanged?.Invoke(value);
+                    this.value = value;
                 }
-                
-                this.value = value;
-                OnValueChanged?.Invoke(value);
             }
         }
 
-        public void Destroy()
+        public void Refire()
+            => OnValueChanged?.Invoke(value);
+        
+        public void Dispose()
         {
-            foreach (var action in OnValueChanged?.GetInvocationList()!)
+            var actions = OnValueChanged?.GetInvocationList();
+
+            if (actions == null)
+            {
+                return;
+            }
+            
+            foreach (var action in actions)
             {
                 OnValueChanged -= (Action<T>)action;
             }
         }
+    
     }
 }

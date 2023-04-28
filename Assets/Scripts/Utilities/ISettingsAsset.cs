@@ -1,4 +1,4 @@
-namespace Core.Utils
+namespace Blueprints.Facade
 {
     public interface ISettingsAsset
     {

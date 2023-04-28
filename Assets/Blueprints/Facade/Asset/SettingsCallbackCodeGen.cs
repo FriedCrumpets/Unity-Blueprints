@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 
 #if UNITY_EDITOR
-namespace Core.Utils
+namespace Blueprints.Facade
 {
     public static class SettingsCallbackCodeGen
     {

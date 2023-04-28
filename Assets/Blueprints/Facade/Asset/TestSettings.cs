@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Blueprints.Facade
 {
-    public class Test : MonoBehaviour
+    public class TestSettings : MonoBehaviour
     {
         [SerializeField] private ExampleSettings exampleSettings;
 

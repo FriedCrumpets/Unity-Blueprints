@@ -1,3 +1,4 @@
+using Blueprints.Utility;
 using UnityEngine;
 
 namespace Blueprints.Singleton
@@ -24,61 +25,56 @@ namespace Blueprints.Singleton
         }
     }
     
-    public abstract class Singleton<T> : MonoBehaviour where T : UnityEngine.Component
+    public abstract class Singleton<T> : MonoBehaviour where T : Component
     {
         private static T _instance;
 
-        [field: SerializeField] public bool PersistBetweenScenes { get; set; }
-        
-        public static T Instance
-        {
-            get => _instance;
-            private set
-            {
-                if (_instance == null)
-                {
-                    _instance = value;
-                }
-            }
-        }
+        public static T Get()
+            => _instance;
 
         protected virtual void Awake()
         {
-            if (Instance != null)
+            if (_instance != null)
             {
                 Destroy(this);
                 return;
             }
             
-            Instance = GetComponent<T>();
+            _instance = GetComponent<T>();
 
-            if (PersistBetweenScenes)
+            if (typeof(T) is ILoadable loadable)
             {
-                DontDestroyOnLoad(this);
+                loadable.Load();
             }
         }
         
-        private void OnDestroy() => DestroyInstance();
+        private void OnDestroy() 
+            => DestroyInstance();
         
         public static void CreateInstance()
         {
-            Instance = (T) FindObjectOfType(typeof(T), true);
+            _instance = (T) FindObjectOfType(typeof(T), true);
 
-            if (Instance == null)
+            if (_instance == null)
             {
                 var root = Utility.ForceRootObject("Singletons");
                 var go = new GameObject(typeof(T).Name);
                 go.transform.SetParent(root, false);
-                Instance = go.AddComponent<T>();
+                _instance = go.AddComponent<T>();
             }
         }
         
         public static void DestroyInstance()
         {
-            if (Instance != null)
+            if (_instance != null)
             {
-                Destroy(Instance.gameObject);
-                Instance = null;
+                if (typeof(T) is ILoadable loadable)
+                {
+                    loadable.Save();
+                }
+                
+                Destroy(_instance.gameObject);
+                _instance = null;
             }
         }
     }

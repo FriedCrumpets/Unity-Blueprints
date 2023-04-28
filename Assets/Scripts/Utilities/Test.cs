@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using UnityEngine;
 
-namespace Core.Utils
+namespace Blueprints.Facade
 {
     public class Test : MonoBehaviour
     {

@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 
 #if UNITY_EDITOR
-namespace Core.Utils
+namespace Blueprints.Facade
 {
     public class CallbackCodeGen
     {

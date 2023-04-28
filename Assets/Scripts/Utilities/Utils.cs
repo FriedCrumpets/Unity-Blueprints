@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Core.Utils
+namespace Blueprints.Facade
 {
     public static class Utils
     {
