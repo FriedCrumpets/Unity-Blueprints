@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Blueprints.Pool;
+using UnityEngine;
 
 namespace Pooling
 {
-    public class EnemyPool : ObjectPool<Enemy>
+    public class EnemyPool : ComponentPool<Enemy>
     {
         public EnemyPool(int maxPoolSize, int defaultCapacity) : base(maxPoolSize, defaultCapacity) { }
         
@@ -29,18 +30,13 @@ namespace Pooling
         }
 
         protected override void OnRetrieveFromPool(Enemy enemy)
-        {
-            enemy.gameObject.SetActive(true);
-        }
+            => enemy.gameObject.SetActive(true);
 
         protected override  void OnReturnToPool(Enemy enemy)
-        {
-            enemy.gameObject.SetActive(false);
-        }
+            => enemy.gameObject.SetActive(false);
 
         protected override void OnDestroyPoolObject(Enemy enemy)
-        {
-            Object.Destroy(enemy.gameObject);
-        }
+            => Object.Destroy(enemy.gameObject);
+        
     }
 }

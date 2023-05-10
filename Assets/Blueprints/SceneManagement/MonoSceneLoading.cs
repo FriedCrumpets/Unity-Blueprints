@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace Blueprints.SceneManagement
 {
-    public static class SceneLoadingStatics
+    public static class MonoSceneLoading
     {
         public static void LoadLevelAsync(this MonoBehaviour behaviour, string sceneName, LoadSceneMode mode)
         {

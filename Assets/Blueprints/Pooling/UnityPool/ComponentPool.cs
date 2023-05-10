@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Pooling
+namespace Blueprints.Pool
 {
-    public abstract class ObjectPool<T> where T : Component
+    public abstract class ComponentPool<T> where T : Component
     {
-        protected ObjectPool(int maxPoolSize, int defaultCapacity)
+        protected ComponentPool(int maxPoolSize, int defaultCapacity)
         {
             MaxPoolSize = maxPoolSize;
             DefaultCapacity = defaultCapacity;
@@ -17,7 +17,7 @@ namespace Pooling
         private IObjectPool<T> _pool = null;
         
         public IObjectPool<T> Pool =>
-            _pool ??= new UnityEngine.Pool.ObjectPool<T>(
+            _pool ??= new ObjectPool<T>(
             CreateItem,
             OnRetrieveFromPool,
             OnReturnToPool,

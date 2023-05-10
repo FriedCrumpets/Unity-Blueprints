@@ -162,9 +162,16 @@ namespace Blueprints.IO
         }
         
         /*
+         * todo:
          * If I want to integrate such a system with addressables I'll need to strip the scene for base objects
          * Create/ store guids for each object and create the object as an addressable; store such information as Json
-         * and then fire it up to a server. I don't think that'll be too heavily complex... hmmm....
+         * and then fire it up to a server. I don't think that'll be too heavily complex... hmmm...
+         */
+        
+        /*
+         * todo:
+         * This system only deals with scene loading and saving. The system could likely be adapted for players inventory
+         * and information
          */
     }
 }
