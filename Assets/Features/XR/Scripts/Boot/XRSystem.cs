@@ -1,6 +1,5 @@
 ﻿using System.Collections;
-using Blueprints.Singleton;
-using Blueprints.UnityBus;
+using Blueprints.Core;
 using Logging;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,7 +7,7 @@ using UnityEngine.XR.Management;
 
 namespace Features.XR
 {
-    public class XRSystem : Singleton<XRSystem>
+    public class XRSystem : MonoSingleton<XRSystem>
     {
         [SerializeField] private bool repeatCheck = true;
         [SerializeField] private float repeatXRCheckSeconds = 2.5f;

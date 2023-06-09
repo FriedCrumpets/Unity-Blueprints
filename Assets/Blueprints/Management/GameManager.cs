@@ -1,11 +1,11 @@
-﻿using Blueprints.Singleton;
+﻿using Blueprints.Core;
 using Logging;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Management
 {
-    public class GameManager : Singleton<GameManager>
+    public class GameManager : MonoSingleton<GameManager>
     {
         public SessionLog SessionLogger = new();
 

@@ -6,7 +6,7 @@ using Blueprints.Utility;
 
 namespace Blueprints.Components
 {
-    public class Component : IComponent
+    public abstract class Component : IComponent
     {
         private IComponent _master;
 

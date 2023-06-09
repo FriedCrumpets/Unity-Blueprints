@@ -8,7 +8,5 @@ namespace Blueprints.IO
         // this will not work on mobile devices
         public static string PathForFilename(string filename)
             => Path.Combine(Application.persistentDataPath, filename);
-
-        
     }
 }

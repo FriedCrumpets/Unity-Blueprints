@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Blueprints.Components
 {
-    public class MonoComponent : MonoBehaviour, IComponent
+    public abstract class MonoComponent : MonoBehaviour, IComponent
     {
         private IComponent _master;
 
@@ -29,6 +29,7 @@ namespace Blueprints.Components
                 _master = value;
             }
         }
+        
         public Action<IComponent> OnComponentCreated { get; }
         public Locator Locator { get; private set; }
         public List<KeyValuePair<Type, Action<IComponent>>> StoredCommands { get; private set; }

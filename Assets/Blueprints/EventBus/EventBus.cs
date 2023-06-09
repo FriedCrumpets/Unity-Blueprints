@@ -3,51 +3,71 @@ using System.Collections.Generic;
 
 namespace Blueprints.EventBus
 {
-    public class EventBus<TEnum> where TEnum : Enum 
+    public class EventBus<TEnum> where TEnum : Enum
     {
-        private readonly IDictionary<TEnum, Action> Events = new Dictionary<TEnum, Action>();
-        
+        private IDictionary<TEnum, Action> Events { get; }
+
+        public EventBus()
+        {
+            Events = new Dictionary<TEnum, Action>();
+        }
+
         public void Subscribe(TEnum eventType, Action observer)
         {
-            var eventExists = Events.TryGetValue(eventType, out var thisEvent);
-
-            if (eventExists)
-            {
-                AddListener(ref thisEvent, observer);
-            }
-            else
-            {
-                AddEventToBus(eventType, observer);
-            }
+            if (!Events.TryGetValue(eventType, out var thisEvent))
+                thisEvent = () => { };
+        
+            thisEvent += observer;
+            Events[eventType] = thisEvent;
         }
 
         public void UnSubscribe(TEnum eventType, Action observer)
         {
             if (Events.TryGetValue(eventType, out var thisEvent))
             {
-                RemoveListener(ref thisEvent, observer);
+                thisEvent -= observer;
+                Events[eventType] = thisEvent;
             }
         }
 
         public void Publish(TEnum eventType)
         {
             if (Events.TryGetValue(eventType, out var thisEvent))
-            {
                 thisEvent?.Invoke();
-            }
+        }
+    }
+
+    public class EventBus
+    {
+        private IDictionary<Type, Action> Events { get; }
+
+        public EventBus()
+        {
+            Events = new Dictionary<Type, Action>();
         }
 
-        private void AddListener(ref Action thisEvent, Action observer)
-            => thisEvent += observer;
-        
-        private void RemoveListener(ref Action thisEvent, Action observer)
-            => thisEvent -= observer;
-        
-        private void AddEventToBus(TEnum eventType, Action listener)
+        public void Subscribe<T>(Action observer)
         {
-            Action thisEvent = delegate { };
-            thisEvent += listener;
-            Events.Add(eventType, thisEvent);
+            if (!Events.TryGetValue(typeof(T), out var thisEvent))
+                thisEvent = () => { };
+        
+            thisEvent += observer;
+            Events[typeof(T)] = thisEvent;
+        }
+
+        public void UnSubscribe<T>(Action observer)
+        {
+            if (!Events.TryGetValue(typeof(T), out var thisEvent)) 
+                return;
+            
+            thisEvent -= observer;
+            Events[typeof(T)] = thisEvent;
+        }
+
+        public void Publish<T>()
+        {
+            if (Events.TryGetValue(typeof(T), out var thisEvent))
+                thisEvent?.Invoke();
         }
     }
 }

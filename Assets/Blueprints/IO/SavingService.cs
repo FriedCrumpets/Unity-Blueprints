@@ -69,8 +69,7 @@ namespace Blueprints.IO
             // save data is now generated in full so we'll now write it to disk
             result.WriteTo(new JsonTextWriter(File.CreateText(IOOperations.PathForFilename(fileName))));
 
-            result = null;
-            System.GC.Collect();
+            GC.Collect();
         }
 
         public static bool LoadGame(string fileName)
