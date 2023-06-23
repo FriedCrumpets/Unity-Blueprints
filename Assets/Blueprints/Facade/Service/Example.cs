@@ -74,22 +74,22 @@ namespace Blueprints.Facade.Service
     }
     
     // Example boot up script providing the services we need
-    public sealed class ExampleBoot : TBoot
+    public sealed class ExampleBoot : Boot.Boot
     {
-        private ServiceHandler _services;
-
-        private void Awake()
-        {
-            _services = new ServiceHandler();
-            Boot();
-        }
-
-        protected override void CreateSingletons() { }
-
-        protected override void ProvideServices()
-        {
-            _services.Provide(new ExampleDecorator());
-        }
+        // private ServiceHandler _services;
+        //
+        // private void Awake()
+        // {
+        //     _services = new ServiceHandler();
+        //     Boot();
+        // }
+        //
+        // protected override void CreateSingletons() { }
+        //
+        // protected override void ProvideServices()
+        // {
+        //     _services.Provide(new ExampleDecorator());
+        // }
     }
 
     // And the controller on the object we've setup a facade for that provides the component to the wrapper

@@ -8,15 +8,14 @@ namespace Blueprints.Components
     public interface IComponent : IService
     {
         IComponent Master { get; set; }
-        Action<IComponent> OnComponentCreated { get; }
-        Locator Locator { get; }
+        Action<IComponent> ComponentCreated { get; }
+        Locator Components { get; }
         List<KeyValuePair<Type, Action<IComponent>>> StoredCommands { get; }
-     
-        static void Receive<T>(T component, Action<T> message) where T : IComponent
-            => message?.Invoke(component); 
-        
-        T Get<T>() where T : IService; 
-        T Add<T>(T service) where T : IService; 
+
+        T Get<T>() where T : IService;
+        bool TryGet<T>(out T value) where T : IService;
+        T Add<T>(T service) where T : IService;
+        bool Remove<T>(T service) where T : IService; 
         
         static bool SendMessage<T>(IComponent master, Action<T> action) where T : IComponent
         {
@@ -32,6 +31,7 @@ namespace Blueprints.Components
             return component != null;
         }
         
-        bool Remove<T>(T service) where T : IService; 
+        static void Receive<T>(T component, Action<T> message) where T : IComponent
+            => message?.Invoke(component);
     }
 }

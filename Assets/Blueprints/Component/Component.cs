@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Blueprints.ServiceLocator;
 using Blueprints.Utility;
 
@@ -10,6 +9,14 @@ namespace Blueprints.Components
     {
         private IComponent _master;
 
+        public Component(IComponent master = null)
+        {
+            Master = master ?? this;
+            Components = master != null ? master.Components : new();
+            StoredCommands = new();
+            ComponentCreated = component => { };
+        }
+        
         public IComponent Master
         {
             get => _master;
@@ -17,35 +24,35 @@ namespace Blueprints.Components
             {
                 _master?.Remove(this);
                 value.Add(this);
-                value.OnComponentCreated?.Invoke(this);
-                
-                foreach (var pair in value.StoredCommands.Where(pair => pair.Key == GetType()))
+                value.ComponentCreated?.Invoke(this);
+
+                foreach (var pair in value.StoredCommands)
                 {
-                    IComponent.Receive(value, pair.Value);
-                    value.StoredCommands.Remove(pair);
+                    if (pair.Key == GetType())
+                    {
+                        IComponent.Receive(value, pair.Value);
+                        value.StoredCommands.Remove(pair);
+                    }
                 }
-                
+
                 _master = value;
             }
         }
-        public Action<IComponent> OnComponentCreated { get; }
-        public Locator Locator { get; }
+        
+        public Action<IComponent> ComponentCreated { get; }
+        public Locator Components { get; }
         public List<KeyValuePair<Type, Action<IComponent>>> StoredCommands { get; }
-
-        public Component(IComponent master = null)
-        {
-            Master = master ?? this;
-            Locator = new();
-            StoredCommands = new();
-        }
         
         public T Get<T>() where T : IService
-            => Locator.Get<T>();
+            => Components.Get<T>();
+        
+        public bool TryGet<T>(out T value) where T : IService
+            => Components.TryGet(out value);
 
         public T Add<T>(T service) where T : IService
-            => Locator.Provide(service);
+            => Components.Provide(service);
 
         public bool Remove<T>(T service) where T : IService
-            => Locator.Remove<T>();
+            => Components.Remove<T>();
     }
 }

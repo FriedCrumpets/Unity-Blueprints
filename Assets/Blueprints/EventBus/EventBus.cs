@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace Blueprints.EventBus
 {
@@ -67,6 +69,41 @@ namespace Blueprints.EventBus
         public void Publish<T>()
         {
             if (Events.TryGetValue(typeof(T), out var thisEvent))
+                thisEvent?.Invoke();
+        }
+    }
+    
+    [Serializable]
+    public class UnityEventBus<TEnum>
+    {
+        [field: SerializeField] private IDictionary<TEnum, UnityEvent> Events { get; set; }
+
+        public UnityEventBus()
+        {
+            Events = new Dictionary<TEnum, UnityEvent>();
+        }
+
+        public void Subscribe(TEnum type, UnityAction observer)
+        {
+            if (!Events.TryGetValue(type, out var thisEvent))
+                thisEvent = new UnityEvent();
+        
+            thisEvent.AddListener(observer);
+            Events[type] = thisEvent;
+        }
+
+        public void UnSubscribe(TEnum type, UnityAction observer)
+        {
+            if (Events.TryGetValue(type, out var thisEvent))
+            {
+                thisEvent.RemoveListener(observer);
+                Events[type] = thisEvent;
+            }
+        }
+
+        public void Publish(TEnum type)
+        {
+            if (Events.TryGetValue(type, out var thisEvent))
                 thisEvent?.Invoke();
         }
     }

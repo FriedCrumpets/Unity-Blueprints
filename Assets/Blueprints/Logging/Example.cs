@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Logging
@@ -11,9 +12,8 @@ namespace Logging
         Type NetType();
     }
     
-    public class NetworkStabilityLogger : Log, ICheckNetworkStability
+    public class NetworkStabilityLogger : Debugger, ICheckNetworkStability
     {
-
         public NetworkStabilityLogger(string name, ILogHandler logHandler, ICheckNetworkStability wrap) : base(name, logHandler)
         {
             wrapped = wrap;
@@ -25,7 +25,7 @@ namespace Logging
         {
             get
             {
-                Log("Ping retrieved");
+                Log("Ping retrieved", this);
                 return wrapped.Ping;
             }
         }
@@ -33,12 +33,12 @@ namespace Logging
         public void State()
         {
             wrapped.State();
-            Log("State retrieved");
+            Log("State retrieved", this);
         }
 
         public Type NetType()
         {
-            Log("NetType retrieved"); 
+            Log("NetType retrieved", this); 
             return wrapped.NetType();
         }
     }
@@ -52,4 +52,48 @@ namespace Logging
             Service = service;
         }
     } 
+    
+public class Solution 
+{
+    //s = "([}}])"
+    public bool IsValid(string s) 
+    {
+        if(s.Length <= 1) return false;
+        if(s.Length % 2 == 1) return false;
+
+        var stack = new Stack<char>();
+
+        foreach (var c in s)
+        {
+            switch (c)
+            {
+                case '(':
+                    stack.Push(')');
+                    break;  
+                case '[':
+                    stack.Push(']');
+                    break;
+                case '{':
+                    stack.Push('}');
+                    break;
+            }
+
+            if (stack.Count == 0)
+                continue;
+
+            switch (c)
+            {
+                case ')' when stack.Peek() != ')':
+                case '}' when stack.Peek() != '}':
+                case ']' when stack.Peek() != ']':
+                    return false;
+            }
+
+            if (c.Equals(stack.Peek()))
+                stack.Pop();
+        }
+
+        return stack.Count == 0;
+    }
+}
 }

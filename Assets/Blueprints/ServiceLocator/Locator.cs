@@ -25,6 +25,12 @@ namespace Blueprints.ServiceLocator
             return default;
         }
 
+        public bool TryGet<T>(out T value) where T : IService
+        {
+            value = Get<T>();
+            return value == null;
+        }
+
         public void SaveAll()
         {
             foreach (var service in Services)

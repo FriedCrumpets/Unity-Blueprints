@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: TestGroup
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 55a0913093ecde24b87f6df36a4c0c9b
+  m_SerializeEntries:
+  - m_GUID: 0a2d6b47b5c0f4440b77176b432dfd4d
+    m_Address: Assets/Features/XR/Prefabs/XRBoot.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ffd6a7aefc5698a4a937b4b268c5f49e
+    m_Address: Assets/Features/XR/Prefabs/XREventSystem.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b66bd629e019e5d44a174754127d97d9
+    m_Address: Assets/Features/XR/Prefabs/XRInteractionManager.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dcc7739eead0439438c1b719b07befdc
+    m_Address: Assets/Features/XR/Prefabs/XRSystem.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 43a82dc0a79ea7a46a3725fe76c4a201, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c5dfa44f891781d438353cf91492d122, type: 2}
+    - {fileID: 11400000, guid: 087214b57dd66654897be55ac5b4f3a9, type: 2}

@@ -18,7 +18,7 @@ namespace Blueprints.Utility
         public static IEnumerator ChainCoroutine(this MonoBehaviour behaviour, params IEnumerator[] actions)
             => actions.Select(behaviour.StartCoroutine).GetEnumerator();
         
-        /**
+      /**
       * Usage: StartCoroutine(CoroutineUtils.DelaySeconds(action, delay))
       * For example:
       *     StartCoroutine(CoroutineUtils.DelaySeconds(

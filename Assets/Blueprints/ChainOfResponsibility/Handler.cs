@@ -25,6 +25,7 @@ namespace Blueprints.ChainOfResponsibility
 
         public bool Handle(object request)
             => _check.Invoke(request) ? HandleNext(request) : _fallback.Invoke(request);
+        
         private bool HandleNext(object request)
             => Next == null || Next.Handle(request);
     }
@@ -38,6 +39,7 @@ namespace Blueprints.ChainOfResponsibility
         }
         
         public IHandler Next { get; set; }
+        
         public abstract bool Handle(object request);
         
         protected bool HandleNext(object request)

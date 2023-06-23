@@ -8,7 +8,7 @@ namespace Pooling
         private EnemyPool _pool;
         private bool _logReceived;
          
-        private Log testLog = new Log("Test", Debug.unityLogger.logHandler);
+        private Debugger testLog = new Debugger("Test", Debug.unityLogger.logHandler);
         // private GameLogger testlog2 = new GameLogger("Test", Debug.unityLogger.logHandler);
         // private GameLogger secondLog = new GameLogger("SecondTest", Debug.unityLogger.logHandler);
         
@@ -21,13 +21,13 @@ namespace Pooling
             {
                 if (!_logReceived)
                 {
-                    testLog.Log($"Condition: {condition} // Trace: {trace} // Type: {type.ToString()}");    
+                    testLog.Log($"Condition: {condition} // Trace: {trace} // Type: {type.ToString()}", this);    
                 }
                 
                 _logReceived = true;
             };
             
-            testLog.Log("poo");
+            testLog.Log("poo", this);
         }
 
         private void OnGUI()

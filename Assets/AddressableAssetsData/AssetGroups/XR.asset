@@ -10,25 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Built In Data
+  m_Name: XR
   m_EditorClassIdentifier: 
-  m_GroupName: Built In Data
+  m_GroupName: XR
   m_Data:
     m_SerializedData: []
-  m_GUID: 6d945497979376344a09e16261d81bcf
+  m_GUID: 6b9de7b9d6a730740931f334672ece00
   m_SerializeEntries:
-  - m_GUID: Resources
-    m_Address: Resources
-    m_ReadOnly: 1
+  - m_GUID: 008687e78fec8e343b77c2fc7494083d
+    m_Address: XR/XROrigin.prefab
+    m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: EditorSceneList
-    m_Address: EditorSceneList
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  m_ReadOnly: 1
+  m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 43a82dc0a79ea7a46a3725fe76c4a201, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 562b0f9e8240d78488b0a1ff6fdc4c3c, type: 2}
+    - {fileID: 11400000, guid: 750de1f1233615c44870f4b5b1564466, type: 2}
+    - {fileID: 11400000, guid: 9ad0842a97ee87d45a946175b4ac0398, type: 2}

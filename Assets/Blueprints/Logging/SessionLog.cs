@@ -8,12 +8,12 @@ namespace Logging
                 private DateTime _sessionStartTime;
                 private DateTime _sessionEndTime;
                 
-                public static Log Log { get; } = new("SessionLog", Debug.unityLogger.logHandler);
+                public static Debugger Log { get; } = new("SessionLog", Debug.unityLogger.logHandler);
 
                 public void StartSession()
                 {
                         _sessionStartTime= DateTime.Now;
-                        Log.Log(LogType.Log, $"Session Start Time: {_sessionStartTime} ");
+                        Log.Log($"Session Start Time: {_sessionStartTime}", this);
                 }
 
                 public void EndSession()
@@ -21,8 +21,8 @@ namespace Logging
                         _sessionEndTime = DateTime.Now;
                         var timeDifference = _sessionEndTime.Subtract(_sessionStartTime);
 
-                        Log.Log($"Session End Time: {_sessionEndTime}");
-                        Log.Log($"Session Time Elapsed: {timeDifference}");
+                        Log.Log($"Session End Time: {_sessionEndTime}", this);
+                        Log.Log($"Session Time Elapsed: {timeDifference}", this);
                 }
         }
 }

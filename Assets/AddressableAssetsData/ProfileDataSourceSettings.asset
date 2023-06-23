@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3976da977cb49238499ea3b4c237ae, type: 3}
+  m_Name: ProfileDataSourceSettings
+  m_EditorClassIdentifier: 
+  profileGroupTypes:
+  - m_GroupTypePrefix: Built-In
+    m_Variables:
+    - m_Suffix: BuildPath
+      m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+    - m_Suffix: LoadPath
+      m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+  - m_GroupTypePrefix: Editor Hosted
+    m_Variables:
+    - m_Suffix: BuildPath
+      m_Value: ServerData/[BuildTarget]
+    - m_Suffix: LoadPath
+      m_Value: http://[PrivateIpAddress]:[HostingServicePort]
+  - m_GroupTypePrefix: Automatic
+    m_Variables:
+    - m_Suffix: BuildPath
+      m_Value: CCDBuildData/ManagedEnvironment/ManagedBucket/ManagedBadge
+    - m_Suffix: LoadPath
+      m_Value: https://a313e893-6cb9-4fd5-b56b-e020491079f2.client-api.unity3dusercontent.com/client_api/v1/environments/{CcdManager.EnvironmentName}/buckets/{CcdManager.BucketId}/release_by_badge/{CcdManager.Badge}/entry_by_path/content/?path=
+  - m_GroupTypePrefix: CCD.a313e893-6cb9-4fd5-b56b-e020491079f2.7d78ce0a-1454-4805-83d8-fc409518333e.bfeb45e6-20e6-4f9b-8027-7352a267c62c.latest
+    m_Variables:
+    - m_Suffix: CcdBucketName
+      m_Value: PC
+    - m_Suffix: CcdBucketId
+      m_Value: bfeb45e6-20e6-4f9b-8027-7352a267c62c
+    - m_Suffix: CcdBadgeName
+      m_Value: latest
+    - m_Suffix: PromoteOnly
+      m_Value: True
+    - m_Suffix: Environmentname
+      m_Value: production
+    - m_Suffix: Environmentid
+      m_Value: 7d78ce0a-1454-4805-83d8-fc409518333e
+    - m_Suffix: BuildPath
+      m_Value: CCDBuildData/7d78ce0a-1454-4805-83d8-fc409518333e/bfeb45e6-20e6-4f9b-8027-7352a267c62c/latest
+    - m_Suffix: LoadPath
+      m_Value: https://a313e893-6cb9-4fd5-b56b-e020491079f2.client-api.unity3dusercontent.com/client_api/v1/environments/production/buckets/bfeb45e6-20e6-4f9b-8027-7352a267c62c/release_by_badge/latest/entry_by_path/content/?path=
+  - m_GroupTypePrefix: CCD.a313e893-6cb9-4fd5-b56b-e020491079f2.7b1e1d21-e4d4-4304-b125-81e226fece3a.3e97f8e5-d4e3-4fb9-9ee4-8fddff479ac9.latest
+    m_Variables:
+    - m_Suffix: CcdBucketName
+      m_Value: PC
+    - m_Suffix: CcdBucketId
+      m_Value: 3e97f8e5-d4e3-4fb9-9ee4-8fddff479ac9
+    - m_Suffix: CcdBadgeName
+      m_Value: latest
+    - m_Suffix: PromoteOnly
+      m_Value: False
+    - m_Suffix: Environmentname
+      m_Value: development
+    - m_Suffix: Environmentid
+      m_Value: 7b1e1d21-e4d4-4304-b125-81e226fece3a
+    - m_Suffix: BuildPath
+      m_Value: CCDBuildData/7b1e1d21-e4d4-4304-b125-81e226fece3a/3e97f8e5-d4e3-4fb9-9ee4-8fddff479ac9/latest
+    - m_Suffix: LoadPath
+      m_Value: https://a313e893-6cb9-4fd5-b56b-e020491079f2.client-api.unity3dusercontent.com/client_api/v1/environments/development/buckets/3e97f8e5-d4e3-4fb9-9ee4-8fddff479ac9/release_by_badge/latest/entry_by_path/content/?path=
+  environments:
+  - id: 7d78ce0a-1454-4805-83d8-fc409518333e
+    projectId: a313e893-6cb9-4fd5-b56b-e020491079f2
+    projectGenesisId: a313e893-6cb9-4fd5-b56b-e020491079f2
+    name: production
+    isDefault: 1
+  - id: 7b1e1d21-e4d4-4304-b125-81e226fece3a
+    projectId: a313e893-6cb9-4fd5-b56b-e020491079f2
+    projectGenesisId: a313e893-6cb9-4fd5-b56b-e020491079f2
+    name: development
+    isDefault: 0
+  - id: 570002a0-b9bb-42d3-8cf1-c5414fcd0f40
+    projectId: a313e893-6cb9-4fd5-b56b-e020491079f2
+    projectGenesisId: a313e893-6cb9-4fd5-b56b-e020491079f2
+    name: staging
+    isDefault: 0
+  currentEnvironment:
+    id: 7d78ce0a-1454-4805-83d8-fc409518333e
+    projectId: a313e893-6cb9-4fd5-b56b-e020491079f2
+    projectGenesisId: a313e893-6cb9-4fd5-b56b-e020491079f2
+    name: production
+    isDefault: 1

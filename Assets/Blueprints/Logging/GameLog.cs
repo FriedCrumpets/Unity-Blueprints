@@ -11,11 +11,18 @@ namespace Logging
         public static event Action<bool> OnDebugModeActiveChanged;
         public static event Action OnLoggerDisabled;
 
+        static GameLog()
+        {
+            AllLoggers = new List<KeyValuePair<string, Debugger>>();
+            ActiveLoggers = new List<KeyValuePair<string, Debugger>>();
+            InActiveLoggers = new List<KeyValuePair<string, Debugger>>();
+        }
+        
         public static bool DebugModeActive { get; set; }
 
-        public static IList<KeyValuePair<string, Log>> AllLoggers { get; private set; } = new List<KeyValuePair<string, Log>>();
-        public static IList<KeyValuePair<string, Log>> ActiveLoggers { get; private set; } = new List<KeyValuePair<string, Log>>();
-        public static IList<KeyValuePair<string, Log>> InActiveLoggers { get; private set; } = new List<KeyValuePair<string, Log>>();
+        public static IList<KeyValuePair<string, Debugger>> AllLoggers { get; }
+        public static IList<KeyValuePair<string, Debugger>> ActiveLoggers { get; }
+        public static IList<KeyValuePair<string, Debugger>> InActiveLoggers { get; }
 
         public static bool CheckActive(string loggerName)
         {
@@ -40,8 +47,6 @@ namespace Logging
 
         public static void SetLoggerActive(string loggerName, bool active)
         {
-            InitLists();
-            
             foreach (var logger in FindLoggers(loggerName))
             {
                 SetLoggerActive(logger, active);
@@ -54,7 +59,6 @@ namespace Logging
 
         public static void SetDebugModeActive(bool active)
         {
-            InitLists();
             DebugModeActive = active;
             OnDebugModeActiveChanged?.Invoke(DebugModeActive);
 
@@ -62,56 +66,37 @@ namespace Logging
             action.Invoke();
         }
 
-        internal static void AddLogger(Log logger)
+        internal static void AddLogger(Debugger logger)
         {
-            AllLoggers ??= new List<KeyValuePair<string, Log>>();
-            
-            AllLoggers.Add(new KeyValuePair<string, Log>(logger.ToString(), logger));
+            AllLoggers.Add(new KeyValuePair<string, Debugger>(logger.ToString(), logger));
             OnLoggerAdded?.Invoke(logger.Name);
         }
+        
+        private static IEnumerable<KeyValuePair<string, Debugger>> FindLoggers(string name)
+            => AllLoggers.Where(item => item.Key == name);
 
-        private static void InitLists()
+        private static void SetLoggerActive(KeyValuePair<string, Debugger> pair, bool active)
         {
-            AllLoggers = InitList(AllLoggers);
-            ActiveLoggers = InitList(ActiveLoggers);
-            InActiveLoggers = InitList(InActiveLoggers);
-        }
-
-        private static IList<T> InitList<T>(IList<T> list) => list.Any() ? list : new List<T>();
-
-        private static IEnumerable<KeyValuePair<string, Log>> FindLoggers(string name)
-        {
-            AllLoggers ??= new List<KeyValuePair<string, Log>>();
-
-            return AllLoggers.Where(item => item.Key == name);
-        }
-
-        private static void SetLoggerActive(KeyValuePair<string, Log> logger, bool active)
-        {
-            logger.Value.logEnabled = active;
+            pair.Value.Enabled = active;
 
             var addTo = active ? ActiveLoggers : InActiveLoggers;
             var removeFrom = active ? InActiveLoggers : ActiveLoggers;
 
-            addTo.Remove(logger);
-            removeFrom.Remove(logger);
-            addTo.Add(logger);
+            addTo.Remove(pair);
+            removeFrom.Remove(pair);
+            addTo.Add(pair);
         }
 
         private static void EnterDebugMode()
         {
             foreach (var logger in AllLoggers)
-            {
                 logger.Value.Enable();
-            }
         }
 
         private static void ExitDebugMode()
         {
             foreach (var logger in AllLoggers)
-            {
                 logger.Value.Disable();
-            }
         }
     }
 }
