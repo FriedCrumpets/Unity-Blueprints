@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Blueprints.Utility;
 using UnityEngine;
 
@@ -7,16 +8,23 @@ namespace Blueprints.ServiceLocator
 {
     public sealed class Locator : IDisposable
     {
-        private Dictionary<Type, IService> _services;
-        private Dictionary<Type, IService> Services => _services ??= new();
-
         public event Action<IService> OnServiceProvided;
 
+        private readonly Dictionary<Type, IService> _services;
+
+        public Locator()
+        {
+            _services = new Dictionary<Type, IService>();
+        }
+
+        public List<IService> All()
+            => _services.Select(pair => pair.Value).ToList();
+        
         public T Get<T>() where T : IService
         {
-            if (Services.ContainsKey(typeof(T)))
+            if (_services.ContainsKey(typeof(T)))
             {
-                return (T)Services[typeof(T)];
+                return (T)_services[typeof(T)];
             }
             
             Debug.LogWarning($"Service {typeof(T)} has not yet been provided to Service");
@@ -33,7 +41,7 @@ namespace Blueprints.ServiceLocator
 
         public void SaveAll()
         {
-            foreach (var service in Services)
+            foreach (var service in _services)
             {
                 if (service.Value is not ILoadable loadable)
                 {
@@ -47,16 +55,16 @@ namespace Blueprints.ServiceLocator
         
         public bool Remove<T>(bool save = true) where T : IService
         {
-            if (save && Services[typeof(T)] != null)
+            if (save && _services[typeof(T)] != null)
             {
-                if (Services[typeof(T)] is ILoadable loadable)
+                if (_services[typeof(T)] is ILoadable loadable)
                 {
                     loadable.Save();
                     Debug.Log($"Service {typeof(T)} saved");
                 }
             }
 
-            var success = Services.Remove(typeof(T));
+            var success = _services.Remove(typeof(T));
 
             Debug.LogWarning(success
                 ? $"Service {typeof(T)} removed from {nameof(Locator)}"
@@ -72,14 +80,14 @@ namespace Blueprints.ServiceLocator
             where T1 : IService
             where T2 : T1
         {
-            if (Services.ContainsKey(typeof(T1)))
+            if (_services.ContainsKey(typeof(T1)))
             {
                 Debug.Log($"{nameof(Locator)} already contains a service for {typeof(T1)}" +
                           $"\r\nCannot Overwrite Existing Services");
-                return (T2)Services[typeof(T1)];
+                return (T2)_services[typeof(T1)];
             }
             
-            Services.Add(typeof(T1), service);
+            _services.Add(typeof(T1), service);
             OnServiceProvided?.Invoke(service);
 
             if (service is ILoadable loadable)
@@ -96,7 +104,7 @@ namespace Blueprints.ServiceLocator
         {
             SaveAll();
 
-            foreach (var service in Services)
+            foreach (var service in _services)
             {
                 if (service.Value is IDisposable disposable)
                 {
@@ -104,7 +112,7 @@ namespace Blueprints.ServiceLocator
                 }
             }
             
-            Services.Clear();
+            _services.Clear();
         }
     }
 }
