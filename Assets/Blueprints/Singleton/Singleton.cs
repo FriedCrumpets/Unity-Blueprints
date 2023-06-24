@@ -10,7 +10,7 @@ namespace Blueprints.Core
         public static T Get()
             => _instance;
 
-        protected Singleton()
+        private Singleton()
         {
             if (_instance != null)
                 return;
