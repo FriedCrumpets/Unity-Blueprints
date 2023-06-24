@@ -8,7 +8,7 @@ namespace Pooling
         private EnemyPool _pool;
         private bool _logReceived;
          
-        private Debugger testLog = new Debugger("Test", Debug.unityLogger.logHandler);
+        private Debugger testLog = new Debugger("Test");
         // private GameLogger testlog2 = new GameLogger("Test", Debug.unityLogger.logHandler);
         // private GameLogger secondLog = new GameLogger("SecondTest", Debug.unityLogger.logHandler);
         

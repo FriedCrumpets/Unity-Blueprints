@@ -8,7 +8,7 @@ namespace Logging
                 private DateTime _sessionStartTime;
                 private DateTime _sessionEndTime;
                 
-                public static Debugger Log { get; } = new("SessionLog", Debug.unityLogger.logHandler);
+                public static Debugger Log { get; } = new("SessionLog");
 
                 public void StartSession()
                 {

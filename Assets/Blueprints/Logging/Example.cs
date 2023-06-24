@@ -14,7 +14,7 @@ namespace Logging
     
     public class NetworkStabilityLogger : Debugger, ICheckNetworkStability
     {
-        public NetworkStabilityLogger(string name, ILogHandler logHandler, ICheckNetworkStability wrap) : base(name, logHandler)
+        public NetworkStabilityLogger(string name, ICheckNetworkStability wrap) : base(name)
         {
             wrapped = wrap;
         }

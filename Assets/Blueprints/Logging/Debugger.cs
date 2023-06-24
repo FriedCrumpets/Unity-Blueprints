@@ -7,7 +7,10 @@ namespace Logging
 {
     public class Debugger : IDisposable
     {
-        public enum LogType
+        private static ILogHandler s_DebugLogger 
+            => Debug.unityLogger.logHandler;
+        
+        public enum LogType : byte
         {
             Message,
             Warning,
@@ -16,10 +19,10 @@ namespace Logging
         
         private readonly Logger _logger;
         
-        public Debugger(string name, ILogHandler logHandler)
+        public Debugger(string name)
         {
             Name = name;
-            _logger = new Logger(logHandler);
+            _logger = new Logger(s_DebugLogger);
             GameLog.AddLogger(this);
         }
         
