@@ -1,23 +1,19 @@
 
-namespace Blueprints.BehaviourTree.Nodes
+namespace Blueprints.BehaviourTree
 {
     public class Parallel : Composite
     {
-        private int _currentNode;
+        private const Result _STABLE_RESULT = Result.Running;
         
-        public Parallel(params INode[] nodes) : base(nodes)
-        {
-            _currentNode = 0;
-        }
+        public Parallel(params INode[] nodes) : base(nodes) { }
         
         public override Result Execute()
         {
-            var stable = Result.Running;
             foreach (var child in Children)
             {
                 var compare = child.Execute();
                 
-                if (stable != compare)
+                if (_STABLE_RESULT != compare)
                     return compare;
             }
 

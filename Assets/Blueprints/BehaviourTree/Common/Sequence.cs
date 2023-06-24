@@ -1,16 +1,16 @@
 using System;
 
-namespace Blueprints.BehaviourTree.Nodes
+namespace Blueprints.BehaviourTree
 {
-    public class Selector : Composite
+    public class Sequence : Composite
     {
         private int _currentNode;
         
-        public Selector(params INode[] nodes) : base(nodes)
+        public Sequence(params INode[] nodes) : base(nodes)
         {
             _currentNode = 0;
         }
-        
+
         public override Result Execute()
         {
             if (_currentNode < Children.Count)
@@ -26,18 +26,18 @@ namespace Blueprints.BehaviourTree.Nodes
 
             return Result.Success;
         }
-        
+
         private Result Success()
         {
+            if(++_currentNode < Children.Count)
+                return Result.Running;
+
             _currentNode = 0;
             return Result.Success;
         }
         
         private Result Failure()
         {
-            if(++_currentNode < Children.Count)
-                return Result.Running;
-
             _currentNode = 0;
             return Result.Failure;
         }
