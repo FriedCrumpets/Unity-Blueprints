@@ -3,34 +3,31 @@ using Blueprints.Utility;
 
 namespace Blueprints.Core
 {
-    public abstract class Singleton<T> where T : Singleton<T>
+    public abstract class Loner<T> where T : Loner<T>
     {
-        private static T _instance;
+        private static T Instance;
 
-        public static T Get()
-            => _instance;
-
-        protected Singleton()
+        protected Loner()
         {
-            if (_instance != null)
+            if (Instance != null)
                 return;
 
-            _instance = CreateInstance();
+            Instance = CreateInstance();
         }
 
-        public static T CreateInstance()
+        private static T CreateInstance()
         {
-            _instance = Activator.CreateInstance<T>();
+            Instance = Activator.CreateInstance<T>();
 
-            if (_instance is ILoadable loadable)
+            if (Instance is ILoadable loadable)
                 loadable.Load();
 
-            return _instance;
+            return Instance;
         }
 
         public static void Destroy()
         {
-            switch (_instance)
+            switch (Instance)
             {
                 case null:
                     return;
@@ -42,7 +39,7 @@ namespace Blueprints.Core
                     break;
             }
 
-            _instance = default;
+            Instance = default;
         }
     }
 }
