@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace Blueprints.DoD
 {
-    public interface IData { }
-    
-    public interface IData<T> : IData
+
+    public interface IData<T>
     {
         Action<T> Notifier { get; set; }
         T Get();

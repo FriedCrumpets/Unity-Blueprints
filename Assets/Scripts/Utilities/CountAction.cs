@@ -31,7 +31,6 @@ namespace Blueprints
                 return;
             
             Action?.Invoke();
-            Debug.Log($"{nameof(CountAction)}: {LOGString}");
         }
     }
 }

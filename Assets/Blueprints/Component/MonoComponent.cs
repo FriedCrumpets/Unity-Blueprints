@@ -65,12 +65,12 @@ namespace Blueprints.Components
         public bool Remove<T>(T service) where T : IService
             => Components.Remove<T>();
 
-        protected void Migrate(IComponent newMaster, Type type = null)
+        protected void Migrate(IComponent newMaster, Type key = null)
         {
-            if (type == null)
+            if (key == null)
                 newMaster.AddComponent(this);
             else
-                newMaster.AddComponent(type, this);
+                newMaster.AddComponent(key, this);
 
             foreach (var pair in newMaster.StoredCommands)
             {

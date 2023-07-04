@@ -5,6 +5,7 @@ using Blueprints.XR;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
+using Input = Blueprints.XR.Input;
 
 public enum XRDevice : byte
 {
@@ -52,10 +53,17 @@ public class XRTrackedDevice : MonoComponent,
     private Quaternion _newRotation;
     private bool _active;
 
-    public void Enable()
+    public void OnEnable()
     {
         Active = true;
         SetCallbacks(Device);
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _transform = transform;
+        CurrentTrackingState = TrackingStates.Position | TrackingStates.Rotation;
     }
 
     public void Init(IComponent master)
@@ -64,7 +72,7 @@ public class XRTrackedDevice : MonoComponent,
         Migrate(master, RetrieveType(Device));
     }
 
-    public void Disable()
+    public void OnDisable()
     {
         Active = false;
         SetCallbacks(XRDevice.None);
@@ -97,14 +105,14 @@ public class XRTrackedDevice : MonoComponent,
         get => _active;
         private set
         {
+            _active = value;
+            
             if(value)
                 StartCoroutine(UpdatePose());
-            
-            _active = value;
         }
     }
 
-    private TrackingStates CurrentTrackingState { get; set; } = TrackingStates.Position | TrackingStates.Rotation;
+    private TrackingStates CurrentTrackingState { get; set; }
 
     public void OnPosition(InputAction.CallbackContext context)
         => _newPosition = context.phase == InputActionPhase.Canceled ?
@@ -161,6 +169,7 @@ public class XRTrackedDevice : MonoComponent,
             _ => throw new ArgumentOutOfRangeException(nameof(device), device, null)
         };
 
-        IComponent.SendMessage(Master, action);
+        action.Invoke(Input.input);
+        // IComponent.SendMessage(Master, action);
     }
 }

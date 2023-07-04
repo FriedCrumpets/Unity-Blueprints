@@ -10,11 +10,8 @@ namespace Blueprints.Boot
     {
         [SerializeField] private Main main;
 
-        private void Awake()
-            => main = new Main(gameObject);
-
         private void Start()
-            => main.Boot();
+            => main.Boot(gameObject);
 
         private void OnDestroy()
             => main.Dispose();

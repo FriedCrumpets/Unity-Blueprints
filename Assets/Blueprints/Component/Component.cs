@@ -34,8 +34,8 @@ namespace Blueprints.Components
                     Migrate(value);
             }
         }
-        
-        [field: SerializeField] public bool AutomaticMigration { get; private set; }
+
+        [field: SerializeField] public bool AutomaticMigration { get; private set; } = true;
         public Action<IComponent> ComponentCreated { get; private set; }
         public Locator Components { get; private set; }
         public List<KeyValuePair<Type, Action<IService>>> StoredCommands { get; private set; }
@@ -64,9 +64,12 @@ namespace Blueprints.Components
         public bool Remove<T>(T service) where T : IService
             => Components.Remove<T>();
         
-        protected void Migrate(IComponent newMaster)
+        protected void Migrate(IComponent newMaster, Type key = null)
         {
-            newMaster.AddComponent(this);
+            if (key == null)
+                newMaster.AddComponent(this);
+            else
+                newMaster.AddComponent(key, this);
 
             foreach (var pair in newMaster.StoredCommands)
             {

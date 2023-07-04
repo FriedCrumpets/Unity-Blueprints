@@ -14,6 +14,7 @@ namespace Blueprints.DoD
     
     public interface IDataSet<T>
     {
+        IDataSet Data { get; }
         T Read(string key);
         IData<T> Get(string key);
         bool Set(string key, T value);
@@ -81,7 +82,7 @@ namespace Blueprints.DoD
             Data = new DataSet();
         }
         
-        private IDataSet Data { get; }
+        public IDataSet Data { get; }
 
         T IDataSet<T>.Read(string key)
             => Data.Read<T>(key);

@@ -5,51 +5,55 @@ namespace Blueprints.DoD
     [Serializable]
     public class ClampedDataSet : IDataSet<float>
     {
+        private const string _VALUE = "value";
+        private const string _MIN = "min";
+        private const string _MAX = "max";
+
         public ClampedDataSet()
         {
-            DataSet = new DataSet<float>(); 
-            DataSet.Add("value", new Data<float>());
-            DataSet.Add("min", new Data<float>());
-            DataSet.Add("max", new Data<float>());
+            Data = new DataSet(); 
+            Data.Add(_VALUE, new Data<float>());
+            Data.Add(_MIN, new Data<float>());
+            Data.Add(_MAX, new Data<float>());
         }
         
         public ClampedDataSet(float value, float min, float max)
         {
-            DataSet = new DataSet<float>();  
-            DataSet.Add("value", new Data<float>(value));
-            DataSet.Add("min", new Data<float>(min));
-            DataSet.Add("max", new Data<float>(max));
+            Data = new DataSet();  
+            Data.Add(_VALUE, new Data<float>(value));
+            Data.Add(_MIN, new Data<float>(min));
+            Data.Add(_MAX, new Data<float>(max));
         }
         
-        private IDataSet<float> DataSet { get; }
-        
+        public IDataSet Data { get; }
+
         float IDataSet<float>.Read(string key)
-            => DataSet.Read(key);
+            => Data.Read<float>(key);
 
         IData<float> IDataSet<float>.Get(string key)
-            => DataSet.Get(key);
+            => Data.Get<float>(key);
 
         void IDataSet<float>.Add(string key, IData<float> value)
-            => DataSet.Add(key, value);
+            => Data.Add(key, value);
         
         bool IDataSet<float>.Set(string key, float value)
         {
             switch(key)
             {
-                case "value":
-                    if (value >= DataSet.Read("min") && value <= DataSet.Read("max"))
-                        DataSet.Set("value", value); return true;
-                case "min":
-                    if (value <= DataSet.Read("value") && value <= DataSet.Read("max"))
-                        DataSet.Set("min", value); return true;
-                case "max":
-                    if (value >= DataSet.Read("value") && value >= DataSet.Read("min"))
-                        DataSet.Set("min", value); return true;
+                case _VALUE:
+                    if (value >= Data.Read<float>(_MIN) && value <= Data.Read<float>(_MAX))
+                        Data.Set(_VALUE, value); return true;
+                case _MIN:
+                    if (value <= Data.Read<float>(_VALUE) && value <= Data.Read<float>(_MAX))
+                        Data.Set(_MIN, value); return true;
+                case _MAX:
+                    if (value >= Data.Read<float>(_VALUE) && value >= Data.Read<float>(_MIN))
+                        Data.Set(_MIN, value); return true;
             }
             return false;
         }
 
         bool IDataSet<float>.Remove(string key)
-            => DataSet.Remove(key);
+            => Data.Remove(key);
     }
 }

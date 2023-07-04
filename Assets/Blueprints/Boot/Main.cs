@@ -12,20 +12,22 @@ namespace Blueprints.Boot
     {
         public UnityEvent bootUpComplete;
         
-        private readonly GameObject _bootObject;
+        private GameObject _bootObject;
 
-        public Main(GameObject bootObject)
+        public Main()
         {
-            _bootObject = bootObject;
-            Loaded = new();
+            Loaded = new List<GameObject>();
+            Loaders = new List<AssetReference>();
         }
         
         [field: SerializeField] public List<AssetReference> Loaders { get; set; }
         
         private List<GameObject> Loaded { get; }
 
-        public void Boot()
+        public void Boot(GameObject bootObject)
         {
+            _bootObject = bootObject;
+            
             InstantiateLoaders(Loaders, () =>
             {
                 bootUpComplete?.Invoke(); _bootObject.name = GetType().Name;
