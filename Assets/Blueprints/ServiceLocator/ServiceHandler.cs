@@ -1,7 +1,4 @@
-using Blueprints.Utility;
-using UnityEngine;
-
-namespace Blueprints.ServiceLocator
+namespace Blueprints.Utility
 {
     public class ServiceHandler
     {
@@ -14,6 +11,6 @@ namespace Blueprints.ServiceLocator
             => _locator.Get<T>();
 
         public void Provide<T>(T service) where T : IService
-            => _locator.Provide(service);
+            => _locator.Add(service);
     }
 }

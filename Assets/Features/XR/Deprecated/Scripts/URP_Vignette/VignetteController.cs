@@ -34,25 +34,25 @@ namespace Features.XR
             {
                 if (_vignette == null)
                 {
-                    SetVignette(VignetteSettings.VignetteVolumeProfile.Value);
+                    SetVignette(VignetteSettings.VignetteVolumeProfile.Get());
                 }
 
                 return _vignette;
             }
         }
 
-        public void Enable(XRPlayer player)
+        public void Enable(XRPlayerDeprecated playerDeprecated)
         {
-            SubscribeProviderChanged(player.MovementProvider);
+            SubscribeProviderChanged(playerDeprecated.MovementProvider);
             SubscribeSettings(VignetteSettings);
-            SetVignetteTurnProvider(player.MovementProvider.ActiveTurnProvider);
+            SetVignetteTurnProvider(playerDeprecated.MovementProvider.ActiveTurnProvider);
 
             VignetteSettings.Load();
         }
 
-        public void Disable(XRPlayer player)
+        public void Disable(XRPlayerDeprecated playerDeprecated)
         {
-            UnSubscribeProviderChanged(player.MovementProvider);
+            UnSubscribeProviderChanged(playerDeprecated.MovementProvider);
             UnSubscribeSettings(VignetteSettings);
             SetVignetteTurnProvider(null);
         }
@@ -73,9 +73,9 @@ namespace Features.XR
                 return;
             }
             
-            vignetteSettings.VignetteVolumeProfile.OnValueChanged += SetVignette;
-            vignetteSettings.VignetteActive.OnValueChanged += OnActiveChanged;
-            vignetteSettings.VignetteIntensity.OnValueChanged += OnIntensityChanged;
+            vignetteSettings.VignetteVolumeProfile.Notifier += SetVignette;
+            vignetteSettings.VignetteActive.Notifier += OnActiveChanged;
+            vignetteSettings.VignetteIntensity.Get("value").Notifier += OnIntensityChanged;
         }
 
         private void UnSubscribeSettings(VignetteSettings_SO vignetteSettings)
@@ -85,9 +85,9 @@ namespace Features.XR
                 return;
             }
             
-            vignetteSettings.VignetteVolumeProfile.OnValueChanged -= SetVignette;
-            vignetteSettings.VignetteActive.OnValueChanged -= OnActiveChanged;
-            vignetteSettings.VignetteIntensity.OnValueChanged -= OnIntensityChanged;
+            vignetteSettings.VignetteVolumeProfile.Notifier -= SetVignette;
+            vignetteSettings.VignetteActive.Notifier -= OnActiveChanged;
+            vignetteSettings.VignetteIntensity.Get("value").Notifier -= OnIntensityChanged;
         }
 
         private void SubscribeProvider(LocomotionProvider provider)
@@ -127,13 +127,19 @@ namespace Features.XR
         public void FadeIn(LocomotionSystem locomotionSystem)
         {
             StopAllCoroutines();
-            StartCoroutine(Fader.Fade(Vignette.intensity.value, VignetteSettings.VignetteIntensity.Value, VignetteSettings.VignetteFadeDuration.Value));
+            StartCoroutine(Fader.Fade(
+                Vignette.intensity.value, 
+                VignetteSettings.VignetteIntensity.Read("value"), 
+                VignetteSettings.VignetteFadeDuration.Read("value")));
         }
 
         public void FadeOut(LocomotionSystem locomotionSystem)
         {
             StopAllCoroutines();
-            StartCoroutine(Fader.Fade(Vignette.intensity.value, 0, VignetteSettings.VignetteFadeDuration.Value));
+            StartCoroutine(Fader.Fade(
+            Vignette.intensity.value, 
+            0, 
+            VignetteSettings.VignetteFadeDuration.Read("value")));
         }
         
         public void SetVignette(VolumeProfile volumeProfile)
@@ -145,8 +151,8 @@ namespace Features.XR
 
             Volume.profile = volumeProfile;
             _vignette = vignette;
-            _vignette.active = VignetteSettings.VignetteActive.Value;
-            _vignette.intensity.value = VignetteSettings.VignetteIntensity.Value;
+            _vignette.active = VignetteSettings.VignetteActive.Get();
+            _vignette.intensity.value = VignetteSettings.VignetteIntensity.Read("value");
         }
         
         private void OnActiveChanged(bool change)

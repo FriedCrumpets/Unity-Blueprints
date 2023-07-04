@@ -15,29 +15,29 @@ namespace Features.XR
 
         public VignetteController VignetteController { get; private set; } = null;
 
-        public void Enable(XRPlayer player)
+        public void Enable(XRPlayerDeprecated playerDeprecated)
         {
             if (VignetteController == null)
             {
                 return;
             }
             
-            VignetteController.Enable(player);
-            VignetteController.SetVignetteTurnProvider(player.MovementProvider.ActiveTurnProvider);
+            VignetteController.Enable(playerDeprecated);
+            VignetteController.SetVignetteTurnProvider(playerDeprecated.MovementProvider.ActiveTurnProvider);
         }
         
-        public void Initialise(XRPlayer player)
+        public void Initialise(XRPlayerDeprecated playerDeprecated)
         {
-            CreateVignetteObject(player.Rig.originBase);
-            _movementSettings = player.MovementSettings;
-            Enable(player);
+            CreateVignetteObject(playerDeprecated.Rig.originBase);
+            _movementSettings = playerDeprecated.MovementSettings;
+            Enable(playerDeprecated);
         }
 
-        public void Disable(XRPlayer player)
+        public void Disable(XRPlayerDeprecated playerDeprecated)
         {
             if(VignetteController == null) { return; }
             
-            VignetteController.Disable(player);
+            VignetteController.Disable(playerDeprecated);
             VignetteController.SetVignetteTurnProvider(null);
         }
 

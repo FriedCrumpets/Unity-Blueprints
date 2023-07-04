@@ -1,3 +1,4 @@
+using Blueprints.DoD;
 using Blueprints.Facade;
 using UnityEngine;
 
@@ -7,11 +8,11 @@ namespace Features.Items.Weapon
     public class WeaponData
     {
         [SerializeField] private float weaponDamage;
-        [SerializeField] private ClampedSetting weaponDeterioration;
-        [SerializeField] private Setting<bool> isCraftable;
+        [SerializeField] private ClampedDataSet weaponDeterioration;
+        [SerializeField] private Data<bool> isCraftable;
         
         public float WeaponDamage => weaponDamage;
-        public ClampedSetting WeaponDeterioration => weaponDeterioration;
-        public Setting<bool> IsCraftable => isCraftable;
+        public ClampedDataSet WeaponDeterioration => weaponDeterioration;
+        public Data<bool> IsCraftable => isCraftable;
     }
 }

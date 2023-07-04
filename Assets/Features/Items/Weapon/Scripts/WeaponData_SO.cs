@@ -16,17 +16,17 @@ namespace Features.Items.Weapon
         {
             var weaponData = data.Data;
 
-            PlayerPrefs.SetFloat($"{data.name} {nameof(weaponData.WeaponDeterioration)}",
-                weaponData.WeaponDeterioration.Value);
+            // PlayerPrefs.SetFloat($"{data.name} {nameof(weaponData.WeaponDeterioration)}",
+            //     weaponData.WeaponDeterioration.Value);
         }
 
         public static void Load(this WeaponData_SO data)
         {
             var weaponData = data.Data;
             
-            weaponData.WeaponDeterioration.Value =
-                PlayerPrefs.GetFloat($"{data.name} {nameof(weaponData.WeaponDeterioration)}",
-                    weaponData.WeaponDeterioration.Value);
+            // weaponData.WeaponDeterioration.Value =
+            //     PlayerPrefs.GetFloat($"{data.name} {nameof(weaponData.WeaponDeterioration)}",
+            //         weaponData.WeaponDeterioration.Value);
         }
     }
 }

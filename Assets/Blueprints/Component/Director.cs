@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Blueprints.ServiceLocator;
 using Blueprints.Utility;
 
 namespace Blueprints.Components
@@ -37,7 +36,7 @@ namespace Blueprints.Components
         public static T Add<T>(T service) where T : IService
         {
             DirectorAdded?.Invoke(service);
-            return Directors.Provide(service);
+            return Directors.Add(service);
         }
 
         public static bool Remove<T>(T service) where T : IService

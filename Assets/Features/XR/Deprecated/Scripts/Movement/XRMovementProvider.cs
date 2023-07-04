@@ -82,23 +82,23 @@ namespace MetaSpaces.Plaza.Player
         public LocomotionProvider ActiveTurnProvider =>
             SnapTurnProvider.enabled ? SnapTurnProvider : ContinuousMoveProvider;
 
-        public void Enable(XRPlayer player)
+        public void Enable(XRPlayerDeprecated playerDeprecated)
         {
             if (_movementSettings == null)
             {
                 return;
             }
             
-            UnSubscribe(player.MovementSettings);
-            Subscribe(player.MovementSettings);
-            player.MovementSettings.Load();
-            OnTurnProviderChanged(player.MovementSettings.TurnProvider.Value);
+            UnSubscribe(playerDeprecated.MovementSettings);
+            Subscribe(playerDeprecated.MovementSettings);
+            playerDeprecated.MovementSettings.Load();
+            OnTurnProviderChanged(playerDeprecated.MovementSettings.TurnProvider.Get());
         }
         
-        public void Initialise(XRPlayer player)
+        public void Initialise(XRPlayerDeprecated playerDeprecated)
         {
-            _xrBaseObject = player.Rig.originBase.gameObject;
-            _movementSettings = player.MovementSettings;
+            _xrBaseObject = playerDeprecated.Rig.originBase.gameObject;
+            _movementSettings = playerDeprecated.MovementSettings;
 
             snapTurnProvider = SnapTurnProvider;
             continuousTurnProvider = ContinuousTurnProvider;
@@ -108,28 +108,28 @@ namespace MetaSpaces.Plaza.Player
             teleportationProvider = TeleportationProvider;
             teleportationProvider.enabled = false;
 
-            Enable(player);
+            Enable(playerDeprecated);
         }
 
-        public void Disable(XRPlayer player)
+        public void Disable(XRPlayerDeprecated playerDeprecated)
         {
-            UnSubscribe(player.MovementSettings);
+            UnSubscribe(playerDeprecated.MovementSettings);
         }
 
         private void Subscribe(MovementSettings_SO movementSettings)
         {
-            movementSettings.TurnProvider.OnValueChanged += OnTurnProviderChanged;
-            movementSettings.ContinuousTurnSpeed.OnValueChanged += OnContinuousTurnSpeedChanged;
-            movementSettings.MovementSpeed.OnValueChanged += OnMovementSpeedChanged;
-            movementSettings.SnapTurnDegrees.OnValueChanged += OnSnapTurnDegreesChanged;
+            movementSettings.TurnProvider.Notifier += OnTurnProviderChanged;
+            movementSettings.ContinuousTurnSpeed.Get("value").Notifier += OnContinuousTurnSpeedChanged;
+            movementSettings.MovementSpeed.Get("value").Notifier += OnMovementSpeedChanged;
+            movementSettings.SnapTurnDegrees.Get("value").Notifier += OnSnapTurnDegreesChanged;
         }
         
         private void UnSubscribe(MovementSettings_SO movementSettings)
         {
-            movementSettings.TurnProvider.OnValueChanged -= OnTurnProviderChanged;
-            movementSettings.ContinuousTurnSpeed.OnValueChanged -= OnContinuousTurnSpeedChanged;
-            movementSettings.MovementSpeed.OnValueChanged -= OnMovementSpeedChanged;
-            movementSettings.SnapTurnDegrees.OnValueChanged -= OnSnapTurnDegreesChanged;
+            movementSettings.TurnProvider.Notifier -= OnTurnProviderChanged;
+            movementSettings.ContinuousTurnSpeed.Get("value").Notifier -= OnContinuousTurnSpeedChanged;
+            movementSettings.MovementSpeed.Get("value").Notifier -= OnMovementSpeedChanged;
+            movementSettings.SnapTurnDegrees.Get("value").Notifier -= OnSnapTurnDegreesChanged;
         }
 
         private void OnTurnProviderChanged(bool change)

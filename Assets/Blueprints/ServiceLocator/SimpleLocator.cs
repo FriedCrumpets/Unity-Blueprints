@@ -1,4 +1,4 @@
-﻿namespace Blueprints.ServiceLocator
+﻿namespace Blueprints.Utility
 {
     /// <summary>
     /// T would ordinarily want to be an interface to enable services to be maluable to further requirements

@@ -5,7 +5,7 @@ namespace Blueprints.BehaviourTree
 {
     public class Tree
     {
-        public Tree(INode root = null)
+        public Tree(INode root)
         {
             BlackBoard = new Dictionary<string, object>();
             Root = root;

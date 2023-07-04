@@ -6,7 +6,7 @@ using Utils;
 
 namespace Features.XR
 {
-    public class XRPlayer : MonoBehaviour
+    public class XRPlayerDeprecated : MonoBehaviour
     {
         [SerializeField] private MovementSettings_SO movementSettings;
         

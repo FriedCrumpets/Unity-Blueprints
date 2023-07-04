@@ -1,3 +1,4 @@
+using Blueprints.DoD;
 using Logging;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -6,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace Blueprints.Facade.Editor
 {
-    [CustomPropertyDrawer(typeof(Setting<float>))]
+    [CustomPropertyDrawer(typeof(Data<float>))]
     public class FloatSettingsDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
@@ -18,7 +19,7 @@ namespace Blueprints.Facade.Editor
         }
     }
     
-    [CustomPropertyDrawer(typeof(Setting<int>))]
+    [CustomPropertyDrawer(typeof(Data<int>))]
     public class IntSettingsDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
@@ -30,7 +31,7 @@ namespace Blueprints.Facade.Editor
         }
     }
     
-    [CustomPropertyDrawer(typeof(Setting<string>))]
+    [CustomPropertyDrawer(typeof(Data<string>))]
     public class StringSettingsDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
@@ -42,7 +43,7 @@ namespace Blueprints.Facade.Editor
         }
     }
     
-    [CustomPropertyDrawer(typeof(Setting<bool>))]
+    [CustomPropertyDrawer(typeof(Data<bool>))]
     public class BoolSettingsDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)

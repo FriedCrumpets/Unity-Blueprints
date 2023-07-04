@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Reflection;
+using Blueprints.DoD;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -115,19 +116,19 @@ namespace Blueprints.Facade
             {
                 JsonToken.Integer
                     => () => field.SetValue(settings, 
-                        new Setting<int>(PlayerPrefs.GetInt(reader.Path, int.Parse(reader.Value.ToString())))),
+                        new Data<int>(PlayerPrefs.GetInt(reader.Path, int.Parse(reader.Value.ToString())))),
                 JsonToken.Float
                     => () => field.SetValue(settings,
-                        new Setting<float>(PlayerPrefs.GetFloat(reader.Path, float.Parse(reader.Value.ToString())))),
+                        new Data<float>(PlayerPrefs.GetFloat(reader.Path, float.Parse(reader.Value.ToString())))),
                 JsonToken.String
                     => () => field.SetValue(settings, 
-                        new Setting<string>(PlayerPrefs.GetString(reader.Path, reader.Value.ToString()))),
+                        new Data<string>(PlayerPrefs.GetString(reader.Path, reader.Value.ToString()))),
                 JsonToken.Boolean
                     => () => field.SetValue(settings, 
-                        new Setting<bool>(PlayerPrefs.GetInt(reader.Path, reader.Value.ToString() == "True" ? 1 : 0) == 1)),
+                        new Data<bool>(PlayerPrefs.GetInt(reader.Path, reader.Value.ToString() == "True" ? 1 : 0) == 1)),
                 JsonToken.Date
                     => () => field.SetValue(settings, 
-                        new Setting<DateTime>(DateTime.Parse(PlayerPrefs.GetString(reader.Path, reader.Value.ToString())))),
+                        new Data<DateTime>(DateTime.Parse(PlayerPrefs.GetString(reader.Path, reader.Value.ToString())))),
                 _ => null
             };
             
