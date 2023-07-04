@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 267004534474992162}
   - component: {fileID: 5495745593531499555}
   - component: {fileID: 2265816571743191492}
-  - component: {fileID: 6868101567635513817}
+  - component: {fileID: 8620172355496699854}
   m_Layer: 0
   m_Name: Head
   m_TagString: MainCamera
@@ -138,7 +138,7 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!114 &6868101567635513817
+--- !u!114 &8620172355496699854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,67 +147,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2192053979571767519}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2fadf230d1919748a9aa21d40f74619, type: 3}
+  m_Script: {fileID: 11500000, guid: dd3bba05c9a567940b973ea60084a3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackingType: 0
-  m_UpdateType: 0
-  m_IgnoreTrackingState: 0
-  m_PositionInput:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Position
-      m_Type: 0
-      m_ExpectedControlType: Vector3
-      m_Id: 2c91c11d-d845-4da9-b02c-acbeda02b810
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_RotationInput:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Rotation
-      m_Type: 0
-      m_ExpectedControlType: Quaternion
-      m_Id: c589da39-5dba-4978-8abf-32faab6bdc32
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_TrackingStateInput:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Tracking State
-      m_Type: 0
-      m_ExpectedControlType: Integer
-      m_Id: f32347d4-1752-46be-8753-76ebcd69d57c
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_PositionAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_RotationAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_HasMigratedActions: 1
+  <AutomaticMigration>k__BackingField: 1
+  <Device>k__BackingField: 1
+  <TrackingType>k__BackingField: 0
 --- !u!1 &2595357513236695865
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4674783057268248400}
-  - component: {fileID: 7261750230341688986}
+  - component: {fileID: 7997865754923003331}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -274,7 +219,7 @@ Transform:
   m_Father: {fileID: 8206518382622288354}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7261750230341688986
+--- !u!114 &7997865754923003331
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,67 +228,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2789661778854890159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2fadf230d1919748a9aa21d40f74619, type: 3}
+  m_Script: {fileID: 11500000, guid: dd3bba05c9a567940b973ea60084a3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackingType: 0
-  m_UpdateType: 0
-  m_IgnoreTrackingState: 0
-  m_PositionInput:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Position
-      m_Type: 0
-      m_ExpectedControlType: Vector3
-      m_Id: 2c91c11d-d845-4da9-b02c-acbeda02b810
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_RotationInput:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Rotation
-      m_Type: 0
-      m_ExpectedControlType: Quaternion
-      m_Id: c589da39-5dba-4978-8abf-32faab6bdc32
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_TrackingStateInput:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Tracking State
-      m_Type: 0
-      m_ExpectedControlType: Integer
-      m_Id: f32347d4-1752-46be-8753-76ebcd69d57c
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_PositionAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_RotationAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_HasMigratedActions: 1
+  <AutomaticMigration>k__BackingField: 1
+  <Device>k__BackingField: 2
+  <TrackingType>k__BackingField: 0
 --- !u!1 &4626186544565567843
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6848039353032353439}
-  - component: {fileID: 8323603222772674439}
+  - component: {fileID: 7828521764127821532}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -376,7 +266,7 @@ Transform:
   m_Father: {fileID: 8206518382622288354}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8323603222772674439
+--- !u!114 &7828521764127821532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -385,67 +275,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4626186544565567843}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2fadf230d1919748a9aa21d40f74619, type: 3}
+  m_Script: {fileID: 11500000, guid: dd3bba05c9a567940b973ea60084a3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackingType: 0
-  m_UpdateType: 0
-  m_IgnoreTrackingState: 0
-  m_PositionInput:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Position
-      m_Type: 0
-      m_ExpectedControlType: Vector3
-      m_Id: 2c91c11d-d845-4da9-b02c-acbeda02b810
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_RotationInput:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Rotation
-      m_Type: 0
-      m_ExpectedControlType: Quaternion
-      m_Id: c589da39-5dba-4978-8abf-32faab6bdc32
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_TrackingStateInput:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Tracking State
-      m_Type: 0
-      m_ExpectedControlType: Integer
-      m_Id: f32347d4-1752-46be-8753-76ebcd69d57c
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_PositionAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_RotationAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_HasMigratedActions: 1
+  <AutomaticMigration>k__BackingField: 1
+  <Device>k__BackingField: 3
+  <TrackingType>k__BackingField: 0
 --- !u!1 &4895881114650178324
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,6 +291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1843624793717958981}
   - component: {fileID: 2368777485363573742}
+  - component: {fileID: 2504614831628559784}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -496,3 +332,40 @@ MonoBehaviour:
   m_CameraFloorOffsetObject: {fileID: 2595357513236695865}
   m_RequestedTrackingOriginMode: 0
   m_CameraYOffset: 1.1176
+--- !u!114 &2504614831628559784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895881114650178324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9fa8ec150534e9a8682988d18fb1a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <AutomaticMigration>k__BackingField: 1
+  <Rig>k__BackingField:
+    base:
+      value: {fileID: 1843624793717958981}
+    offset:
+      value: {fileID: 8206518382622288354}
+    head:
+      value: {fileID: 2326103185968625354}
+    leftHand:
+      value: {fileID: 4674783057268248400}
+    rightHand:
+      value: {fileID: 6848039353032353439}
+  <Origin>k__BackingField:
+    camera:
+      value: {fileID: 267004534474992162}
+    offset:
+      value: 0
+    parent:
+      value: {fileID: 0}
+    requestedTrackingMode:
+      value: 2
+    setTrackingMode:
+      value: 0
+    cameraState:
+      value: 0

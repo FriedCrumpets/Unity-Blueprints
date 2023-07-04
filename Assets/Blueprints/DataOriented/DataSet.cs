@@ -38,14 +38,7 @@ namespace Blueprints.DoD
         }
         
         T IDataSet.Read<T>(string key)
-        {
-            if (Data.TryGetValue(key, out var data))
-            {
-                return ((IData<T>)data).Get();
-            }
-
-            return default;
-        }
+            =>  Data.TryGetValue(key, out var data) ? ((IData<T>)data).Get() : default;
 
         IData<T> IDataSet.Get<T>(string key)
         {

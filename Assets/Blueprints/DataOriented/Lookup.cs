@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Blueprints.Utility
+namespace Blueprints.DoD
 {
     public class Lookup
     {
-        public event Action<object> OnServiceProvided;
+        public event Action<object> Notifier;
 
         private readonly Dictionary<Type, object> _services;
 
@@ -71,15 +71,6 @@ namespace Blueprints.Utility
 
         public bool Remove<T>(bool save = true)
         {
-            if (save && _services[typeof(T)] != null)
-            {
-                if (_services[typeof(T)] is ILoadable loadable)
-                {
-                    loadable.Save();
-                    Debug.Log($"Service {typeof(T)} saved");
-                }
-            }
-
             var success = _services.Remove(typeof(T));
 
             Debug.LogWarning(success
@@ -102,7 +93,7 @@ namespace Blueprints.Utility
             }
             
             _services.Add(typeof(TKey), service);
-            OnServiceProvided?.Invoke(service);
+            Notifier?.Invoke(service);
 
             Debug.Log($"Service {typeof(TKey)} : {service} added to Services");
             return service;

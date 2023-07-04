@@ -9,6 +9,11 @@ namespace Blueprints.DoD
     // one can have many instances of the same type, all with unique DataSets
     public static class Domain
     {
+        static Domain()
+        {
+            Data = new Dictionary<Type, IDictionary<object, IDataSet>>();
+        }
+        
         private static IDictionary<Type, IDictionary<object, IDataSet>> Data { get; }
         
         public static ICollection<Type> Keys
@@ -22,11 +27,6 @@ namespace Blueprints.DoD
 
         public static int Count<T>()
             => Data.TryGetValue(typeof(T), out var pair) ? pair.Count : default;
-
-        static Domain()
-        {
-            Data = new Dictionary<Type, IDictionary<object, IDataSet>>();
-        }
 
         public static IDataSet Get<T>(object key)
         {

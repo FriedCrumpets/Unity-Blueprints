@@ -10,6 +10,8 @@ namespace Blueprints.Boot
     [Serializable]
     public class Main : IDisposable
     {
+        public event Action Complete;
+        
         public UnityEvent bootUpComplete;
         
         private GameObject _bootObject;
@@ -18,6 +20,7 @@ namespace Blueprints.Boot
         {
             Loaded = new List<GameObject>();
             Loaders = new List<AssetReference>();
+            Complete += () => bootUpComplete?.Invoke();
         }
         
         [field: SerializeField] public List<AssetReference> Loaders { get; set; }
@@ -30,11 +33,11 @@ namespace Blueprints.Boot
             
             InstantiateLoaders(Loaders, () =>
             {
-                bootUpComplete?.Invoke(); _bootObject.name = GetType().Name;
+                Complete?.Invoke(); _bootObject.name = GetType().Name;
             });
         }
 
-        private void InstantiateLoaders(IList<AssetReference> loaders, Action onComplete = null)
+        private void InstantiateLoaders(ICollection<AssetReference> loaders, Action onComplete = null)
         {
             var cAction = new CountAction(loaders.Count, onComplete);
             
