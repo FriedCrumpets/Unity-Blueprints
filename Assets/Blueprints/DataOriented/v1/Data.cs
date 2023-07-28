@@ -15,13 +15,13 @@ namespace Blueprints.DoD
     public class Data<T> : IData<T>
     {
         public event Action<T> Notifier;
-
-        [SerializeField] private T value;
-
+        
         public Data(T value = default)
         {
-            this.value = value;
+            Value = value;
         }
+        
+        [field: SerializeField] public T Value { get; private set; }
 
         Action<T> IData<T>.Notifier
         {
@@ -30,15 +30,15 @@ namespace Blueprints.DoD
         }
         
         T IData<T>.Get()
-            => value;
+            => Value;
 
         void IData<T>.Set(T value)
         {
-            if (this.value.Equals(value)) 
+            if (Value.Equals(value)) 
                 return;
             
             Notifier?.Invoke(value);
-            this.value = value;
+            Value = value;
         }
     }
 }

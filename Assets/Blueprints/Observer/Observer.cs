@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Observer
+namespace Blueprints.Observe
 {
-    public class Observerr : IObserve
+    public class Observer : IObserve
     {
         public void Observe(IObservable observable)
         {
