@@ -7,7 +7,7 @@ namespace Blueprints.Utility
 {
     public static class CoroutineUtils
     {
-      /**
+        /**
       * Usage: StartCoroutine(CoroutineUtils.Chain(...))
       * For example:
       *     StartCoroutine(CoroutineUtils.Chain(
@@ -36,9 +36,34 @@ namespace Blueprints.Utility
             yield return new WaitUntil(predicate);
         }
 
+        public static IEnumerator WaitWhile(Func<bool> predicate)
+        {
+            yield return new WaitWhile(predicate);
+        }
+
+        public static IEnumerator WaitForUpdate()
+        {
+            yield return null;
+        }
+
+        public static IEnumerator WaitForFixedUpdate()
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        
+        public static IEnumerator WaitForEndOfFrame()
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
         public static IEnumerator WaitForSeconds(float time)
         {
             yield return new WaitForSeconds(time);
+        }
+        
+        public static IEnumerator WaitForSecondsRealtime(float time)
+        {
+            yield return new WaitForSecondsRealtime(time);
         }
 
         public static IEnumerator Do(Action action)

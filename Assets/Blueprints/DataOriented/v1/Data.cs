@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Blueprints.DoD
+namespace Blueprints.DoD.v1
 {
 
     public interface IData<T>

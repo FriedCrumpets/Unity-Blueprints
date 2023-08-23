@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Blueprints.DoD
+namespace Blueprints.DoD.v1
 {
     public class Lookup
     {

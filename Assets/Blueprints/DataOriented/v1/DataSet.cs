@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Blueprints.DoD
+namespace Blueprints.DoD.v1
 {
     public interface IDataSet
     {

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Blueprints.DoD;
+using Blueprints.DoD.v1;
 using UnityEngine;
 
 namespace Features.XR

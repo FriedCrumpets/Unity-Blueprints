@@ -1,17 +1,31 @@
-﻿using UnityEngine;
+﻿using System;
 
 namespace Blueprints.Observe
 {
-    public class Observer : IObserve
+    public abstract class Observer<T> : IObserver<T>
     {
-        public void Observe(IObservable observable)
+        private IDisposable _unSubscriber;
+
+        protected abstract void Completed();
+        protected abstract void Error(Exception error);
+        protected abstract void Next(T value);
+
+        public void Subscribe(IObservable<T> provider)
         {
-            observable.Subscribe(this);
+            if(provider != null)
+                _unSubscriber = provider.Subscribe(this);
+        }
+        
+        void IObserver<T>.OnCompleted()
+        {
+            Completed(); 
+            _unSubscriber.Dispose();
         }
 
-        public void Execute()
-        {
-            Debug.Log("hooch is crazy");
-        }
+        void IObserver<T>.OnError(Exception error)
+            => Error(error);
+
+        void IObserver<T>.OnNext(T value)
+            => Next(value);
     }
 }

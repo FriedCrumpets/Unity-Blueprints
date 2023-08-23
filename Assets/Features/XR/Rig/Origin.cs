@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Blueprints.DoD;
+using Blueprints.DoD.v1;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -25,7 +25,7 @@ namespace Features.XR
     public class Origin 
     {
         private IDataSet _data;
-        [SerializeField] private Data<Camera> camera;
+        [SerializeField] private Data<UnityEngine.Camera> camera;
         [SerializeField] private Data<float> offset;
         private Data<Transform> _trackablesParent;
         [SerializeField] private Data<TrackingMode> requestedTrackingMode;
@@ -39,7 +39,7 @@ namespace Features.XR
             _cameraState = new Data<CameraState>();
         }
         
-        public IData<Camera> Camera => camera;
+        public IData<UnityEngine.Camera> Camera => camera;
         public IData<float> Offset => offset;
         public IData<Transform> TrackablesParent => _trackablesParent;
         public IData<TrackingMode> RequestedTrackingMode => requestedTrackingMode;

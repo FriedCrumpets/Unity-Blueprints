@@ -1,5 +1,5 @@
 using System;
-using Blueprints.DoD;
+using Blueprints.DoD.v1;
 using UnityEngine;
 
 namespace Blueprints.Facade

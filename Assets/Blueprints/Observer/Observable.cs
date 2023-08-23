@@ -2,14 +2,17 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Blueprints.Observer
+namespace Blueprints.Observe
 {
-    public class Observable<T> : ScriptableObject, IObservable<T> where T : struct
+    public class Observable<T> : IObservable<T> where T : struct
     {
-        [field: SerializeField] public List<IObserver<T>> _observers { get; private set; }= new List<IObserver<T>>();
+        public List<IObserver<T>> _observers { get; }
 
-        protected virtual void Awake() => _observers.ForEach(observer => Subscribe(observer));
-
+        public Observable()
+        {
+            _observers = new();
+        }
+        
         public IDisposable Subscribe(IObserver<T> observer)
         {
             if (!_observers.Contains(observer))

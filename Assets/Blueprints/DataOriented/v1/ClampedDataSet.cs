@@ -1,6 +1,6 @@
 using System;
 
-namespace Blueprints.DoD
+namespace Blueprints.DoD.v1
 {
     [Serializable]
     public class ClampedDataSet : IDataSet<float>

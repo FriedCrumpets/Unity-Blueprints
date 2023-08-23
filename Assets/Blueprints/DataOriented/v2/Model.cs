@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Collections;
 
 namespace Blueprints.DoD.v2
 {
@@ -9,8 +10,6 @@ namespace Blueprints.DoD.v2
     {
         T Read<T>(string key);
         bool Set<T>(string key, T value);
-        void Add<T>(string key, IData<T> value);
-        bool Remove(string key);
     }
 
     [Serializable]
@@ -20,16 +19,14 @@ namespace Blueprints.DoD.v2
         
         private Dictionary<string, object> Data { get; }
 
-        public Model(params KeyValuePair<string, object>[] data)
+        public Model(params KeyValue<string, object>[] data)
         {
             Data = new Dictionary<string, object>();
 
             foreach (var pair in data)
-            {
                 Data.Add(pair.Key, pair.Value);
-            }
-
-            PropertyChanged = (sender, args) => { };
+            
+            PropertyChanged = null;
         }
 
         T IModel.Read<T>(string key)
@@ -37,7 +34,7 @@ namespace Blueprints.DoD.v2
         
         bool IModel.Set<T>(string key, T value)
         {
-            if(Data.TryGetValue(key, out var data) is bool check);
+            if(Data.TryGetValue(key, out var data) is var check);
             {
                 ((IData<T>)data)?.Set(value);
                 OnPropertyChanged(key);
@@ -45,13 +42,7 @@ namespace Blueprints.DoD.v2
 
             return check;
         }
-        
-        void IModel.Add<T>(string key, IData<T> value)
-            => Data.Add(key, value);
 
-        bool IModel.Remove(string key)
-            => Data.Remove(key);
-        
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Blueprints.Components;
-using Blueprints.DoD;
+using Blueprints.DoD.v1;
 using UnityEngine;
 using UnityEngine.XR;
 

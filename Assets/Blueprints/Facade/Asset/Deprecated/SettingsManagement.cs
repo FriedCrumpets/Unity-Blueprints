@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 using System.Reflection;
-using Blueprints.DoD;
+using Blueprints.DoD.v1;
 using Newtonsoft.Json;
 using UnityEngine;
 

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Blueprints.DoD
+namespace Blueprints.DoD.v1
 {
     // you should only need to know about something in the domain if it's being interacted with or it's handling it's own logic
     // therefore Dictionary<Type, Dictionary<object, DataSet>> does the trick
