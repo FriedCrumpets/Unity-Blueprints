@@ -8,8 +8,8 @@ namespace Blueprints.Http
         POST,
         DELETE,
         HEAD,
-        OPTIONS,
-        CONNECT,
+        OPTIONS, //todo: Implement
+        CONNECT, //todo: Implement
         TRACE,
     }
 }

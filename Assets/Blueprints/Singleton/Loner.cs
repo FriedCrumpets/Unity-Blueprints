@@ -7,7 +7,7 @@ namespace Blueprints.Core
     {
         private static T Instance;
 
-        protected Loner()
+        private Loner()
         {
             if (Instance != null)
                 return;
@@ -25,7 +25,7 @@ namespace Blueprints.Core
             return Instance;
         }
 
-        public static void Destroy()
+        public static void DestroyInstance()
         {
             switch (Instance)
             {

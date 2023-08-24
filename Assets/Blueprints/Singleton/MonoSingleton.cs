@@ -29,9 +29,6 @@ namespace Blueprints.Core
     {
         private static T _instance;
 
-        public static T Get()
-            => _instance;
-
         protected virtual void Awake()
         {
             if (_instance != null)
@@ -47,9 +44,6 @@ namespace Blueprints.Core
                 loadable.Load();
             }
         }
-        
-        private void OnDestroy() 
-            => DestroyInstance();
         
         public static T CreateInstance()
         {

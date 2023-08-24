@@ -24,7 +24,7 @@ namespace Features.XR
         [SerializeField] private bool repeatCheck = true;
         [SerializeField] private float repeatXRCheckSeconds = 2.5f;
         
-        public EventBus<XRBootProgress> Progress;
+        public TBus Progress;
 
         private WaitForSeconds _waitForSeconds;
         private Debugger _log;
@@ -41,7 +41,7 @@ namespace Features.XR
         public IEnumerator StartXR()
         {
             _log?.Log("Initializing XR...", this);
-            Progress.Publish(XRBootProgress.Searching);
+            Progress.Publish<XRBootProgress>(XRBootProgress.Searching);
 
             yield return XRGeneralSettings.Instance.Manager.InitializeLoader();
 
@@ -50,7 +50,7 @@ namespace Features.XR
                 XRActive = false;
                 if (repeatCheck)
                 {
-                    Progress.Publish(XRBootProgress.NotLocated);
+                    Progress.Publish<XRBootProgress>(XRBootProgress.NotLocated);
                     _log?.Log($"XR Not found... Repeating check in {repeatXRCheckSeconds} seconds", this);
                     yield return _waitForSeconds;
                     yield return StartXR();
@@ -63,7 +63,7 @@ namespace Features.XR
                 _log?.Log($"Starting XR...", this);
                 XRGeneralSettings.Instance.Manager.StartSubsystems();
                 XRActive = true;
-                Progress.Publish(XRBootProgress.Located);
+                Progress.Publish<XRBootProgress>(XRBootProgress.Located);
             }
         }
 
@@ -75,7 +75,7 @@ namespace Features.XR
             XRGeneralSettings.Instance.Manager.DeinitializeLoader();
             _log?.Log($"XR Stopped", this);
             XRActive = false;
-            Progress.Publish(XRBootProgress.ShutDown);
+            Progress.Publish<XRBootProgress>(XRBootProgress.ShutDown);
         }
     }
 }

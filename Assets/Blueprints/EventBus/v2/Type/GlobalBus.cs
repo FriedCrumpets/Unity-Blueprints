@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Blueprints.EventBus.v1
+namespace Blueprints.EventBus
 {
     public static class GlobalBus
     {

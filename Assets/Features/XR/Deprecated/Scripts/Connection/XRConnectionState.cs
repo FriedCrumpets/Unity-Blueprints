@@ -11,7 +11,7 @@ namespace Features.XR
         XRDisconnected,
     }
     
-    public class XRConnectionState : EventBus<XRConnection>
+    public class XRConnectionState : TBus
     {
         public XRConnection ConnectionState { get; private set; }
 
@@ -37,7 +37,7 @@ namespace Features.XR
             if (ConnectionState == newConnectionState) { return; }
 
             ConnectionState = newConnectionState;
-            Publish(ConnectionState);
+            Publish<XRConnection>(ConnectionState);
         }
 
         private static bool CheckDeviceForXRHeadTracking(InputDevice device)
