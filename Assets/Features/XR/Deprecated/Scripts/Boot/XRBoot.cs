@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
-using Blueprints.Core;
-using Blueprints.EventBus;
+using Blueprints.StaticMessaging;
 using Logging;
 using UnityEngine;
 using UnityEngine.XR.Management;
@@ -24,7 +23,7 @@ namespace Features.XR
         [SerializeField] private bool repeatCheck = true;
         [SerializeField] private float repeatXRCheckSeconds = 2.5f;
         
-        public TBus Progress;
+        public TypeBus Progress;
 
         private WaitForSeconds _waitForSeconds;
         private Debugger _log;

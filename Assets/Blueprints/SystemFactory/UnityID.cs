@@ -26,7 +26,7 @@ namespace Blueprints.SystemFactory
             => ID = _id.ToString();
 
         [ContextMenu("ReGenerateID")]
-        public void ReGenerateID()
+        private void ReGenerateID()
             => ID = Guid.NewGuid().ToString();
     }
 }

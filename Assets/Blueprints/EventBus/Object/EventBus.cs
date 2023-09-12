@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace Blueprints.EventBus.Object
+namespace Blueprints.StaticMessaging
 {
-    public class EventBus : IBus
+    public class EventBus : IBussable
     {
         private IDictionary<object, Action<object>> Bus { get; }
 

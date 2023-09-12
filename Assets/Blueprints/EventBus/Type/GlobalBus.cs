@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace Blueprints.EventBus
+namespace Blueprints.StaticMessaging
 {
     public static class GlobalBus
     {
-        private static IDictionary<Type, Action<object>> Bus { get; }
+        private static IDictionary<System.Type, Action<object>> Bus { get; }
 
         static GlobalBus()
         {
-            Bus = new Dictionary<Type, Action<object>>();
+            Bus = new Dictionary<System.Type, Action<object>>();
         }
 
         public static IDisposable Subscribe<T>(Action<object> observer)

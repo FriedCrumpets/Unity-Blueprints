@@ -40,9 +40,7 @@ namespace Blueprints.Core
             _instance = GetComponent<T>();
 
             if (_instance is ILoadable loadable)
-            {
                 loadable.Load();
-            }
         }
         
         public static T CreateInstance()
@@ -65,9 +63,7 @@ namespace Blueprints.Core
             if (_instance != null)
             {
                 if (_instance is ILoadable loadable)
-                {
                     loadable.Save();
-                }
                 
                 Destroy(_instance.gameObject);
                 _instance = null;

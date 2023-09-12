@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
-using Blueprints.Core;
+using Blueprints.Utility;
+using UnityEngine;
 
-namespace Blueprints.Utility
+namespace Blueprints.MainThreadDispatch
 {
-    public class MainThreadDispatcher : MonoSingleton<MainThreadDispatcher>
+    public class MainThreadDispatcher : MonoBehaviour
     {
         private Queue<Action> ExecutionQueue { get; set; } = new();
-
+        
         private void Update()
         {
             lock(ExecutionQueue)

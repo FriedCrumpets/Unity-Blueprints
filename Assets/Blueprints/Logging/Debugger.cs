@@ -47,10 +47,10 @@ namespace Logging
             log.Invoke($"{Name}: {message}", obj);
         }
 
-        public void Enable()
+        public void Activate()
             => GameLog.SetLoggerActive(Name, true);
         
-        public void Disable()
+        public void Deactivate()
             => GameLog.SetLoggerActive(Name, false);
 
         public override string ToString() 

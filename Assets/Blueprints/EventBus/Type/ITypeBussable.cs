@@ -1,8 +1,8 @@
 using System;
 
-namespace Blueprints.EventBus
+namespace Blueprints.StaticMessaging
 {
-    public interface ITBus
+    public interface ITypeBussable
     {
         IDisposable Subscribe<T>(Action<object> observer);
         void Publish<T>(object message);

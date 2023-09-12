@@ -1,8 +1,8 @@
 using System;
 
-namespace Blueprints.EventBus
+namespace Blueprints.StaticMessaging
 {
-    public interface IBus
+    public interface IBussable
     {
         object Type { get; }
         IDisposable Subscribe(object obj, Action<object> observer);

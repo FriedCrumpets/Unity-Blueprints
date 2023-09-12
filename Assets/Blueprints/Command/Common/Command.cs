@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 namespace Blueprints
 {
+    // todo : The ability to undo a command is not inherent to a basic command, this should be a decorator
     public interface ICommand
     {
         public void Execute();

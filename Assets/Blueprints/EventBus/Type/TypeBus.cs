@@ -1,16 +1,12 @@
 using System;
 using System.Collections.Generic;
 
-namespace Blueprints.EventBus
+namespace Blueprints.StaticMessaging
 {
-    public class TBus : ITBus
+    public class TypeBus : ITypeBussable
     {
-        private IDictionary<Type, Action<object>> Bus { get; }
-
-        public TBus()
-        {
-            Bus = new Dictionary<Type, Action<object>>();
-        }
+        private IDictionary<object, Action<object>> Bus { get; } 
+            = new Dictionary<object, Action<object>>();
 
         public IDisposable Subscribe<T>(Action<object> observer)
         {
@@ -30,10 +26,10 @@ namespace Blueprints.EventBus
         
         private class UnSubscriber<T> : IDisposable
         {
-            private readonly TBus _bus;
+            private readonly TypeBus _bus;
             private readonly Action<object> _observer;
 
-            public UnSubscriber(TBus bus, Action<object> observer)
+            public UnSubscriber(TypeBus bus, Action<object> observer)
             {
                 _bus = bus;
                 _observer = observer;

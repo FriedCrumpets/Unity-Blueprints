@@ -1,4 +1,4 @@
-using Blueprints.EventBus;
+using Blueprints.StaticMessaging;
 using UnityEngine.InputSystem;
 
 namespace Features.XR
@@ -11,7 +11,7 @@ namespace Features.XR
         XRDisconnected,
     }
     
-    public class XRConnectionState : TBus
+    public class XRConnectionState : TypeBus
     {
         public XRConnection ConnectionState { get; private set; }
 

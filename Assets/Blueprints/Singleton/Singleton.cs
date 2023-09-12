@@ -7,9 +7,6 @@ namespace Blueprints.Core
     {
         private static T _instance;
 
-        public static T Get()
-            => _instance;
-
         private Singleton()
         {
             if (_instance != null)

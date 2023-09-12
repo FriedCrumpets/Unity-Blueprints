@@ -36,7 +36,7 @@ namespace Blueprints.DoD.v2
         {
             if(Data.TryGetValue(key, out var data) is var check);
             {
-                ((IData<T>)data)?.Set(value);
+                ((IData<T>)data)?.Set(value); // todo: does a struct work for this purpose? Needs testing
                 OnPropertyChanged(key);
             }
 

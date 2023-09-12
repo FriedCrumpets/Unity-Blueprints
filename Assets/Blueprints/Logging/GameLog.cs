@@ -37,12 +37,12 @@ namespace Logging
 
             if (logger.Enabled)
             {
-                logger.Disable();
+                logger.Deactivate();
 
                 return;
             }
             
-            logger.Enable();
+            logger.Activate();
         }
 
         public static void SetLoggerActive(string loggerName, bool active)
@@ -90,13 +90,13 @@ namespace Logging
         private static void EnterDebugMode()
         {
             foreach (var logger in AllLoggers)
-                logger.Value.Enable();
+                logger.Value.Activate();
         }
 
         private static void ExitDebugMode()
         {
             foreach (var logger in AllLoggers)
-                logger.Value.Disable();
+                logger.Value.Deactivate();
         }
     }
 }

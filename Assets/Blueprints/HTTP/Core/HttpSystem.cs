@@ -1,27 +1,27 @@
 using System;
 using System.Collections;
-using Blueprints.Core;
-using Blueprints.EventBus;
+using Blueprints.StaticMessaging;
 using Blueprints.SystemFactory;
+using UnityEngine;
 using UnityEngine.Networking;
 
 namespace Blueprints.Http
 {
-    public class HttpSystem : MonoSingleton<HttpSystem>, ISystem<Entity>
+    public class HttpSystem : MonoBehaviour, ISystem<Entity>
     {
         private HttpBuffer _buffer;
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
             _buffer = new HttpBuffer();
         }
 
         public void Init(Entity entity)
         {
-            var bus = new TBus();
+            var bus = new TypeBus();
             bus.Subscribe<HttpRequest>(Queue);
-            Transport.AddBus(typeof(HttpRequest), bus);
+            if(!Transport.TryAddBus(typeof(HttpRequest), bus))
+                Destroy(this);
             
             StartCoroutine(DequeueBuffer());
         }
@@ -83,16 +83,16 @@ namespace Blueprints.Http
         
         private static IEnumerator Get(HttpRequest request)
         {
-            var uri = request.URL;
+            var url = request.URL;
                 
             if( request.QueryParameters.Count > 0 )
             {
-                uri += "?";
+                url += "?";
                 foreach (var query in request.QueryParameters)
-                    uri += $"{query.Key}={query.Value}";
+                    url += $"{query.Key}={query.Value}";
             }
 
-            using( var www = UnityWebRequest.Get(uri) )
+            using( var www = UnityWebRequest.Get(url) )
                 yield return Send(www, request);
         }
         
