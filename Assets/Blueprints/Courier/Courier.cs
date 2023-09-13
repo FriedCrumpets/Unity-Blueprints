@@ -2,36 +2,38 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Blueprints.StaticMessaging
+namespace Blueprints.Messenger
 {
-    public static class Courier
+    public class Courier
     {
-        private static Dictionary<Type, object> Addresses { get; }
+        private IDictionary<Type, object> Addresses { get; } = new Dictionary<Type, object>();
 
-        static Courier()
-        {
-            Addresses = new Dictionary<Type, object>();
-        }
-
-        public static void Send(this Message message)
+        public void Send(Message message)
         {
             if( Addresses.TryGetValue(message.Recipient, out var obj) )
                 message.Receive(obj);
+#if UNITY_EDITOR
             else
                 Debug.LogWarning($"Failed To send Message to {message.Recipient}; Recipient not registered with {typeof(Courier)}");
+#endif
         }
 
-        public static IDisposable Register(object obj)
-            => Addresses.TryAdd(obj.GetType(), obj) ? new DeRegister(obj) : null;
+        public IDisposable Register(object obj)
+            => Addresses.TryAdd(obj.GetType(), obj) ? new DeRegister(this, obj) : null;
         
         private class DeRegister : IDisposable
         {
             private readonly object _obj;
-            
-            public DeRegister(object obj) { _obj = obj; }
+            private readonly Courier _courier;
+
+            public DeRegister(Courier courier, object obj)
+            {
+                _courier = courier;
+                _obj = obj;
+            }
             
             public void Dispose()
-                => Addresses.Remove(_obj.GetType());
+                => _courier.Addresses.Remove(_obj.GetType());
         }
     }
 }

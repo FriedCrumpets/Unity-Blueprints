@@ -1,13 +1,13 @@
 using System;
 using System.Collections;
+using Blueprints.Entities;
 using Blueprints.StaticMessaging;
-using Blueprints.SystemFactory;
 using UnityEngine;
 using UnityEngine.Networking;
 
 namespace Blueprints.Http
 {
-    public class HttpSystem : MonoBehaviour, ISystem<Entity>
+    public class HttpSystem : MonoBehaviour, ISystem<SOEntity>
     {
         private HttpBuffer _buffer;
 
@@ -16,7 +16,7 @@ namespace Blueprints.Http
             _buffer = new HttpBuffer();
         }
 
-        public void Init(Entity entity)
+        public void Init(SOEntity soEntity)
         {
             var bus = new TypeBus();
             bus.Subscribe<HttpRequest>(Queue);

@@ -39,7 +39,7 @@ namespace Blueprints.Boot
 
         private void InstantiateLoaders(ICollection<AssetReference> loaders, Action onComplete = null)
         {
-            var cAction = new CountAction(loaders.Count, onComplete);
+            var cAction = new IncrementalAction(loaders.Count, onComplete);
             
             foreach (var loader in loaders)
             {

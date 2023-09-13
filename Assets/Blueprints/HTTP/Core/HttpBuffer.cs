@@ -7,13 +7,8 @@ namespace Blueprints.Http
     {
         public event Action RequestQueued;
 
-        public HttpBuffer()
-        {
-            Buffers = new Dictionary<int, Queue<HttpRequest>>();
-        }
+        private IDictionary<int, Queue<HttpRequest>> Buffers { get; } = new Dictionary<int, Queue<HttpRequest>>();
 
-        private IDictionary<int, Queue<HttpRequest>> Buffers { get; }
-        
         public void QueueRequest(HttpRequest request)
         {
             if(Buffers.TryGetValue(request.Queue, out var buffer))

@@ -1,6 +1,6 @@
 using System;
 
-namespace Blueprints.StaticMessaging
+namespace Blueprints.Messenger
 {
     /*
      * Future idea for concept
