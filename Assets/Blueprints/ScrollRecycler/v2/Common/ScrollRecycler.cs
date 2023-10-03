@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
-using Bloktopia.UI;
+using Blueprints.Scroller;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Blueprints.Scroller
+namespace Blueprints.ScrollRecycler.v2.Common
 {
     public class ScrollRecycler
     {
@@ -14,23 +14,32 @@ namespace Blueprints.Scroller
                     => current + new Vector2(0, cell.sizeDelta.y + TopSpacing)
             );
         
-        public float TopSpacing { get; set; } = 30f;
-        public float LeftSpacing { get; set; } = 5f;
+        public float Threshhold { get; }
+        public float TopSpacing { get; }
+        public float LeftSpacing { get; }
+
         
-        private readonly ScrollRect _scrollRect;
-        public readonly Bounds _boundary;
-        private readonly ScrollCellPool _pool;
+        private Bounds _boundary;
+        private ScrollRect _scrollRect;
+        private ScrollCellPool _pool;
         
         private bool TopCellOutOfBounds
             => _pool.ActiveCount > 0 && _pool.GetTopCell().GetBottomLeftCorner().y > _boundary.max.y;
 
         private bool BottomCellOutOfBounds
             => _pool.ActiveCount > 0 && _pool.GetBottomCell().GetTopLeftCorner().y < _boundary.min.y;
+
+        public ScrollRecycler(float threshhold, float topSpacing, float leftSpacing)
+        {
+            Threshhold = threshhold;
+            TopSpacing = topSpacing;
+            LeftSpacing = leftSpacing;
+        }
         
-        public ScrollRecycler(ScrollRect scrollRect, Bounds boundary, ScrollCellPool pool)
+        public void Init(ScrollRect scrollRect, ScrollCellPool pool)
         {
             _scrollRect = scrollRect;
-            _boundary = boundary;
+            _boundary = CreateViewBoundary(_scrollRect.viewport);
             _pool = pool;
         }
         
@@ -63,6 +72,9 @@ namespace Blueprints.Scroller
                 previousCell = _pool[i];
             }   
         }
+
+        public void RefreshContentSize()
+            => _scrollRect.content.sizeDelta = new Vector2(_scrollRect.content.sizeDelta.x, SizeDelta.y);
 
         private RectTransform RecycleFromTop()
         {
@@ -97,6 +109,19 @@ namespace Blueprints.Scroller
             {
                 > 0 => _pool.GetTopCell().anchoredPosition + new Vector2(0, cell.sizeDelta.y + TopSpacing),
                 _ => new Vector2(LeftSpacing, -TopSpacing)
+            };
+        }
+        
+        private Bounds CreateViewBoundary(RectTransform view)
+        {
+            var corners = new Vector3[4];
+            view.GetWorldCorners(corners);
+            var threshHold = Threshhold * (corners[2].y - corners[0].y);
+            
+            return new Bounds
+            {
+                min = new Vector3(corners[0].x, corners[0].y - threshHold),
+                max = new Vector3(corners[2].x, corners[2].y + threshHold)
             };
         }
         

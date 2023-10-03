@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Blueprints.Scroller
+namespace Blueprints.ScrollRecycler.v2.Common
 {
     // the powerhouse of the cell
     public class Cell

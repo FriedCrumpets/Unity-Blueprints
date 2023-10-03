@@ -1,13 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Blueprints.Utility.Extensions;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Blueprints.Scroller
+namespace Blueprints.ScrollRecycler.v2.Common
 {
-    [Serializable]
     public class ScrollCellPool : IEnumerable<RectTransform>
     {
         public RectTransform this[int index]
@@ -16,16 +14,12 @@ namespace Blueprints.Scroller
         public int ActiveCount 
             => _active.Count;
         
-        [field: SerializeField] public int MaxCells { get; private set; } = 10;
-        
-        [SerializeField] private GameObject template;
-        
-        private IList<RectTransform> _inactive = new List<RectTransform>();
-        private IList<RectTransform> _active = new List<RectTransform>();
+        private readonly IList<RectTransform> _inactive = new List<RectTransform>();
+        private readonly IList<RectTransform> _active = new List<RectTransform>();
 
-        public void Init(RectTransform container)
+        public void Init(GameObject template, RectTransform container, int maxCells)
         {
-            for (var i = 0; i < MaxCells; i++)
+            for (var i = 0; i < maxCells; i++)
             {
                 var cell = Object.Instantiate(template, container, false);
                 if(cell.transform is RectTransform transform)

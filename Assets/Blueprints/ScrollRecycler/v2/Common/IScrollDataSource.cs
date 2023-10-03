@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using Bloktopia.V2.Apps;
+using Blueprints.ScrollRecycler.v2.Core;
 
-namespace Bloktopia.UI.Scroller
+namespace Blueprints.ScrollRecycler.v2.Common
 {
     /// <summary>
     /// Provides a Data source with the ability to be used inside the <see cref="ScrollRecycler"/> to update the cells
     /// in the recycler with data as it is modified.
     /// </summary>
     /// <remarks> 
-    /// This interface has default implementations used in <see cref="ScrollDataSource{TComponent,TData}"/>
-    /// and <see cref="DictScrollDataSource{TComponent,TData}"/>.
+    /// This interface has default implementations used in <see cref="DictScrollDataSource{TComponent,TData}"/>
+    /// and <see cref="ScrollRecycler"/>.
     ///
-    /// This interface must be implemented on any data source to be used with the <see cref="ScrollRecycler"/>.
+    /// This interface must be implemented on any data source to be used with the <see cref="ScrollDataSource{TComponent,TData}"/>.
     /// The Actions
     ///
     ///     DataAdded

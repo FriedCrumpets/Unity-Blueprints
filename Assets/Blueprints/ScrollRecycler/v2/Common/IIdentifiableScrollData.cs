@@ -1,4 +1,6 @@
-﻿namespace Bloktopia.V2.Apps
+﻿using Blueprints.ScrollRecycler.v2.Core;
+
+namespace Blueprints.ScrollRecycler.v2.Common
 {
     /// <summary>
     /// Required identifier for Data used in the <see cref="DictScrollDataSource{TComponent,TData}"/>

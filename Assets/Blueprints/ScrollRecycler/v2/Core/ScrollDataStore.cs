@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bloktopia.UI.Scroller;
+using Blueprints.ScrollRecycler.v2.Common;
 
-namespace Bloktopia.V2.Apps
+namespace Blueprints.ScrollRecycler.v2.Core
 {
     /// <summary>
     /// A Data store for information used within the ScrollRecycler.

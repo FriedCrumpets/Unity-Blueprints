@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Blueprints.ScrollRecycler.v2.Common;
 
-namespace Bloktopia.V2.Apps
+namespace Blueprints.ScrollRecycler.v2.Core
 {
     /// <summary>
     /// A Data store for information used within the ScrollRecycler.
@@ -38,7 +39,7 @@ namespace Bloktopia.V2.Apps
         /// <summary>
         /// Updates the Data in this Data Source if the provided data has a matching id with that presently stored
         /// This method Invokes <see cref="ScrollDataSource{TComponent,TData}.DataUpdated"/> so users of the
-        /// <see cref="Bloktopia.UI.Scroller.IScrollDataSource"/> are aware that data has been updated
+        /// <see cref="IScrollDataSource"/> are aware that data has been updated
         /// </summary>
         /// <param name="data">The Data that is to be updated in the Dictionary. This can be one or many for simplicity of implementation</param>
         public void UpdateData(params TData[] data)
