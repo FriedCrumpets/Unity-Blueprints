@@ -3,7 +3,7 @@ using System;
 namespace Blueprints.BehaviourTree
 {
     /// <summary>
-    /// Repeats chil node; will repeat infinitely until <see cref="Result"/> is Failure or <see cref="Kill"/>
+    /// Repeats child node; will repeat infinitely until <see cref="Result"/> is Failure or <see cref="Kill"/>
     /// is called.
     /// </summary>
     public class Relay : Decorator
@@ -21,7 +21,7 @@ namespace Blueprints.BehaviourTree
             {
                 Result.Running => Result.Running,
                 Result.Success => Result.Running,
-                Result.Failure => Result.Success,
+                Result.Failure => Result.Failure,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

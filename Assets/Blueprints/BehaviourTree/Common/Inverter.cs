@@ -3,7 +3,7 @@ using System;
 namespace Blueprints.BehaviourTree
 {
     /// <summary>
-    /// Inverts the result of a child node
+    /// Inverts the result of a child node, unless running. Running will always return running
     /// </summary>
     public class Inverter : Decorator
     {

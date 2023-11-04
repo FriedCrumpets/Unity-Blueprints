@@ -3,8 +3,6 @@ namespace Blueprints.BehaviourTree
 {
     public class Parallel : Composite
     {
-        private const Result _STABLE_RESULT = Result.Running;
-        
         public Parallel(params INode[] nodes) : base(nodes) { }
         
         public override Result Execute()
@@ -13,7 +11,7 @@ namespace Blueprints.BehaviourTree
             {
                 var compare = child.Execute();
                 
-                if (_STABLE_RESULT != compare)
+                if (Result.Running != compare)
                     return compare;
             }
 

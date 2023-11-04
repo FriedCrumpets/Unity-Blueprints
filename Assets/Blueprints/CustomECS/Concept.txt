@@ -1,0 +1,26 @@
+Archetypes
+- a collection of components to be taken from an entity 
+- each various archetype has it's own store
+- Systems can iterate over archetypes 
+
+Components
+- Entities house components  
+- data for a particular system
+- providing an entity with a component provides it access to a system
+
+Entities
+- a container for components 
+- spawned only through the world 
+- stored in the World
+- must have a unique identifier  
+
+Systems
+- created on game startup
+- must end in System 
+- modifies and acts upon the data inside of components or archetypes
+
+World
+- stores all entities, components, systems and archetypes
+- spawns entities
+- Loads scenes
+- General world controls

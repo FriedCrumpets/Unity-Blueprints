@@ -17,10 +17,8 @@ namespace Blueprints.BehaviourTree
         public Result Execute()
         {
             if (leaf.RequireInitialisation)
-            {
                 if (leaf.Init() == Result.Failure)
                     return Result.Failure;
-            }
 
             return leaf.Process();
         }
